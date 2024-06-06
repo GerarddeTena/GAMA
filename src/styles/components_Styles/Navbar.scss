@@ -1,0 +1,61 @@
+@import '../global.variables';
+
+.Navbar {
+    position: relative;
+    @include displayFlex(row, flex-end, center);
+    background-color: black;
+    padding: 1.5rem;
+    width: 100%;
+
+    & .Nav_Logo {
+        position: absolute;
+        left: 5%;
+        top: 25%;
+    }
+
+    & .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: $s-size;
+
+        & .link {
+            list-style: none;
+            padding: 0 20px;
+            position: $rel;
+            text-decoration: none;
+            font-size: medium;
+            font-family: "Press Start 2P", system-ui;
+            color: white;
+            transition: 0.3s ease-in-out;
+
+            &:hover {
+                color: #f63ba5;
+            }
+
+            &:hover::after {
+                content: "";
+                width: 35%;
+                height: 2px;
+                background: #f63ba5;
+                position: $abs;
+                bottom: -4px;
+                left: 20px;
+                box-shadow: 0 0.5rem 0.7rem #f63ba5, 0 0.5rem 0.7rem #f63ba5;
+                transform: translateX(-10%);
+                animation: pulse 500ms ease-in-out forwards;
+            }
+        }
+    }
+}
+
+
+@keyframes pulse {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}

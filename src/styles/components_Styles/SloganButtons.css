@@ -1,0 +1,36 @@
+.nes-btn {
+  margin-top: 2rem;
+  border-image-source: url("../../Images/ButtonBorder.svg");
+  height: 3rem;
+  position: relative;
+  width: 8.35rem !important;
+  border-style: solid;
+  border-width: 4px;
+  border-image-outset: 2;
+  border-image-slice: 2;
+  border-image-width: 2;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.nes-btn.is-warning {
+  color: #212529;
+  background-color: #f7d51d;
+  width: 7.35rem;
+  font-family: "Press Start 2P", system-ui;
+  border-image-repeat: stretch !important;
+}
+
+.nes-btn.is-warning:hover {
+  color: #212529;
+  text-decoration: none;
+  background-color: #f2c409;
+}
+
+.nes-btn.is-warning::after {
+  position: absolute;
+  inset: -4px;
+  content: "";
+  box-shadow: inset -4px -4px #e59400;
+}

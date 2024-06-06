@@ -1,0 +1,43 @@
+.RenderedPlayerCrafted {
+  width: 100%;
+  height: 100%;
+}
+
+.RenderedPlayerCrafted .Craft_Player {
+  position: relative;
+  border-radius: 0.25rem;
+  width: 100%;
+  height: 100%;
+}
+
+.RenderedPlayerCrafted .Craft_Player input[type="text"] {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: black;
+  border: none;
+}
+
+.RenderedPlayerCrafted .Craft_Player input[type="number"] {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: black;
+  border: none;
+}
+
+.RenderedPlayerCrafted .Craft_Player .Form {
+  border: 3px solid black;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

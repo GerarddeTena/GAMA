@@ -1,0 +1,91 @@
+.ImageSlogan {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 15rem;
+  height: 25rem;
+  margin-left: 5rem;
+  border-radius: 40%;
+  overflow: hidden;
+  animation: AppearLeft 3s linear forwards;
+  right: 0;
+}
+
+.ImageSlogan .Slogan_img {
+  background-size: 70rem;
+  width: 99%;
+  height: 99%;
+  border-radius: 0.25rem;
+  z-index: 1;
+  overflow: hidden;
+  animation: UpAndDown 1s linear infinite alternate;
+}
+
+.ImageSlogan::before {
+  content: "";
+  position: absolute;
+  background: gold;
+  transition: 800ms;
+  inset: -500px 500px;
+  animation: EnergyFull 2s ease-in-out infinite;
+}
+
+.ImageSlogan:hover::before {
+  inset: -100px 100px;
+  transition: 500ms;
+}
+
+@keyframes EnergyFull {
+  from {
+    transform: rotate(0deg);
+    box-shadow: 0 0 5rem gold, 0 0 5rem gold, 0 0 5rem gold, 0 0 5rem gold;
+  }
+
+  to {
+    transform: rotateX(180deg) rotateY(360deg);
+    box-shadow: 0 0 5rem gold, 0 0 5rem gold, 0 0 5rem gold, 0 0 5rem gold;
+  }
+}
+
+@keyframes AppearLeft {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateX(50%);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes UpAndDown {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(10%);
+  }
+}
+
+@keyframes BackgroundTransition {
+  0% {
+    background-position: 0 0;
+  }
+
+  50% {
+    background-position: 50% 0;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}

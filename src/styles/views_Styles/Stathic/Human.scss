@@ -1,0 +1,167 @@
+@import '../../global.variables';
+
+.Link {
+  text-decoration: none;
+  color: black;
+}
+
+:visited {
+  color: black;
+}
+
+.Character_Human {
+  width: 100%;
+  margin: 0 0 .5rem;
+  background-image: url('../../../Images/typesOfCharacter/Background.png');
+  display: $flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  @include box-shadow(4, #5ab6f8);
+
+  & .Character_W {
+    display: $flex;
+    justify-content: $cent;
+    align-items: $cent;
+    width: 7rem;
+    animation: walk 10s linear infinite;
+
+  }
+}
+
+.Contain_Info_Human {
+  width: 85%;
+  @include displayFlex(column, center, center);
+
+  & .Specs {
+    margin: 0 0 .5rem;
+    width: 100%;
+    color: white;
+    background-color: #4c4c4c;
+    @include displayFlex(row, space-around, center);
+
+    @include box-shadow(4, green);
+
+  }
+  & .Button_Character {
+    margin: 1rem 0;
+    @include box-shadow(4, black);
+    & .GoLab {
+      font-size: 2rem;
+      border: none;
+      background-color: goldenrod;
+    }
+
+    :hover {
+      background-color: orange;
+      transition: 1.5s ease;
+    }
+  }
+  & .Description {
+    padding: 1rem;
+    text-align: justify;
+    background: linear-gradient(-45deg, #1b1b1b, #2b2b2b, #202020);
+    -webkit-text-fill-color: #a18805;
+    -webkit-text-stroke: .5px black;
+    @include box-shadow(4, #5c1c1c);
+  }
+}
+
+  @keyframes walk {
+    0% {
+      transform: translateX(0%) scaleX(1);
+    }
+
+    50% {
+      transform: translateX(1000%) scaleX(1);
+    }
+
+    51% {
+      transform: translateX(1000%) scaleX(-1);
+    }
+
+    100% {
+      transform: translateX(0%) scaleX(-1);
+    }
+  }
+
+  @include media-queries-md {
+    .Character_Human {
+      width: 100%;
+      border-style: solid;
+      background-color: black;
+      border-width: 3px;
+      background-image: url("../../../Images/typesOfCharacter/Background.png");
+      display: $flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      & .Character_W {
+        display: $flex;
+        justify-content: $cent;
+        align-items: $cent;
+        width: 7rem;
+        animation: walk_MD 7s linear infinite;
+      }
+    }
+
+    @keyframes walk_MD {
+      0% {
+        transform: translateX(0%) scaleX(1);
+      }
+
+      50% {
+        transform: translateX(500%) scaleX(1);
+      }
+
+      51% {
+        transform: translateX(500%) scaleX(-1);
+      }
+
+      100% {
+        transform: translateX(0%) scaleX(-1);
+      }
+    }
+  }
+
+  @include media-queries-sm {
+    .Character_Human {
+      width: 100%;
+      border-style: solid;
+      background-color: black;
+      border-width: 3px;
+      background-image: url("../../../Images/typesOfCharacter/Background.png");
+      display: $flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      & .Character_W {
+        display: $flex;
+        justify-content: $cent;
+        align-items: $cent;
+        width: 7rem;
+        animation: walk_SM 5s linear infinite;
+      }
+    }
+
+    @keyframes walk_SM {
+      0% {
+        transform: translateX(0%) scaleX(1);
+      }
+
+      50% {
+        transform: translateX(250%) scaleX(1);
+      }
+
+      51% {
+        transform: translateX(250%) scaleX(-1);
+      }
+
+      100% {
+        transform: translateX(0%) scaleX(-1);
+      }
+    }
+  }
+
+
+

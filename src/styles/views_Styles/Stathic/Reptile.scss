@@ -1,0 +1,173 @@
+@import '../../global.variables';
+
+.Link {
+  text-decoration: none;
+  color: black;
+}
+
+:visited {
+  color: black;
+}
+
+.Character_Reptile {
+  background-image: url('../../../Images/typesOfCharacter/reptileCave.png');
+  width: 100%;
+  display: $flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0.5rem;
+
+  box-shadow: -5px 0 0 0 #2d2647,
+  5px 0 0 0 #2d2647,
+  0 -5px 0 0 #2d2647,
+  0 5px 0 0 #2d2647;
+
+  & .Character_W {
+    display: $flex;
+    justify-content: $cent;
+    align-items: $cent;
+    width: 7rem;
+    animation: walk 10s linear infinite;
+  }
+}
+
+.Contain_Info_Reptile {
+
+  width: 85%;
+
+  @include displayFlex(column, center, center);
+
+  & .Specs {
+    background-color: #8e4b71;
+    width: 100%;
+    color: white;
+    @include displayFlex(row, space-around, center);
+
+    box-shadow: -5px 0 0 0 #2d2647,
+    5px 0 0 0 #2d2647,
+    0 -5px 0 0 #2d2647,
+    0 5px 0 0 #2d2647;
+  }
+
+  & .Description {
+
+    text-align: justify;
+    margin: 0.5rem 0;
+    padding: .5rem;
+    background-color: saddlebrown;
+
+    box-shadow: -5px 0 0 0 #2d2647,
+    5px 0 0 0 #2d2647,
+    0 -5px 0 0 #2d2647,
+    0 5px 0 0 #2d2647;
+//403766
+  }
+
+  & .Button_Character {
+    margin: 1rem 0;
+    & .GoLab {
+      font-size: 2rem;
+      border: none;
+      box-shadow: -4px 0 0 0 black,
+      4px 0 0 0 black,
+      0 -4px 0 0 black,
+      0 4px 0 0 black;
+      background-color: goldenrod;
+    }:hover { background-color: orange; transition: 1.5s ease;}
+  }
+}
+
+@keyframes walk {
+  0% {
+    transform: translateX(0%) scaleX(1);
+  }
+
+  50% {
+    transform: translateX(1000%) scaleX(1);
+  }
+
+  51% {
+    transform: translateX(1000%) scaleX(-1);
+  }
+
+  100% {
+    transform: translateX(0%) scaleX(-1);
+  }
+}
+
+@include media-queries-md {
+  .Character_Reptile {
+    width: 100%;
+    background-image: url("../../../Images/typesOfCharacter/reptileCave.png");
+    display: $flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    & .Character_W {
+      display: $flex;
+      justify-content: $cent;
+      align-items: $cent;
+      width: 7rem;
+      animation: walk_MD 7s linear infinite;
+    }
+  }
+
+  @keyframes walk_MD {
+    0% {
+      transform: translateX(0%) scaleX(1);
+    }
+
+    50% {
+      transform: translateX(500%) scaleX(1);
+    }
+
+    51% {
+      transform: translateX(500%) scaleX(-1);
+    }
+
+    100% {
+      transform: translateX(0%) scaleX(-1);
+    }
+  }
+}
+
+@include media-queries-sm {
+  .Character_Reptile {
+    width: 100%;
+    background-image: url("../../../Images/typesOfCharacter/reptileCave.png");
+    display: $flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    & .Character_W {
+      display: $flex;
+      justify-content: $cent;
+      align-items: $cent;
+      width: 7rem;
+      animation: walk_SM 5s linear infinite;
+    }
+  }
+
+  @keyframes walk_SM {
+    0% {
+      transform: translateX(0%) scaleX(1);
+    }
+
+    50% {
+      transform: translateX(250%) scaleX(1);
+    }
+
+    51% {
+      transform: translateX(250%) scaleX(-1);
+    }
+
+    100% {
+      transform: translateX(0%) scaleX(-1);
+    }
+  }
+}
+
+
+
+
+

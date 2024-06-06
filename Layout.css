@@ -1,0 +1,24 @@
+.Buttons{
+    width: 85vh;
+    display: flex;
+    margin: 3rem 0;
+    justify-content: space-evenly;
+}
+
+#Button {
+    padding: 1.5rem;
+    background-color: #000;
+    color: white;
+    font-size: x-large;
+    box-shadow:  1px 0 .15rem #ff4fcd,  1px 2px #ff4fcd,  1px 2px #ff4fcd,  2px 2px #ff4fcd;
+}
+
+#Button:hover{
+    background-color: transparent;
+    box-shadow: 1px 0 .15rem #fff, 1px 0 #fff, 1px 0 #fff, 1px 0 #fff;
+    transform: scale(1.1);
+    transition: 0.2s ease-in-out;
+}
+
+
+
