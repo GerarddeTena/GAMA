@@ -7,7 +7,7 @@ const Signup = () => {
     const { actions } = useContext(Context)
     const [user_name, setUser_Name] = useState('');
     const [password, setPassword] = useState('');
-    const [mail, setMail] = useState('');
+    const [email, setMail] = useState('');
     const navigate = useNavigate();
 
     const submitUser = async (e) => {
@@ -15,7 +15,7 @@ const Signup = () => {
         const userData = {
             user_name,
             password,
-            mail
+            email
         }
         const response = await actions.registerUserDispatcher(userData);
         if(response.success){
@@ -36,7 +36,7 @@ const Signup = () => {
                     <label>PASSWORD: </label>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     <label>E-MAIL: </label>
-                    <input type="email" value={mail} onChange={(e) => setMail(e.target.value)}/>
+                    <input type="email" value={email} onChange={(e) => setMail(e.target.value)}/>
                 </form>
 
                 <button type="submit" onClick={submitUser}>Sign Up!</button>

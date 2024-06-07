@@ -8,7 +8,7 @@ const stateOfComponents = ({getTheStore, setStore}) => {
                 {
                     register_user: {
                         user_name: '',
-                        mail: '',
+                        email: '',
                         password: ''
                     },
                     logIn_User: {
