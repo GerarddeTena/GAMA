@@ -1,4 +1,5 @@
 @import '../global.variables';
+
 .Form {
   position: $rel;
   width: 30rem;
@@ -17,12 +18,14 @@
     inset: -500px 500px;
     z-index: -1;
   }
+
   &:hover::before {
     inset: -100px 100px;
     transition: 500ms;
     animation: rotate 4s ease forwards;
     box-shadow: 0 0 2rem deeppink, 0 0 2rem #e123f6, 0 0 2rem #c49aff;
   }
+
   &::after {
     content: '';
     position: $abs;
@@ -31,33 +34,48 @@
     height: 99%;
     z-index: -1;
   }
+
   & .Form_Title {
-     @include strokeTextConfig(1, indigo, gold);
-     font-size: 2.5rem;
-     position: $abs;
-     top: 5%;
-   }
+    @include strokeTextConfig(1, indigo, gold);
+    font-size: 2.5rem;
+    position: $abs;
+    top: 5%;
+  }
+
   & .Body_Form {
-     @include displayFlex(column, $cent, $cent);
-     height: max-content;
-     margin: 5rem 0;
-     color: white;
+    @include displayFlex(column, $cent, $cent);
+    height: max-content;
+    margin: 5rem 0;
+    color: white;
+
     & :first-child {
       position: $abs;
       top: 25%;
     }
+
     & :nth-child(2),
-      :nth-child(3) {
+    :nth-child(3) {
       position: $abs;
       top: 30%;
     }
+
     & :nth-child(3) {
       position: $abs;
       top: 35%;
     }
+
     @include inputChange('text', 10, 10, black, none, whitesmoke, none, .5);
     @include inputChange(password, 10, 10, black, none, whitesmoke, none, .5);
     @include inputChange(email, 10, 10, black, none, whitesmoke, none, .5);
+
+    input[type='text'],
+    input[type='password'],
+    input[type='email'] {
+      box-shadow: -4px 0 0 0 indigo,
+      4px 0 0 0 indigo,
+      0 -4px 0 0 indigo,
+      0 4px 0 0 indigo;
+    }
 
   }
 }

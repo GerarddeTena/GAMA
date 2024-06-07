@@ -4,10 +4,10 @@ import {Link} from "react-router-dom";
 const SloganButtons = () => {
 
     return (
-        <>
-            <Link className='nes-btn is-warning' to={'/sign-up'}>Sing Up</Link>
-            <Link className='nes-btn is-warning' to={'/sign-in'}>Sing In</Link>
-        </>
+        <div>
+            <Link className='Btn-Link nes-btn is-warning' to={'/sign-up'}>Sing Up</Link>
+            <Link className='Btn-Link nes-btn is-warning' to={'/sign-in'}>Sing In</Link>
+        </div>
     );
 };
 

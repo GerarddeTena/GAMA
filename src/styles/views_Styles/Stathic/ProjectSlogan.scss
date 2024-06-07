@@ -1,19 +1,59 @@
 @import '../../global.variables';
 
 .Slogan {
-  @include displayFlex(column, $cent);
-  position: $rel;
+  background-image: url("../../../Images/Background_project_Home.gif");
+  background-size: cover;
+
+  @include displayFlex(column, $cent, $cent);
   width: 100%;
-  height: 70vh;
+  max-height: 100vh;
 
   & .Slogan_Container {
+    @include displayFlex(column, $cent, $cent);
+    height: 100vh;
 
-    & .Slogan_Title {
-      @include strokeTextConfig(1 ,#fff, #000);
+    & .Title_Image {
+      width: 50rem;
+      height: 25rem;
+    }
+
+    & .Character_BG {
       position: $abs;
-      top: 0;
-      left: 25%;
-      font-size: 4rem;
+
+      &:first-child {
+        width: 8rem;
+        left: 0;
+        bottom: 20%;
+      }
+
+      &:nth-child(2) {
+        width: 8rem;
+        left: 50%;
+        bottom: 5%;
+        transform: translate(-50%, -50%); // Centra la imagen en el medio
+      }
+
+      &:nth-child(3) {
+        width: 8rem;
+        right: 10%;
+        bottom: 15%;
+      }
+    }
+
+    & .Btn-Link {
+      position: $abs;
+      text-align: center;
+      font-family: "Press Start 2P", system-ui;
+      top: 50%;
+      width: 10rem;
+
+      &:first-child {
+        left: 50%;
+      }
+
+      &:last-child {
+        right: 50%;
+      }
     }
   }
 }
