@@ -16,7 +16,7 @@ $cyborg: #ca3434;
 }
 
 @mixin inputChange($type, $p-size, $w, $color, $border, $bg, $deco, $f-size) {
-    input[type=#{$type}] {
+  input[type=#{$type}] {
     padding: #{$p-size}px;
     width: #{$w}rem;
     color: $color;

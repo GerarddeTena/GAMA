@@ -1,17 +1,27 @@
-export const setUserRequests = async (userData) => {
-
-    return await fetch(import.meta.env.VITE_POST_USER_URL, {
+export const registerUserRequests = async (userData) => {
+    const response = await fetch(import.meta.env.VITE_POST_USER_URL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(userData)
     });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
 }
 
-export const getUserRequests = async () => {
-    const response = await fetch(import.meta.env.VITE_GET_USER_URL);
-    if (!response.ok) throw Error('Error getting player');
-    return await response.json();
+export const logInUserRequests = async (userData) => {
+    const response = await fetch(import.meta.env.VITE_GET_USER_URL, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(userData)
+    });
 
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
 }
-
-

@@ -1,40 +1,54 @@
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {Context} from "../../store/AppContext.jsx";
+import {useNavigate} from 'react-router-dom';
 
 const SignIn = () => {
 
     const {actions} = useContext(Context);
-    const [user_name, setUser_Name] = useState('');
     const [password, setPassword] = useState('');
-    const[mail, setMail] = useState('');
+    const [mail, setMail] = useState('');
+    const [isLogged, setIsLogged] = useState(false);
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
-    const signIn = async () => {
+    const signIn = async (e) => {
         e.preventDefault();
-        const userData = {
-            user_name,
-            password,
-            mail
+        if (!mail || !password) {
+            setError('Please fill in all fields');
+            return;
         }
-        await actions.setUserDispatcher(userData);
-        await actions.getUserDispatcher();
+        const userData = {
+            mail,
+            password
+        }
+        const response = await actions.loginUserDispatcher(userData);
+        if(!response.success){
+            setError('Invalid credentials');
+            return;
+        }
+        setIsLogged(true);
+        localStorage.setItem('token', JSON.stringify(response));
+        navigate('/home');
     }
-
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if(token) setIsLogged(true)
+    }, [])
     return (
         <>
-            <section className="Form">
-                <h2 className="Form_Title">Sign Up</h2>
+            {isLogged ? <section className="Form">
+                <h2 className="Form_Title">Sign In</h2>
                 <form className='Body_Form'>
-                    <label>NAME: </label>
-                    <input type="text" value={user_name} onChange={(e) => setUser_Name(e.target.value)}/>
-                    <label>PASSWORD: </label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     <label>E-MAIL: </label>
                     <input type="email" value={mail} onChange={(e) => setMail(e.target.value)}/>
+                    <label>PASSWORD: </label>
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </form>
-                <button type="submit" onClick={signIn}>Sign Up!</button>
-            </section>
+                {error && <p>{error}</p>}
+                <button type="submit" onClick={signIn}>Sign In</button>
+            </section> : <h1>Please Log In</h1>}
         </>
     )
-
-
 }
+
+export default SignIn;

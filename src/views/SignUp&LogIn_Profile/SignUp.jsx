@@ -1,11 +1,14 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import '../../styles/views_Styles/Signup.scss';
 import {Context} from "../../store/AppContext.jsx";
+import {useNavigate} from 'react-router-dom';
+
 const Signup = () => {
     const { actions } = useContext(Context)
     const [user_name, setUser_Name] = useState('');
     const [password, setPassword] = useState('');
     const [mail, setMail] = useState('');
+    const navigate = useNavigate();
 
     const submitUser = async (e) => {
         e.preventDefault();
@@ -14,12 +17,14 @@ const Signup = () => {
             password,
             mail
         }
-        await actions.setUserDispatcher(userData);
-        await actions.getUserDispatcher();
+        const response = await actions.registerUserDispatcher(userData);
+        if(response.success){
+            localStorage.setItem('token', JSON.stringify(response.token));
+            navigate('/home');
+        } else {
+            console.log(response.message);
+        }
     }
-    useEffect(() => {
-        actions.getUserDispatcher()
-    }, []);
 
     return(
         <>

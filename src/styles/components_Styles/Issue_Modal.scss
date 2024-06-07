@@ -1,0 +1,42 @@
+@import '../global.variables';
+@include inputChange(text, 6, 7, black, none, #fff, none, .5);
+.Modal_Body {
+  position: $rel;
+  @include displayFlex(column, $cent, $cent);
+  background-color: #202020;
+  width: 50vh;
+  height: 50vh;
+
+  & .Modal_Form{
+    gap: 1.5rem;
+    color: white;
+    &:nth-child(1) {
+      padding: 1.8rem;
+      position: $abs;
+      top: 0;
+    }
+  }
+}
+@keyframes JellyAnimation {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  40% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  50% {
+    transform: scale3d(0.85, 1.15, 1);
+  }
+  65% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  75% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}

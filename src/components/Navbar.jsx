@@ -46,6 +46,7 @@ const Navbar = () => {
                 <Link to={'/'} className='link'>Home</Link>
                 <Link to={'/about-us'} className='link'>About Us</Link>
                 <Link to={'/player-lab-create'} className='link'>Players Lab</Link>
+                <Link to={'/user-profile'} className='link'>User Profile</Link>
                 </ul>
             </div>
         </nav>

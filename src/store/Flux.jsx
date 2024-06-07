@@ -1,14 +1,20 @@
 import {getPlayerRequests, deletePlayerRequests, setPlayerRequests} from "./Http_calls/HTTP_Player_Requests.jsx";
-import {getUserRequests, setUserRequests} from "./Http_calls/HTTP_User_Requests.jsx";
+import {logInUserRequests, registerUserRequests} from "./Http_calls/HTTP_User_Requests.jsx";
 
 const stateOfComponents = ({getTheStore, setStore}) => {
     return {
         store: {
             users: [
                 {
-                    user_name: '',
-                    mail: '',
-                    password: ''
+                    register_user: {
+                        user_name: '',
+                        mail: '',
+                        password: ''
+                    },
+                    logIn_User: {
+                        mail: '',
+                        password: ''
+                    }
                 }
             ],
 
@@ -29,26 +35,30 @@ const stateOfComponents = ({getTheStore, setStore}) => {
         actions: {
             // USER DISPATCHER:
 
-            getUserDispatcher: async() => {
-              const users = await getUserRequests();
-              const store = getTheStore();
-              setStore({...store, users: users});
+            registerUserDispatcher: async (userData) => {
+                const users = await registerUserRequests(userData);
+                const store = getTheStore();
+                setStore({...store, users: users});
             },
-            setUserDispatcher: async(userData) => {
-              await setUserRequests(userData);
+
+            loginUserDispatcher: async (userData) => {
+                const response = await logInUserRequests(userData);
+                if(!response.ok) throw Error('Login Failed');
+                const data = await response.json();
+                return data.token;
             },
 
             //PLAYER DISPATCHER:
 
-            getPlayersDispatcher: async() => {
+            getPlayersDispatcher: async () => {
                 const players = await getPlayerRequests();
                 const store = getTheStore();
                 setStore({...store, players: players});
             },
-            setPlayersDispatcher: async(playerData) => {
-                 await setPlayerRequests(playerData);
+            setPlayersDispatcher: async (playerData) => {
+                await setPlayerRequests(playerData);
             },
-            deletePlayersDispatcher: async(id) => {
+            deletePlayersDispatcher: async (id) => {
                 await deletePlayerRequests(id);
                 const store = getTheStore();
                 const players = store.players.filter(player => player.id !== id);

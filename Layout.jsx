@@ -9,6 +9,8 @@ import Cyborg from "./src/views/Customization&Players/Cyborg.jsx";
 import Reptile from "./src/views/Customization&Players/Reptile.jsx";
 import Signup from "./src/views/SignUp&LogIn_Profile/SignUp.jsx";
 import InjectContext from "./src/store/AppContext.jsx";
+import SignIn from "./src/views/SignUp&LogIn_Profile/SignIn.jsx";
+import User_Profile from "./src/views/SignUp&LogIn_Profile/User_Profile.jsx";
 
 
 const Layout = () => {
@@ -23,6 +25,8 @@ const Layout = () => {
                 <Route path= '/player-info-cyborg' element={<Cyborg />}/>
                 <Route path= '/player-info-reptile' element={<Reptile />}/>
                 <Route path= '/sign-up' element={<Signup />}/>
+                <Route path= '/sign-in' element={<SignIn />}/>
+                <Route path= '/user-profile' element={<User_Profile />}/>
             </Routes>
         </BrowserRouter>
     )

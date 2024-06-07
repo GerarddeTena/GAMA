@@ -1,7 +1,4 @@
 @import '../global.variables';
-@include inputChange(text, 10, 10, black, none, whitesmoke, none, .5);
-@include inputChange(password, 10, 10, black, none, whitesmoke, none, .5);
-@include inputChange(email, 10, 10, black, none, whitesmoke, none, .5);
 .Form {
   position: $rel;
   width: 30rem;
@@ -49,9 +46,18 @@
       position: $abs;
       top: 25%;
     }
+    & :nth-child(2),
+      :nth-child(3) {
+      position: $abs;
+      top: 30%;
+    }
     & :nth-child(3) {
       position: $abs;
-      top: 36%;
+      top: 35%;
     }
+    @include inputChange('text', 10, 10, black, none, whitesmoke, none, .5);
+    @include inputChange(password, 10, 10, black, none, whitesmoke, none, .5);
+    @include inputChange(email, 10, 10, black, none, whitesmoke, none, .5);
+
   }
 }

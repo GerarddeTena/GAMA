@@ -7,7 +7,6 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 2.5rem;
-  
   & .Card_Player {
     width: 20rem;
     @include displayFlex(column, center, center);
@@ -106,3 +105,4 @@
     }
   }
 }
+
