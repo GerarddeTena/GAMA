@@ -1,5 +1,4 @@
-import {Context} from "../../store/AppContext.jsx";
-import {useContext, useState} from "react";
+import { useState} from "react";
 import Issue_Modal from "../../components/Issue_Modal.jsx";
 
 const User_Profile = () => {
