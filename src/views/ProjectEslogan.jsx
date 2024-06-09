@@ -1,31 +1,26 @@
 import SloganButtons from "../components/SloganButtons.jsx";
 import '../styles/views_Styles/Stathic/ProjectSlogan.scss';
+
 const ProjectSlogan = () => {
 
-    const SloganTheme = [{
-        title: 'Anonymous project',
-       // description: "Anonymous project is our project without any name, but soon we'll choose one",
 
-    }]
-    const SloganParts = SloganTheme.map(item => {
-        return (
+    return (
         <>
-            <main key={item.description} className='Slogan'>
+            <main className='Slogan'>
                 <section className='Slogan_Container'>
-                    <h1 className='Slogan_Title'>{item.title}</h1>
-                    {/*<h3 className='Slogan_Description' >{item.description}</h3>*/}
+                    <img className='Title_Image' src="src/Images/TITLE_PROJECT.png" alt="Projject title"/>
+                    <div className='Char_Container'>
+                        <img className='Character_BG' src="src/Images/typesOfCharacter/Walking_Reptile.gif" alt=""/>
+                        <img className='Character_BG' src="src/Images/typesOfCharacter/Walking_Human.gif" alt=""/>
+                        <img className='Character_BG' src="src/Images/typesOfCharacter/Walking_Cyborg.gif" alt=""/>
+                    </div>
+
                     <SloganButtons/>
                 </section>
             </main>
         </>
-        )
-    })
-
-    return (
-        <>
-            {SloganParts}
-        </>
     )
+
 }
 
 export default ProjectSlogan;

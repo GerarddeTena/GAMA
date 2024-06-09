@@ -1,17 +1,16 @@
 @import '../global.variables';
-
+@include inputChange('text', 10, 10, black, none, white, none, .5);
 ul {
   list-style: none;
 }
-
-@include inputChange(text, 2, 25, black, none, #fce677, none, .5);
-input[type='text'] {
-  position: absolute;
-  top: 30%;
-  font-size: 1.5rem;
-}
-
 .Craft_Player {
+  input[type='text'] {
+    position: absolute;
+    top: 30%;
+    font-size: 1.2rem;
+    width: 10rem;
+    padding: .5rem;
+  }
   @include displayFlex(column, center, center);
   position: $rel;
   border-radius: .25rem;

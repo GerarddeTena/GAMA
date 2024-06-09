@@ -4,13 +4,11 @@
     @include displayFlex;
 
     position: fixed;
-    width: 15rem;
-    height: 25rem;
+    width: 5rem;
+    height: 15rem;
     margin-left: 5rem;
     border-radius: 40%;
     overflow: hidden;
-    animation: AppearLeft 3s linear forwards;
-    right: 0;
 
     & .Slogan_img {
         background-size: 70rem;

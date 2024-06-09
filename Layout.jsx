@@ -1,8 +1,8 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {useState, useEffect} from "react";
 import ProjectSlogan from "./src/views/ProjectEslogan.jsx";
 import AboutUs from "./src/views/AboutUs.jsx";
 import {PlayerLab} from "./src/views/Customization&Players/PlayerLab.jsx";
-import './Layout.css';
 import Navbar from "./src/components/Navbar.jsx";
 import Human from "./src/views/Customization&Players/Human.jsx";
 import Cyborg from "./src/views/Customization&Players/Cyborg.jsx";
@@ -14,9 +14,36 @@ import User_Profile from "./src/views/SignUp&LogIn_Profile/User_Profile.jsx";
 
 
 const Layout = () => {
+    const [isVisible, setIsVisible] = useState(true);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    const toggleNavbar = () => {
+        setIsVisible(!isVisible);
+    };
+
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (windowWidth <= 768) {
+            setIsVisible(false);
+        } else {
+            setIsVisible(true);
+        }
+    }, [windowWidth]);
     return (
         <BrowserRouter>
-            <Navbar />
+            <Navbar isVisible={isVisible} toggleNavbar={toggleNavbar}/>
             <Routes>
                 <Route path='/' element={<ProjectSlogan />}/>
                 <Route path='/about-us' element={<AboutUs />}/>

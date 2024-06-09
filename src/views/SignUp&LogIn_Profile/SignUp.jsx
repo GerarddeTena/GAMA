@@ -22,15 +22,15 @@ const Signup = () => {
             localStorage.setItem('token', JSON.stringify(response.token));
             navigate('/home');
         } else {
-            console.log(response.message);
+            console.error(response.message);
         }
     }
 
     return(
         <>
-            <section className="Form">
+            <section className="Form_SignUp">
                 <h2 className="Form_Title">Sign Up</h2>
-                <form className='Body_Form'>
+                <form className='Body_Form_SU'>
                     <label>NAME: </label>
                     <input type="text" value={user_name} onChange={(e) => setUser_Name(e.target.value)}/>
                     <label>PASSWORD: </label>

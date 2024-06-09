@@ -1,0 +1,42 @@
+@import '../global.variables';
+@import '../ICON_SHAPES/ICONS_MATRIX';
+
+.Form_SignIn {
+  position: $rel;
+  width: 100%;
+  background: #202020;
+  min-height: 80vh;
+  @include displayFlex(column, $cent);
+  @include inputChange(text, 5, 15, black, none, white, none, 1);
+  gap: 3.5rem;
+
+  & .Form_Title {
+    font-family: "Press Start 2P", system-ui;
+  }
+  & .Body_Form_SI {
+    background-image: url("src/Images/pixel-pixel-animatmion.gif");
+    @include displayFlex(column, $cent, $cent);
+    gap: 1.5rem;
+    @include box-shadow(5, black);
+    padding: .5em;
+    width: 50%;
+    height: 80vh;
+
+    & label {
+      font-family: "Press Start 2P", system-ui;
+      font-size: 1.5rem;
+      @include strokeTextConfig(2, black, deeppink)
+    }
+  }
+
+  & button {
+    position: $abs;
+    bottom: 5%;
+    padding: .5rem;
+    font-size: 1.5rem;
+    font-family: "Press Start 2P", system-ui;
+    @include strokeTextConfig(1, white, black);
+    background: rebeccapurple;
+    @include box-shadow(5, black);
+  }
+}

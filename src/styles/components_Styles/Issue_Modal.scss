@@ -6,16 +6,6 @@
   background-color: #202020;
   width: 50vh;
   height: 50vh;
-
-  & .Modal_Form{
-    gap: 1.5rem;
-    color: white;
-    &:nth-child(1) {
-      padding: 1.8rem;
-      position: $abs;
-      top: 0;
-    }
-  }
 }
 @keyframes JellyAnimation {
   0% {

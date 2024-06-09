@@ -1,6 +1,6 @@
 import {useContext} from "react";
 import {Context} from "../store/AppContext.jsx";
-import '../styles/components_Styles/PlayerCard.scss';
+import '../styles/components_Styles/Cards/PlayerCard.scss';
 import {Link} from "react-router-dom";
 const PlayerCard = ({getPlayerDataType, deletePlayer}) => {
     const {store} = useContext(Context)

@@ -1,108 +1,89 @@
 @import '../../global.variables';
-
-.ImageSlogan {
-  width: 6rem;
-  height: 6rem;
-  left: 42%;
-  animation: fall_Down 2s ease-in-out forwards;
-}
-
-.Container {
-  position: $rel;
-  width: 100%;
-  height: 100%;
-  @include displayFlex(row, center, center);
-  flex-wrap: wrap;
-  &.Image {
-    position: $abs;
-
-  }
-
-  & .Card {
-    flex-basis: calc(33% + 3.5rem);
-    position: $rel;
-    width: 40rem;
-    height: 50vh;
-    margin: 1rem 5rem;
-    box-shadow: -3px 0 0 0 black, 3px 0 0 0 black, 0 -3px 0 0 black, 0 3px 0 0 black;
-    overflow: hidden;
-    background-color: #202020;
-
-    & .head {
-      @include displayFlex(row, center, center);
-      @include strokeTextConfig(1, dimgray, rebeccapurple);
-      margin-top: 0.25rem;
-      font-size: 2rem;
-      animation: ColorStrokeTransition 2s alternate infinite;
-      font-family: "Press Start 2P", system-ui;
-    }
-
-    & .body {
-      position: $abs;
-      top: 20%;
-      @include displayFlex(row, center, center);
-      margin: 0 1rem;
-      width: 80%;
-      font-size: 1.5rem;
-      text-align: justify;
-      line-height: 1.5rem;
-      color: #fff2a0;
-    }
-
-    & .icons {
-      @include displayFlex(column, $cent, $cent);
-      position: absolute;
-      top: 15%;
-      right: 7%;
-      flex-wrap: wrap;
-      gap: 3rem;
-      & a {
-        & i {
-          &.pixel_art {
-            position: relative;
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            margin-right: 16px;
-            margin-bottom: 16px;
-            transform: scale(2.5);
-            transform-origin: top left;
-          }
-
-          &.pixel_art::before {
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            display: block;
-            content: "";
-            background: 0 0;
-          }
-
-          &.github::before {
-            @include PIXEL_LOGO(github)
-          }
-
-          &.linkedin::before {
-            @include PIXEL_LOGO(linkedin)
-          }
-        }
-      }
-    }
-  }
-}
-
-.Log_PX_Art {
+@import '../../ICON_SHAPES/ICONS_MATRIX';
+.Heart {
+  width: 30px;
+  height: 30px;
   position: absolute;
-  left: -1px;
-  width: 2.5rem;
-  height: 2.5rem;
+  top: 31%;
+  left: 48.45%;
+  &::before {
+    content: "";
+    position: $abs;
+    width: 3px;
+    height: 3px;
+    z-index: 2;
+    @include PIXEL_ART(3px, $icon-heart, $icon-heart-colors);
+
+  }
+}
+.About_Container {
+  position: $rel;
+  background-image: url("src/Images/AboutBackground.png");
+  background-size: calc(100vw) calc(150vh);
+  background-repeat: no-repeat;
+  @include displayFlex(column, $cent, $cent);
+  color: white;
+  width: calc(100vw);
+  min-height: calc(150vh);
+  gap: 3rem;
+
+
+  & .About_Title {
+    @include displayFlex(column, $cent, $cent);
+    animation: GameBoy 1s linear infinite;
+
+    & h1 {
+      animation: WriteMachine 1s steps(8);
+      white-space: nowrap;
+      overflow: hidden;
+      width: 8ch;
+      font-family: 'Press Start 2P';
+      @include strokeTextConfig(1, white, deeppink);
+    }
+
+    & h2 {
+      font-family: "Press Start 2P", system-ui;
+      @include strokeTextConfig(1, white, deepskyblue);
+      animation: none;
+    }
+  }
+
+  & .About_Description {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    padding: 5px;
+    min-width: calc(50vh - 2rem);
+    min-height: calc(50vh - 2rem);
+    scroll-snap-type: x mandatory;
+    gap: 2.5rem;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .About_Text {
+      margin:20px;
+      width: 300px;
+      scroll-snap-align: start;
+    }
+  }
 }
 
-@keyframes fall_Down {
-  from{
-    transform: translateY(-200%)
+@keyframes GameBoy {
+  0% {
+    transform: translateY(0);
   }
-  to{
-    transform: translateY(100%);
+  50% {
+    transform: translateY(-0.5rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes WriteMachine {
+  from {
+    width: 0
   }
 }
