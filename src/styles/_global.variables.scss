@@ -8,6 +8,8 @@ $human: white;
 $reptile: lime;
 $cyborg: #ca3434;
 
+
+
 @mixin displayFlex($direction: row, $choose: center, $assign: center) {
   display: $flex;
   flex-direction: $direction;
@@ -15,6 +17,16 @@ $cyborg: #ca3434;
   align-items: $assign;
 }
 
+@mixin displayGrid($gridTemplateColumns: 1fr, $gridTemplateAreas: "", $justifyItems: center, $alignItems: center, $gridGap: 1rem, $gridAutoRows: auto, $gridAutoFlow: row) {
+  display: grid;
+  grid-template-columns: $gridTemplateColumns;
+  grid-template-areas: $gridTemplateAreas;
+  justify-items: $justifyItems;
+  align-items: $alignItems;
+  grid-gap: $gridGap;
+  grid-auto-rows: $gridAutoRows;
+  grid-auto-flow: $gridAutoFlow;
+}
 @mixin inputChange($type, $p-size, $w, $color, $border, $bg, $deco, $f-size) {
   input[type=#{$type}] {
     padding: #{$p-size}px;
@@ -91,3 +103,65 @@ $cyborg: #ca3434;
   -webkit-text-stroke: #{$n}px $cl;
   -webkit-text-fill-color: $cl2;
 }
+
+
+/*  ICONS MIXIN FUNCTION PIXEL-ART:   */
+
+@mixin PIXEL_ART($size, $matrix, $colors, $default-color: null) {
+  $ret: "";
+  $moz: "";
+  @if ($default-color == null) {
+    $matrix-colors: ();
+    $counts: ();
+    @each $row in $matrix {
+      @each $item in $row {
+        @if $item != 0 {
+          $index: index($matrix-colors, $item);
+          @if not $index {
+            $matrix-colors: append($matrix-colors, $item);
+            $counts: append($counts, 1);
+          } @else {
+            $count: nth($counts, $index) + 1;
+            $counts: set-nth($counts, $index, $count);
+          }
+        }
+      }
+    }
+
+    $default-color: nth($colors, nth($matrix-colors, index($counts, max($counts...))));
+  }
+
+  @for $i from 1 through length($matrix) {
+    $row: nth($matrix, $i);
+
+    @for $j from 1 through length($row) {
+      $dot: nth($row, $j);
+
+      @if $dot != 0 {
+        @if $ret != "" {
+          $ret: $ret + ",";
+          $moz: $moz + ",";
+        }
+
+        $color: nth($colors, $dot);
+        @if $color == $default-color {
+          $ret: $ret + ($j * $size) + " " + ($i * $size);
+          $moz: $moz + ($j * $size) + " " + ($i * $size) + " 0 0.020em";
+        } @else {
+          $ret: $ret + ($j * $size) + " " + ($i * $size) + " " + $color;
+          $moz: $moz + ($j * $size) + " " + ($i * $size) + " 0 0.020em " + $color;
+        }
+      }
+    }
+  }
+
+  width: $size;
+  height: $size;
+  color: $default-color;
+  box-shadow: unquote($ret);
+
+  @supports (-moz-appearance: meterbar) {
+    box-shadow: unquote($moz);
+  }
+}
+

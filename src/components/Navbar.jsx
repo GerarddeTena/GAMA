@@ -1,7 +1,8 @@
 import "../styles/components_Styles/Navbar.scss";
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
-const Navbar = () => {
+const Navbar = ({isVisible, toggleNavbar}) => {
 
     const NavBarComponents = [
         {
@@ -25,7 +26,7 @@ const Navbar = () => {
         },
         {
             ul: {
-                className: "navbar",
+                className: `Nav_Items ${isVisible ? 'slideIn' : 'slideOut'}`
             },
         },
     ]
@@ -41,16 +42,25 @@ const Navbar = () => {
                     <path {...path2}></path>
                 </svg>
             </a>
-            <div>
-                <ul {...ul}>
-                <Link to={'/'} className='link'>Home</Link>
-                <Link to={'/about-us'} className='link'>About Us</Link>
-                <Link to={'/player-lab-create'} className='link'>Players Lab</Link>
-                <Link to={'/user-profile'} className='link'>User Profile</Link>
-                </ul>
-            </div>
+            <button className='Toggle_Nav' onClick={toggleNavbar}>
+                <img src='src/Images/Arrow.png' className={`pixelArrow ${isVisible ? 'Rotate' : 'Original'}`}/>
+            </button>
+            {isVisible &&
+                <div>
+                    <ul {...ul}>
+                        <Link to={'/'} className='link'>Home</Link>
+                        <Link to={'/about-us'} className='link'>About</Link>
+                        <Link to={'/player-lab-create'} className='link'>Players Lab</Link>
+                        <Link to={'/user-profile'} className='link'>User Profile</Link>
+                    </ul>
+                </div>}
         </nav>
     );
+}
+
+Navbar.propTypes = {
+    isVisible: PropTypes.bool.isRequired,
+    toggleNavbar: PropTypes.func.isRequired
 }
 
 export default Navbar;

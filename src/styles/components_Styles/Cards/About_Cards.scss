@@ -1,0 +1,158 @@
+@import '../../global.variables';
+
+.Container_Info {
+  color: white;
+  @include displayFlex(row, space-around, $cent);
+  width: 100%;
+
+  & .Card_Container {
+
+    @include displayFlex($cent, $cent);
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 3rem;
+
+
+    & .Card {
+      @include displayFlex($cent, start);
+      gap: 3.5rem;
+      width: 33.3%;
+      height: 10rem;
+      box-shadow: -2px 0 0 white, 2px 0 0 white, 0 -2px 0 white, 0 2px 0 white;
+      position: $rel;
+      backdrop-filter: blur(0.5rem);
+
+      &:hover {
+        transform: translate(0, -0.5rem);
+      }
+
+      & .About_Avatar {
+        margin: 0 0 0 0.5em;
+      }
+
+      & .icons {
+        @include displayFlex(column);
+        position: $abs;
+        gap: 3rem;
+        right: calc(50% - 8.5em);
+
+        & ::before {
+          position: absolute;
+          display: flex;
+          bottom: 15px;
+          content: "";
+          background: 0 0;
+          z-index: -1;
+        }
+
+        & a {
+          position: relative;
+          display: inline-flex;
+          width: 16px;
+          height: 16px;
+          transform: scale(3);
+          z-index: 1;
+        }
+
+        & > a {
+          position: relative;
+          z-index: 1;
+        }
+
+        & > a:first-child::before {
+          @include PIXEL_LOGO(github);
+          content: "";
+          position: absolute;
+        }
+
+        & > a:last-child::before {
+          @include PIXEL_LOGO(linkedin);
+          content: "";
+          position: absolute;
+        }
+      }
+    }
+  }
+
+  @include media-queries-sm {
+
+    .Card_Container {
+
+      @include displayFlex($cent, $cent);
+      flex-wrap: wrap;
+      font-size: 1rem;
+
+      & .Card {
+
+        @include displayFlex(column, $cent, flex-start);
+        gap: .5rem;
+        width: 50%;
+        box-shadow: -2px 0 0 white, 2px 0 0 white, 0 -2px 0 white, 0 2px 0 white;
+        position: $rel;
+
+        & h1 {
+          margin: 0 0 0 0.5rem;
+          font-size: 2rem;
+        }
+
+        &:hover {
+          transform: translate(0, -0.5rem);
+        }
+
+        & .About_Avatar {
+          margin: 0 0 0 0.5em;
+        }
+
+        & .icons {
+          @include displayFlex(column);
+          position: $abs;
+          gap: 3rem;
+          right: calc(50vw - .5em);
+
+          & ::before {
+            position: absolute;
+            display: flex;
+            bottom: 15px;
+            content: "";
+            background: 0 0;
+            z-index: -1;
+          }
+
+          & a {
+            position: relative;
+            display: inline-flex;
+            width: 16px;
+            height: 16px;
+            transform: scale(3);
+            z-index: 1;
+          }
+
+          & > a {
+            position: relative;
+            z-index: 1;
+          }
+
+          & > a:first-child::before {
+            @include PIXEL_LOGO(github);
+            content: "";
+            position: absolute;
+
+          }
+
+          & > a:last-child::before {
+            @include PIXEL_LOGO(linkedin);
+            content: "";
+            position: absolute;
+          }
+        }
+      }
+    }
+  }
+
+  & img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+

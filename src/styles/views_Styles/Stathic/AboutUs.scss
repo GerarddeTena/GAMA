@@ -1,23 +1,73 @@
 @import '../../global.variables';
+@import '../../ICON_SHAPES/ICONS_MATRIX';
+.Heart {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 31%;
+  left: 48.45%;
+  &::before {
+    content: "";
+    position: $abs;
+    width: 3px;
+    height: 3px;
+    z-index: 2;
+    @include PIXEL_ART(3px, $icon-heart, $icon-heart-colors);
 
+  }
+}
 .About_Container {
-  background: #2b2b2b;
-  color: white;
-  width: 100%;
-  height: max-content;
+  position: $rel;
+  background-image: url("src/Images/AboutBackground.png");
+  background-size: calc(100vw) calc(150vh);
+  background-repeat: no-repeat;
   @include displayFlex(column, $cent, $cent);
+  color: white;
+  width: calc(100vw);
+  min-height: calc(150vh);
+  gap: 3rem;
+
 
   & .About_Title {
     @include displayFlex(column, $cent, $cent);
-    gap: 5rem;
-    margin: 1.5rem 0;
     animation: GameBoy 1s linear infinite;
-    & h1, h3 {
-      font-family: "Press Start 2P", system-ui;
+
+    & h1 {
+      animation: WriteMachine 1s steps(8);
+      white-space: nowrap;
+      overflow: hidden;
+      width: 8ch;
+      font-family: 'Press Start 2P';
       @include strokeTextConfig(1, white, deeppink);
+    }
+
+    & h2 {
+      font-family: "Press Start 2P", system-ui;
+      @include strokeTextConfig(1, white, deepskyblue);
+      animation: none;
     }
   }
 
+  & .About_Description {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    padding: 5px;
+    min-width: calc(50vh - 2rem);
+    min-height: calc(50vh - 2rem);
+    scroll-snap-type: x mandatory;
+    gap: 2.5rem;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .About_Text {
+      margin:20px;
+      width: 300px;
+      scroll-snap-align: start;
+    }
+  }
 }
 
 @keyframes GameBoy {
@@ -29,5 +79,11 @@
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+@keyframes WriteMachine {
+  from {
+    width: 0
   }
 }

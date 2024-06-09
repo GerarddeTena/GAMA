@@ -5,7 +5,7 @@ import muscular from '../../Images/typesOfCharacter/Human_Thin.gif';
 import cyborg from '../../Images/typesOfCharacter/Cyborg.gif';
 import reptilian from '../../Images/typesOfCharacter/Reptile.gif';
 import PlayerCard from "../../components/PlayerCard.jsx";
-import '../../styles/components_Styles/PlayerCard.scss';
+import '../../styles/components_Styles/Cards/PlayerCard.scss';
 export const PlayerLab = () => {
 
     const {actions} = useContext(Context);

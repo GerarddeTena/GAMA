@@ -1,81 +1,29 @@
 @import '../global.variables';
 
-.Form {
-  position: $rel;
-  width: 30rem;
-  height: 40rem;
+.Form_SignUp {
+  width: 100%;
   background: #202020;
-  border-radius: .5rem;
-  overflow: hidden;
-  @include displayFlex(column, $cent, $cent);
-  z-index: 2;
+  min-height: 80vh;
+  @include displayFlex(column, $cent);
+  @include inputChange(text, 5, 15, black, none, white, none, 1);
+  gap: 3.5rem;
 
-  &::before {
-    content: '';
-    position: $abs;
-    background: linear-gradient(0deg, #e123f6, #c49aff, #6b00ff);
-    transition: 800ms;
-    inset: -500px 500px;
-    z-index: -1;
-  }
-
-  &:hover::before {
-    inset: -100px 100px;
-    transition: 500ms;
-    animation: rotate 4s ease forwards;
-    box-shadow: 0 0 2rem deeppink, 0 0 2rem #e123f6, 0 0 2rem #c49aff;
-  }
-
-  &::after {
-    content: '';
-    position: $abs;
-    background-color: #202020;
-    width: 99%;
-    height: 99%;
-    z-index: -1;
-  }
-
-  & .Form_Title {
-    @include strokeTextConfig(1, indigo, gold);
-    font-size: 2.5rem;
-    position: $abs;
-    top: 5%;
-  }
-
-  & .Body_Form {
+    & .Form_Title {
+        font-family: "Press Start 2P", system-ui;
+    }
+  & .Body_Form_SU {
+    background-image: url("src/Images/pixel-pixel-animatmion.gif");
     @include displayFlex(column, $cent, $cent);
-    height: max-content;
-    margin: 5rem 0;
-    color: white;
+    gap: 1.5rem;
+    @include box-shadow(2, white);
+    padding: .5em;
+    width: 50%;
+    height: 80vh;
 
-    & :first-child {
-      position: $abs;
-      top: 25%;
+    & label {
+      font-family: "Press Start 2P", system-ui;
+      font-size: 1.5rem;
+      @include strokeTextConfig(2, black, deeppink)
     }
-
-    & :nth-child(2),
-    :nth-child(3) {
-      position: $abs;
-      top: 30%;
-    }
-
-    & :nth-child(3) {
-      position: $abs;
-      top: 35%;
-    }
-
-    @include inputChange('text', 10, 10, black, none, whitesmoke, none, .5);
-    @include inputChange(password, 10, 10, black, none, whitesmoke, none, .5);
-    @include inputChange(email, 10, 10, black, none, whitesmoke, none, .5);
-
-    input[type='text'],
-    input[type='password'],
-    input[type='email'] {
-      box-shadow: -4px 0 0 0 indigo,
-      4px 0 0 0 indigo,
-      0 -4px 0 0 indigo,
-      0 4px 0 0 indigo;
-    }
-
   }
 }

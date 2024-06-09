@@ -1,13 +1,14 @@
 import {useContext, useEffect, useState} from "react";
 import {Context} from "../../store/AppContext.jsx";
 import {useNavigate} from 'react-router-dom';
+import '../../styles/views_Styles/SignIn.scss';
 
 const SignIn = () => {
 
     const {actions} = useContext(Context);
     const [password, setPassword] = useState('');
     const [mail, setMail] = useState('');
-    const [isLogged, setIsLogged] = useState(false);
+    //const [isLogged, setIsLogged] = useState(false);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
@@ -26,27 +27,27 @@ const SignIn = () => {
             setError('Invalid credentials');
             return;
         }
-        setIsLogged(true);
+        //setIsLogged(true);
         localStorage.setItem('token', JSON.stringify(response));
         navigate('/home');
     }
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if(token) setIsLogged(true)
-    }, [])
+    // useEffect(() => {
+    //     const token = localStorage.getItem('token');
+    //     if(token) setIsLogged(true)
+    // }, [])
     return (
         <>
-            {isLogged ? <section className="Form">
+            <section className="Form_SignIn">
                 <h2 className="Form_Title">Sign In</h2>
-                <form className='Body_Form'>
+                <form className='Body_Form_SI'>
                     <label>E-MAIL: </label>
                     <input type="email" value={mail} onChange={(e) => setMail(e.target.value)}/>
                     <label>PASSWORD: </label>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </form>
                 {error && <p>{error}</p>}
-                <button type="submit" onClick={signIn}>Sign In</button>
-            </section> : <h1>Please Log In</h1>}
+                <button className='Submit_SI' type="submit" onClick={signIn}>Sign In</button>
+            </section>
         </>
     )
 }

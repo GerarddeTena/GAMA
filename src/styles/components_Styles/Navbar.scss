@@ -1,61 +1,141 @@
 @import '../global.variables';
-
+.Toggle_Nav {
+  display: none;
+}
 .Navbar {
-    position: relative;
-    @include displayFlex(row, flex-end, center);
-    background-color: black;
-    padding: 1.5rem;
-    width: 100%;
+  position: relative;
+  @include displayFlex(row, flex-end, center);
+  background-color: black;
+  padding: 1.5rem;
+  width: 100%;
 
-    & .Nav_Logo {
-        position: absolute;
-        left: 5%;
-        top: 25%;
+  & .Nav_Logo {
+    position: $abs;
+    left: 5%;
+    top: 25%;
+  }
+
+  & .Nav_Items {
+    @include displayFlex(row, $cent, $cent);
+    gap: $s-size;
+
+    & .link {
+      list-style: none;
+      padding: 0 20px;
+      position: $rel;
+      text-decoration: none;
+      font-size: medium;
+      font-family: "Press Start 2P", system-ui;
+      color: white;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        color: #f63ba5;
+      }
+
+      &:hover::after {
+        content: "";
+        width: 35%;
+        height: 2px;
+        background: #f63ba5;
+        position: $abs;
+        bottom: -4px;
+        left: 20px;
+        box-shadow: 0 0.5rem 0.7rem #f63ba5, 0 0.5rem 0.7rem #f63ba5;
+        transform: translateX(-10%);
+        animation: pulse 500ms ease-in-out forwards;
+      }
     }
+  }
+}
 
-    & .navbar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: $s-size;
+@include media-queries-md {
+  .Navbar {
+    position: $rel;
 
-        & .link {
-            list-style: none;
-            padding: 0 20px;
-            position: $rel;
-            text-decoration: none;
-            font-size: medium;
-            font-family: "Press Start 2P", system-ui;
-            color: white;
-            transition: 0.3s ease-in-out;
-
-            &:hover {
-                color: #f63ba5;
-            }
-
-            &:hover::after {
-                content: "";
-                width: 35%;
-                height: 2px;
-                background: #f63ba5;
-                position: $abs;
-                bottom: -4px;
-                left: 20px;
-                box-shadow: 0 0.5rem 0.7rem #f63ba5, 0 0.5rem 0.7rem #f63ba5;
-                transform: translateX(-10%);
-                animation: pulse 500ms ease-in-out forwards;
-            }
-        }
+    & .Nav_Items {
+      @include displayFlex(column, $cent, $cent);
+      position: $abs;
+      background: #c49aff;
+      right: 0;
+      gap: 2em;
+      top: 110%;
+      height: 50vh;
+      z-index: 2;
+      box-shadow: -5px 0 0 0, 5px 0 0 0, 0 -5px 0 0, 0 5px 0 0;
+      opacity: 1;
+      animation: slideOut 1s ease-in-out forwards;
     }
+  }
+
+  .Toggle_Nav {
+    @include displayFlex($cent, $cent);
+    @include box-shadow(3, whitesmoke);
+    width: 30px;
+    height: 30px;
+    padding: 1rem;
+    border: none;
+
+    & .pixelArrow {
+      cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC') 14 0, pointer;
+      transition: ease-in-out 0.5s
+    }
+  }
+  .pixelArrow.Rotate {
+    animation: ArrowRotate 0.5s ease-in-out forwards;
+  }
+  .pixelArrow.Original {
+    animation: OriginalPos 0.5s ease-in-out forwards;
+  }
+  .Nav_Items.slideIn {
+    animation: slideIn 1s ease-in-out forwards;
+  }
 }
 
 
 @keyframes pulse {
-    from {
-        width: 0;
-    }
+  from {
+    width: 0;
+  }
 
-    to {
-        width: 100%;
-    }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes ArrowRotate {
+  from {
+    transform: rotate(0)
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes OriginalPos {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
 }
