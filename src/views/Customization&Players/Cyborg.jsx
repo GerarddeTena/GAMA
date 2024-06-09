@@ -1,10 +1,11 @@
 import {Link} from "react-router-dom";
 import '../../styles/views_Styles/Stathic/Cyborg.scss';
-import W_Cyborg from '../../Images/typesOfCharacter/Walking_Cyborg.gif';
+import W_Cyborg from '../../Images/typesOfCharacter/Walking_Cyborg.gif'
+import {CYBORG} from '../../DATA/PLAYER_DATA.jsx'
 
 const Cyborg = () => {
 
-    const structure = description.map((item) => (
+    return CYBORG.map((item) => (
         <>
             <h1 className='Title'>{item.name}</h1>
             <section className='Contain_Info_Cyborg'>
@@ -31,10 +32,6 @@ const Cyborg = () => {
             </section>
         </>
     ))
-    return (
-        <>
-            {structure}
-        </>
-    )
+     
 }
 export default Cyborg;
