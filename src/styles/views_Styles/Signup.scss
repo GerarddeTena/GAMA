@@ -1,24 +1,27 @@
 @import '../global.variables';
 
 .Form_SignUp {
+  background-image: url("src/Images/pixel-pixel-animatmion.gif");
   width: 100%;
-  background: #202020;
   min-height: 80vh;
   @include displayFlex(column, $cent);
-  @include inputChange(text, 5, 15, black, none, white, none, 1);
   gap: 3.5rem;
 
-    & .Form_Title {
-        font-family: "Press Start 2P", system-ui;
-    }
+
+  & .Form_Title {
+    font-family: "Press Start 2P", system-ui;
+    font-size: 4rem;
+    @include strokeTextConfig(1, white, black);
+  }
+
   & .Body_Form_SU {
-    background-image: url("src/Images/pixel-pixel-animatmion.gif");
     @include displayFlex(column, $cent, $cent);
     gap: 1.5rem;
     @include box-shadow(2, white);
     padding: .5em;
     width: 50%;
     height: 80vh;
+    backdrop-filter: blur(0.5rem);
 
     & label {
       font-family: "Press Start 2P", system-ui;

@@ -1,10 +1,19 @@
 import {Link} from "react-router-dom";
 import '../../styles/views_Styles/Stathic/Cyborg.scss';
+<<<<<<< HEAD
 import W_Cyborg from '../../Images/typesOfCharacter/Walking_Cyborg.gif'
 import {CYBORG} from '../../DATA/PLAYER_DATA.jsx'
 
 const Cyborg = () => {
 
+=======
+import {CYBORG} from "../../DATA/PLAYER_DESC.jsx";
+
+const Cyborg = () => {
+
+
+
+>>>>>>> 3eeff25 (ticket 003 / styiling 2.0)
     return CYBORG.map((item) => (
         <>
             <h1 className='Title'>{item.name}</h1>
@@ -32,6 +41,9 @@ const Cyborg = () => {
             </section>
         </>
     ))
+<<<<<<< HEAD
      
+=======
+>>>>>>> 3eeff25 (ticket 003 / styiling 2.0)
 }
 export default Cyborg;
