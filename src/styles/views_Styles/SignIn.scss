@@ -4,28 +4,32 @@
 .Form_SignIn {
   position: $rel;
   width: 100%;
-  background: #202020;
   min-height: 80vh;
   @include displayFlex(column, $cent);
-  @include inputChange(text, 5, 15, black, none, white, none, 1);
-  gap: 3.5rem;
+  background-image: url("src/Images/pixel-night.gif");
+  background-size: cover;
+
+  gap: 5rem;
 
   & .Form_Title {
     font-family: "Press Start 2P", system-ui;
+    @include strokeTextConfig(1, black, #fd9b2d);
+    font-size: 4rem;
   }
   & .Body_Form_SI {
-    background-image: url("src/Images/pixel-pixel-animatmion.gif");
+
     @include displayFlex(column, $cent, $cent);
-    gap: 1.5rem;
-    @include box-shadow(5, black);
+    gap: 2.5rem;
+    @include box-shadow(5, white);
     padding: .5em;
     width: 50%;
     height: 80vh;
+    backdrop-filter: blur(0.5rem);
 
     & label {
       font-family: "Press Start 2P", system-ui;
-      font-size: 1.5rem;
-      @include strokeTextConfig(2, black, deeppink)
+      font-size: 2rem;
+      @include strokeTextConfig(2, white, deeppink)
     }
   }
 
@@ -37,6 +41,6 @@
     font-family: "Press Start 2P", system-ui;
     @include strokeTextConfig(1, white, black);
     background: rebeccapurple;
-    @include box-shadow(5, black);
+    @include box-shadow(2, white);
   }
 }
