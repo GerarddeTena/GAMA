@@ -11,18 +11,21 @@ ul {
     width: 10rem;
     padding: .5rem;
   }
+
   @include displayFlex(column, center, center);
   position: $rel;
   border-radius: .25rem;
-  width: 50%;
-  height: 50%;
+  min-width: calc(100vw);
+  min-height: calc(100vh);
+  background-image: url("src/Images/Lab_Background.gif");
+  background-size: cover;
+  padding: .5rem;
 
   & .Form {
     border: 3px solid black;
     @include displayFlex(column, center);
-    background: #202020;
     @include box-shadow(4, #8a7b0d);
-
+    min-width: calc(50vw);
     & label {
       @include strokeTextConfig(1, dimgray, rebeccapurple);
       animation: ColorStrokeTransition 2s alternate infinite;
@@ -52,11 +55,14 @@ ul {
       animation: none;
     }
   }
+
 }
 
 .Create_Player {
-  font-size: 2rem;
-  padding: 1.5rem;
+  position: $abs;
+  bottom: -02rem;
+  font-size: 1.5rem;
+  padding: .5rem;
   font-family: "Press Start 2P", system-ui;
   box-shadow: -3px 0 0 0 black,
   3px 0 0 0 black,

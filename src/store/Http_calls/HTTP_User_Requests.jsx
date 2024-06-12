@@ -1,5 +1,5 @@
 export const registerUserRequests = async (userData) => {
-    const response = await fetch(import.meta.env.VITE_POST_USER_URL, {
+    const response = await fetch(import.meta.env.VITE_POST_NEW_USER_URL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(userData)
@@ -13,7 +13,7 @@ export const registerUserRequests = async (userData) => {
 }
 
 export const logInUserRequests = async (userData) => {
-    const response = await fetch(import.meta.env.VITE_GET_USER_URL, {
+    const response = await fetch(import.meta.env.VITE_POST_LOGIN_USER_URL, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(userData)

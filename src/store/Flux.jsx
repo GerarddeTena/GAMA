@@ -12,7 +12,7 @@ const stateOfComponents = ({getTheStore, setStore}) => {
                         password: ''
                     },
                     logIn_User: {
-                        mail: '',
+                        email: '',
                         password: ''
                     }
                 }
@@ -36,16 +36,28 @@ const stateOfComponents = ({getTheStore, setStore}) => {
             // USER DISPATCHER:
 
             registerUserDispatcher: async (userData) => {
-                const users = await registerUserRequests(userData);
-                const store = getTheStore();
-                setStore({...store, users: users});
+                try {
+                    const newUser = await registerUserRequests(userData);
+                    const store = getTheStore();
+                    setStore({...store, users: { ...store.users, register_user: newUser }});
+
+                } catch (error) {
+                    console.error({'Error registering user': error});
+                }
             },
 
             loginUserDispatcher: async (userData) => {
-                const response = await logInUserRequests(userData);
-                if(!response.ok) throw Error('Login Failed');
-                const data = await response.json();
-                return data.token;
+                try {
+                    const response = await logInUserRequests(userData);
+                    const token = response.token;
+                    if (!token) console.error('Login Failed');
+                    localStorage.setItem('token', token);
+                    return token;
+
+                } catch(error) {
+                    console.error({'Error logging in user': error});
+
+                }
             },
 
             //PLAYER DISPATCHER:
