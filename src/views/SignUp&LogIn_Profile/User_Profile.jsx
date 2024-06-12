@@ -1,30 +1,49 @@
-import { useState} from "react";
-import Issue_Modal from "../../components/Issue_Modal.jsx";
+import { useState, useEffect } from 'react';
+import EditProfileForm from './EditProfileForm.jsx';
+import "../../styles/views_Styles/StylesUserProfiles.css";
 
-const User_Profile = () => {
-    const [description, setDescription] = useState("");
-    const [showModal, setShowModal] = useState(false);
+const UserProfile = () => {
+    const [user, setUser] = useState({});
+    const [isEditing, setIsEditing] = useState(false);
 
-    const setShow = () => setShowModal(!showModal);
+    useEffect(() => {
+        const fetchedUser = {
+            username: "MauroSatangelo",
+            email: "Mauro@gmail.com",
+            bio: "Gamer apasionado.",
+            level: 10,
+            points: 1500,
+        };
+        setUser(fetchedUser);
+    }, []);
+
+    const handleEditClick = () => {
+        setIsEditing(true);
+    };
+
+    const handleSave = (updatedUser) => {
+        setUser(updatedUser);
+        setIsEditing(false);
+    };
+
+    if (isEditing) {
+        return <EditProfileForm user={user} onSave={handleSave} />;
+    }
+
     return (
-        <>
-            <section>
-                <section>
-                    <h1>Profile</h1>
-                    <div>
-                        {/*Avatar*/}
-                        <h2>User Name</h2>
-                    </div>
-                </section>
-                <footer>
-                    <button onClick={setShow}>Report Issue</button>
-                </footer>
-            </section>
-            <Issue_Modal description={description} setDescription={setDescription} showModal={showModal}/>
-            {showModal && <button onClick={setShow}>Cancel</button>}
+        <div className="user-profile">
+            <div className="background-image" style={{backgroundImage: `url('https://i.imgur.com/zl1PmX8.jpg')`}}></div>
+            <img className="profile-pic" src="https://i.imgur.com/0rX1WmD.png" alt="Avatar de prueba" />
+            <h2>{user.username}</h2>
+            <p>{user.email}</p>
+            <p>{user.bio}</p>
+            <div className="stats">
+                <p>Nivel: {user.level}</p>
+                <p>Puntos: {user.points}</p>
+            </div>
+            <button onClick={handleEditClick}>Edit profile</button>
+        </div>
+    );
+};
 
-        </>
-    )
-}
-
-export default User_Profile;
+export default UserProfile;
