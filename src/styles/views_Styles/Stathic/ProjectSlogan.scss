@@ -45,14 +45,15 @@
       text-align: center;
       font-family: "Press Start 2P", system-ui;
       top: 50%;
-      width: 10rem;
 
       &:first-child {
         left: 50%;
+        width: 15rem;
       }
 
       &:last-child {
         right: 50%;
+        width: 15rem;
       }
     }
   }

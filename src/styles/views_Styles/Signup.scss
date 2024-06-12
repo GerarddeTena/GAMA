@@ -1,9 +1,11 @@
 @import '../global.variables';
 
+
 .Form_SignUp {
   background-image: url("src/Images/pixel-pixel-animatmion.gif");
+  opacity: 0.9;
   width: 100%;
-  min-height: 80vh;
+  min-height: 100vh;
   @include displayFlex(column, $cent);
   gap: 3.5rem;
 
@@ -16,17 +18,50 @@
 
   & .Body_Form_SU {
     @include displayFlex(column, $cent, $cent);
-    gap: 1.5rem;
+    gap: 5rem;
     @include box-shadow(2, white);
     padding: .5em;
-    width: 50%;
-    height: 80vh;
+    width: 40%;
+    height: 75vh;
     backdrop-filter: blur(0.5rem);
 
-    & label {
+    & label{
       font-family: "Press Start 2P", system-ui;
-      font-size: 1.5rem;
-      @include strokeTextConfig(2, black, deeppink)
+      font-size: 1.8rem;
+      @include strokeTextConfig(2, black, #ff6a00)
+    }
+
+    & .Label_Div {
+      @include displayFlex(row, $cent, flex-start);
+      width: auto;
+    }
+
+
+  }
+  & button {
+    border-image-source: url("../../Images/ButtonBorder.svg");
+    height: 3rem;
+    position: relative;
+    width: 15rem !important;
+    border-style: solid;
+    border-width: 4px;
+    border-image-outset: 2;
+    border-image-slice: 2;
+    border-image-width: 2;
+    bottom: 5%;
+    position: $abs;
+    padding: .5rem;
+    font-size: 1.5rem;
+    font-family: "Press Start 2P", system-ui;
+    @include strokeTextConfig(1, white, black);
+    background: deeppink;
+    @include box-shadow(2, white);
+
+    &::after {
+      position: absolute;
+      inset: -4px;
+      content: "";
+      box-shadow: inset -4px -4px #98275e;
     }
   }
 }

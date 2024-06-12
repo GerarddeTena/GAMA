@@ -127,7 +127,6 @@ $cyborg: #ca3434;
         }
       }
     }
-
     $default-color: nth($colors, nth($matrix-colors, index($counts, max($counts...))));
   }
 
