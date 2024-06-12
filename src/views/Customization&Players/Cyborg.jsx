@@ -1,7 +1,6 @@
 import {Link} from "react-router-dom";
 import '../../styles/views_Styles/Stathic/Cyborg.scss';
-import W_Cyborg from '../../Images/typesOfCharacter/Walking_Cyborg.gif'
-import {CYBORG} from '../../DATA/PLAYER_DATA.jsx'
+import {CYBORG} from "../../DATA/PLAYER_DESC.jsx";
 
 const Cyborg = () => {
 
@@ -32,6 +31,5 @@ const Cyborg = () => {
             </section>
         </>
     ))
-     
 }
 export default Cyborg;

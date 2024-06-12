@@ -19,5 +19,8 @@ a {
     width: 100%;
     font-style: normal;
     font-size: x-large;
+    @include inputChange(email, 10, 15, black, none, white, none, 1);
+    @include inputChange(password, 10, 15, black, none, white, none, 1);
+    @include inputChange(text, 10, 15, black, none, white, none, 1);
 
 }

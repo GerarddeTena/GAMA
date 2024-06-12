@@ -3,11 +3,13 @@
   display: none;
 }
 .Navbar {
-  position: relative;
+  position: fixed;
   @include displayFlex(row, flex-end, center);
   background-color: black;
   padding: 1.5rem;
   width: 100%;
+  top: 0;
+  z-index: 50;
 
   & .Nav_Logo {
     position: $abs;
@@ -51,7 +53,8 @@
 
 @include media-queries-md {
   .Navbar {
-    position: $rel;
+    position: fixed;
+    top:0;
 
     & .Nav_Items {
       @include displayFlex(column, $cent, $cent);

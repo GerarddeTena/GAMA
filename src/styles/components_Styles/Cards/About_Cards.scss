@@ -63,6 +63,7 @@
           @include PIXEL_LOGO(github);
           content: "";
           position: absolute;
+
         }
 
         & > a:last-child::before {
