@@ -4,8 +4,6 @@ import {CYBORG} from "../../DATA/PLAYER_DESC.jsx";
 
 const Cyborg = () => {
 
-
-
     return CYBORG.map((item) => (
         <>
             <h1 className='Title'>{item.name}</h1>
