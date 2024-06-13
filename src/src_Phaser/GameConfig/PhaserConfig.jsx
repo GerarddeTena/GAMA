@@ -27,9 +27,9 @@ const PhaserConfig = () => {
 
                     //Enemies:
 
-                    this.load.spritesheet('HansIdle', 'src/src_Phaser/assets/sprites/Enemies/H_Idle.png', {
-                        frameWidth: 32,
-                        frameHeight: 48
+                    this.load.spritesheet('Hans_Idle', 'src/src_Phaser/assets/sprites/Enemies/H_Idle.png', {
+                        frameWidth: 38,
+                        frameHeight: 47
                     });
                     this.load.spritesheet('Hans_Walk', 'src/src_Phaser/assets/sprites/Enemies/H_Walk_Right.png', {
                         frameWidth: 28,
@@ -47,18 +47,19 @@ const PhaserConfig = () => {
                 create: function () {
                     this.add.image(0, 0, 'background').setOrigin(0, 0);
                     const platforms = this.physics.add.staticGroup();
-                    let platform1 = platforms.create(200, 750, 'platform').setScale(2);
-                    platform1 = platforms.create(260, 750, 'block').setScale(2);
+                    let platform1 = platforms.create(200, 700, 'platform').setScale(2);
+                    let platform2 = platforms.create(500, 400, 'block').setScale(2);
+                    let platform3 = platforms.create(550, 700, 'platform').setScale(2);
                     platform1.body.setSize(platform1.width, platform1.height - 20);
                     platform1.refreshBody();
-
-                    let platform2 = platforms.create(1000, 400, 'block').setScale(2);
                     platform2.body.setSize(platform2.width, platform2.height - 20);
                     platform2.refreshBody();
+                    platform3.body.setSize(platform3.width, platform3.height -20);
+                    platform3.refreshBody();
 
                     this.anims.create({
                         key: 'Hans_Idle',
-                        frames: this.anims.generateFrameNumbers('HansIdle', {start: 0, end: 6}),
+                        frames: this.anims.generateFrameNumbers('Hans_Idle', {start: 0, end: 6}),
                         frameRate: 10,
                         repeat: -1
                     });
@@ -68,11 +69,11 @@ const PhaserConfig = () => {
                         frames: this.anims.generateFrameNumbers('Hans_Walk', {start: 0, end: 8}),
                         scale: 2,
                         frameRate: 10,
-                        repeat: -1
+                        repeat: 1
 
                     })
                     let Hans = this.physics.add.sprite(200, 100, 'HansIdle');
-                    Hans.anims.play('HansIdle');
+                    Hans.anims.play('Hans_Idle');
                     Hans.body.setSize(Hans.width, Hans.height - SIZE_ADJUST);
                     Hans.body.setOffset(0, 50);
 
@@ -88,7 +89,7 @@ const PhaserConfig = () => {
                                 isHansWalking = true;
                             } else {
                                 Hans.once('animationcomplete', () => {
-                                    Hans.anims.play('HansIdle');
+                                    Hans.anims.play('Hans_Idle');
                                 })
                                 Hans.setVelocityX(0);
                                 isHansWalking = false;
