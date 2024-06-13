@@ -38,12 +38,10 @@ const stateOfComponents = ({getTheStore, setStore}) => {
             registerUserDispatcher: async (userData) => {
                 try {
                     const newUser = await registerUserRequests(userData);
-                    console.log(newUser);
                     const store = getTheStore();
                     setStore({...store, users: { ...store.users, register_user: newUser }});
-            
-                    // Return the new user data
                     return newUser;
+
                 } catch (error) {
                     console.error({'Error registering user': error});
                 }
@@ -52,7 +50,6 @@ const stateOfComponents = ({getTheStore, setStore}) => {
             loginUserDispatcher: async (userData) => {
                 try {
                     const response = await logInUserRequests(userData);
-                    console.log(response);
                     const token = response.token;
                     if (!token) console.error('Login Failed');
                     localStorage.setItem('token', token);
