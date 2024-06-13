@@ -1,5 +1,7 @@
+const serverURL = import.meta.env.VITE_APP_CODESPACES ? `https://${import.meta.env.VITE_APP_CODESPACE_NAME}-3001.app.github.dev` : 'http://localhost:3001';
+
 export const registerUserRequests = async (userData) => {
-    const response = await fetch(import.meta.env.VITE_POST_NEW_USER_URL, {
+    const response = await fetch(`${serverURL}/api/register`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(userData)
@@ -8,17 +10,17 @@ export const registerUserRequests = async (userData) => {
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
-
-    return response.json();
+    const jsonResponse = await response.json();
+    console.log('Response:', jsonResponse);
+    return jsonResponse;
 }
 
 export const logInUserRequests = async (userData) => {
-    const response = await fetch(import.meta.env.VITE_POST_LOGIN_USER_URL, {
+    const response = await fetch(`${serverURL}/api/login`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(userData)
     });
-
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }

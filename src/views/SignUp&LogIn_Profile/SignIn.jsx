@@ -6,7 +6,7 @@ const SignIn = () => {
 
     const {actions} = useContext(Context);
     const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
+    const [email, setMail] = useState('');
     const [error, setError] = useState(null);
 
 
@@ -19,6 +19,7 @@ const SignIn = () => {
         };
 
         try {
+            console.log(userData);
             const response = await actions.loginUserDispatcher(userData);
             if (response && response.token) {
                 localStorage.setItem('token', response.token);
