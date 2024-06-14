@@ -43,7 +43,11 @@ const SignIn = () => {
                 <form className='Body_Form_SI'>
                     <div className="Label_Div">
                         <label>E-MAIL: </label>
+<<<<<<< HEAD
+                        <input type="email" value={email} onChange={(e) => setMail(e.target.value)}/>
+=======
                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+>>>>>>> main
                     </div>
                     <div className="Label_Div">
                         <label>PASSWORD: </label>
