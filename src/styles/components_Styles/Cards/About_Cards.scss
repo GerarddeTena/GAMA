@@ -21,7 +21,7 @@
       height: 10rem;
       box-shadow: -2px 0 0 white, 2px 0 0 white, 0 -2px 0 white, 0 2px 0 white;
       position: $rel;
-      backdrop-filter: blur(0.5rem);
+      backdrop-filter: blur(1rem);
 
       &:hover {
         transform: translate(0, -0.5rem);
