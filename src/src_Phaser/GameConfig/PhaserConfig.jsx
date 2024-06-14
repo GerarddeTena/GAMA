@@ -1,9 +1,12 @@
 import Phaser from 'phaser';
 import {useEffect} from "react";
+import {Hans} from "../Game_Objs/Hans";
+import {Skeleton} from "../Game_Objs/Skeleton";
+import {Dragon} from "../Game_Objs/Dragon";
 
 const PhaserConfig = () => {
-    const SIZE_ADJUST = 80;
-
+    const SIZE_ADJUST = 50;
+    //const [isWalking, setIsWalking] = useState(false);
 
     useEffect(() => {
         const config = {
@@ -23,6 +26,7 @@ const PhaserConfig = () => {
 
                     this.load.image('background', 'src/src_Phaser/assets/sprites/background/Cathedral_1.png');
                     this.load.image('platform', 'src/src_Phaser/assets/sprites/Platform.png');
+                    this.load.image('corridor', 'src/src_Phaser/assets/sprites/Corridor.png');
                     this.load.image('block', 'src/src_Phaser/assets/sprites/PlatformBlock.png');
 
                     //Enemies:
@@ -35,10 +39,14 @@ const PhaserConfig = () => {
                         frameWidth: 28,
                         frameHeight: 48
                     });
-                    this.load.spritesheet('SkeletonIdle', 'src/src_Phaser/assets/sprites/Enemies/Skeleton_Idle.png', {
+                    this.load.spritesheet('Skeleton_Idle', 'src/src_Phaser/assets/sprites/Enemies/Skeleton_Idle_Right.png', {
                         frameWidth: 32,
                         frameHeight: 48
                     });
+                    this.load.spritesheet('Skeleton_Walk', 'src/src_Phaser/assets/sprites/Enemies/Skeleton_Walk_Right.png', {
+                        frameWidth: 32,
+                        frameHeight: 48
+                    })
                     this.load.spritesheet('Dragon', 'src/src_Phaser/assets/sprites/Enemies/ManiacDragon.png', {
                         frameWidth: 32,
                         frameHeight: 32
@@ -47,83 +55,63 @@ const PhaserConfig = () => {
                 create: function () {
                     this.add.image(0, 0, 'background').setOrigin(0, 0);
                     const platforms = this.physics.add.staticGroup();
-                    let platform1 = platforms.create(200, 700, 'platform').setScale(2);
+                    let platform1 = platforms.create(300, 700, 'corridor').setScale(1);
                     let platform2 = platforms.create(500, 400, 'block').setScale(2);
-                    let platform3 = platforms.create(550, 700, 'platform').setScale(2);
+                    let platform3 = platforms.create(400, 700, 'corridor').setScale(1);
+                    let platform4 = platforms.create(100, 700, 'corridor').setScale(1);
+                    let platform5 = platforms.create(200, 700, 'corridor').setScale(1);
+                    let platform6 = platforms.create(500, 700, 'corridor').setScale(1);
                     platform1.body.setSize(platform1.width, platform1.height - 20);
-                    platform1.refreshBody();
                     platform2.body.setSize(platform2.width, platform2.height - 20);
+                    platform3.body.setSize(platform3.width, platform3.height - 20);
+                    platform4.body.setSize(platform3.width, platform3.height - 20);
+                    platform5.body.setSize(platform3.width, platform3.height - 20);
+                    platform6.body.setSize(platform3.width, platform3.height - 20);
+                    platform1.refreshBody();
                     platform2.refreshBody();
-                    platform3.body.setSize(platform3.width, platform3.height -20);
                     platform3.refreshBody();
+                    platform4.refreshBody();
+                    platform5.refreshBody();
 
-                    this.anims.create({
-                        key: 'Hans_Idle',
-                        frames: this.anims.generateFrameNumbers('Hans_Idle', {start: 0, end: 6}),
-                        frameRate: 10,
-                        repeat: -1
-                    });
+                    let hans = new Hans(this, 200, 100, 'HansIdle');
+                    hans.body.setSize(hans.width, hans.height - SIZE_ADJUST);
+                    hans.body.setOffset(0, 50);
 
-                    this.anims.create({
-                        key: 'Hans_Walk',
-                        frames: this.anims.generateFrameNumbers('Hans_Walk', {start: 0, end: 8}),
-                        scale: 2,
-                        frameRate: 10,
-                        repeat: 1
+                    let skeleton = new Skeleton (this, 200, 200, 'Skeleton_Idle');
 
-                    })
-                    let Hans = this.physics.add.sprite(200, 100, 'HansIdle');
-                    Hans.anims.play('Hans_Idle');
-                    Hans.body.setSize(Hans.width, Hans.height - SIZE_ADJUST);
-                    Hans.body.setOffset(0, 50);
+                    skeleton.body.setSize(skeleton.width, skeleton.height - SIZE_ADJUST);
+                    skeleton.body.setOffset(0, 50);
 
+                    let dragon = new Dragon(this, 300, 300, 'Dragon');
+
+                    dragon.body.setSize(dragon.width, dragon.height - SIZE_ADJUST);
+                    dragon.body.setOffset(0, 50);
+
+                    // Automatic movement
                     let delay = Phaser.Math.Between(1000, 3000);
-                    let isHansWalking = false;
-
+                    let isWalking = false
                     this.time.addEvent({
                         delay: delay,
                         callback: () => {
-                            if (!isHansWalking) {
-                                Hans.anims.play('Hans_Walk');
-                                Hans.setVelocityX(100);
-                                isHansWalking = true;
+                            if (!isWalking) {
+                                hans.anims.play('Hans_Walk');
+                                skeleton.anims.play('Skeleton_Walk');
+                                skeleton.setVelocityX(100);
+                                hans.setVelocityX(100);
+                                isWalking = true;
                             } else {
-                                Hans.once('animationcomplete', () => {
-                                    Hans.anims.play('Hans_Idle');
-                                })
-                                Hans.setVelocityX(0);
-                                isHansWalking = false;
+                                hans.anims.play('Hans_Idle');
+                                hans.setVelocityX(0);
+                                skeleton.setVelocityX(0);
+                                isWalking = false;
                             }
                         },
                         loop: true
                     });
-
-                    this.anims.create({
-                        key: 'SkeletonIdle',
-                        frames: this.anims.generateFrameNumbers('SkeletonIdle', {start: 0, end: 7}),
-                        frameRate: 10,
-                        repeat: -1
-                    });
-                    let Skeleton = this.physics.add.sprite(200, 200, 'SkeletonIdle');
-                    Skeleton.play('SkeletonIdle');
-                    Skeleton.body.setSize(Skeleton.width, Skeleton.height - SIZE_ADJUST);
-                    Skeleton.body.setOffset(0, 50);
-
-                    this.anims.create({
-                        key: 'Dragon',
-                        frames: this.anims.generateFrameNumbers('Dragon', {start: 0, end: 7}),
-                        frameRate: 10,
-                        repeat: -1
-                    });
-                    let Dragon = this.physics.add.sprite(300, 300, 'Dragon');
-                    Dragon.play('Dragon');
-                    Dragon.body.setSize(Dragon.width, Dragon.height - SIZE_ADJUST);
-                    Dragon.body.setOffset(0, 50);
-
                     // Add colliders
-                    this.physics.add.collider(Hans, platforms);
-                    this.physics.add.collider(Skeleton, platforms);
-                    this.physics.add.collider(Dragon, platforms);
+                    this.physics.add.collider(hans, platforms);
+                    this.physics.add.collider(skeleton, platforms);
+                    this.physics.add.collider(dragon, platforms);
                 }
             }
         };
