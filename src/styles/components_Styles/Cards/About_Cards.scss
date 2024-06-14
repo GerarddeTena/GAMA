@@ -1,4 +1,5 @@
 @import '../../global.variables';
+@import '../../ICON_SHAPES/ICONS_MATRIX';
 
 .Container_Info {
   color: white;
@@ -20,7 +21,7 @@
       height: 10rem;
       box-shadow: -2px 0 0 white, 2px 0 0 white, 0 -2px 0 white, 0 2px 0 white;
       position: $rel;
-      backdrop-filter: blur(0.5rem);
+      backdrop-filter: blur(1rem);
 
       &:hover {
         transform: translate(0, -0.5rem);
@@ -45,6 +46,7 @@
           z-index: -1;
         }
 
+
         & a {
           position: relative;
           display: inline-flex;
@@ -60,14 +62,14 @@
         }
 
         & > a:first-child::before {
-          @include PIXEL_LOGO(github);
+          @include PIXEL_ART(1px, $icon-github, $icon-github-colors);
           content: "";
           position: absolute;
 
         }
 
         & > a:last-child::before {
-          @include PIXEL_LOGO(linkedin);
+          @include PIXEL_ART(1px, $icon-linkedin, $icon-linkedin-colors);
           content: "";
           position: absolute;
         }
