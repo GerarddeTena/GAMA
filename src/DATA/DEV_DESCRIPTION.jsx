@@ -1,6 +1,6 @@
 export const CARD_DATA = [
     {
-        name: 'Don Draper',
+        name: 'Gerard de Tena',
         avatar: 'src/Images/DonDraper.png',
         links: {
             github: 'https://github.com/GerarddeTena',
@@ -8,7 +8,7 @@ export const CARD_DATA = [
         }
     },
     {
-        name: 'Adrarom',
+        name: 'Adrian Araque',
         avatar: 'src/Images/Adradrom.png',
         links: {
             github: 'https://github.com/adrarom',
@@ -16,7 +16,7 @@ export const CARD_DATA = [
         }
     },
     {
-        name: 'Korzair',
+        name: 'Alejandro De Vita',
         avatar: 'src/Images/DonDraper.png',
         links: {
             github: 'https://github.com/alejo0022',
@@ -24,7 +24,7 @@ export const CARD_DATA = [
         }
     },
     {
-        name: 'M.St.Angelo',
+        name: 'Mauro Santangelo',
         avatar: 'src/Images/MAu5.png',
         links: {
             github: 'https://github.com/Mauros721',

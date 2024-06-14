@@ -16,6 +16,7 @@ import User_Profile from "./src/views/SignUp&LogIn_Profile/User_Profile.jsx";
 
 // eslint-disable-next-line react-refresh/only-export-components
 const Layout = () => {
+
     const [isVisible, setIsVisible] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     //const {store} = useContext(Context);

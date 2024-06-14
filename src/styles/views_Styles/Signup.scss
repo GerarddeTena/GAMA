@@ -5,7 +5,11 @@
   background-image: url("src/Images/pixel-pixel-animatmion.gif");
   opacity: 0.9;
   width: 100%;
+<<<<<<< HEAD
   min-height: 100vh;
+=======
+  min-height: 125vh;
+>>>>>>> main
   @include displayFlex(column, $cent);
   gap: 3.5rem;
 

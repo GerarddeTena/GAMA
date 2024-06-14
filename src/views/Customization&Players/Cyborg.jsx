@@ -1,8 +1,12 @@
 import {Link} from "react-router-dom";
 import '../../styles/views_Styles/Stathic/Cyborg.scss';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import W_Cyborg from '../../Images/typesOfCharacter/Walking_Cyborg.gif'
 import {CYBORG} from '../../DATA/PLAYER_DATA.jsx'
+=======
+import {CYBORG} from "../../DATA/PLAYER_DESC.jsx";
+>>>>>>> main
 
 const Cyborg = () => {
 
@@ -42,8 +46,11 @@ const Cyborg = () => {
         </>
     ))
 <<<<<<< HEAD
+<<<<<<< HEAD
      
 =======
 >>>>>>> 3eeff25 (ticket 003 / styiling 2.0)
+=======
+>>>>>>> main
 }
 export default Cyborg;
