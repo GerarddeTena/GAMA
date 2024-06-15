@@ -1,5 +1,5 @@
-import {CARD_INFO} from "../DATA/DEV_DESCRIPTION.jsx";
-import '../styles/components_Styles/Cards/Info_Cards.scss';
+import {CARD_INFO} from "../../DATA/DEV_DESCRIPTION.jsx";
+import '../../styles/components_Styles/Cards/Info_Cards.scss';
 const Info_Cards = () => {
     return (
         <div className='About_Description'>

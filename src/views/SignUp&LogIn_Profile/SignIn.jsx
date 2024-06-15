@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import {Context} from "../../store/AppContext.jsx";
 import '../../styles/views_Styles/SignIn.scss';
 
@@ -43,12 +43,10 @@ const SignIn = () => {
                 <form className='Body_Form_SI'>
                     <div className="Label_Div">
                         <label>E-MAIL: </label>
-<<<<<<< HEAD
                         <input type="email" value={email} onChange={(e) => setMail(e.target.value)}/>
-=======
-                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
->>>>>>> main
+                        <input type="email" value={email} onChange={(e) => setMail(e.target.value)}/>
                     </div>
+
                     <div className="Label_Div">
                         <label>PASSWORD: </label>
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>

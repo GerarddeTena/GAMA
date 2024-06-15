@@ -1,5 +1,5 @@
-import {CARD_DATA} from "../DATA/DEV_DESCRIPTION.jsx";
-import '../styles/components_Styles/Cards/About_Cards.scss';
+import {CARD_DATA} from "../../DATA/DEV_DESCRIPTION.jsx";
+import '../../styles/components_Styles/Cards/About_Cards.scss';
 const Cards = () => {
 
     return (

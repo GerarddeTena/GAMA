@@ -6,7 +6,8 @@ from api.models import db, User, Player
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
@@ -14,7 +15,7 @@ CORS(api, resources={r"/api/*": {"origins": "*"}})
 
 
 @api.route('/register', methods=['POST'])
-def register_user(): # FUNCIONA
+def register_user():  # FUNCIONA
     data = request.get_json()
     user = User(
         email=data['email'],
@@ -30,12 +31,12 @@ def register_user(): # FUNCIONA
         'user_name': user.user_name,
         'success': True,
         'response': 'User created successfully',
-        'token' : access_token
+        'token': access_token
     }), 201
 
 
 @api.route('/login', methods=['POST'])
-def login_user(): # FUNCIONA
+def login_user():  # FUNCIONA
     data = request.get_json()
     user = User.query.filter_by(email=data['email']).first()
     access_token = create_access_token(identity=user.id)
@@ -44,12 +45,22 @@ def login_user(): # FUNCIONA
             'id': user.id,
             'email': user.email,
             'user_name': user.user_name,
-            'token' : access_token
+            'token': access_token
         }), 200
     return jsonify({'message': 'Invalid email or password'}), 401
 
+
+@api.route('/validate-token', methods=['GET'])
+@jwt_required()
+def validate_token():
+    current_user = get_jwt_identity()
+    auth_header = request.headers.get('Authorization', None)
+    print(f"Authorization Header: {auth_header}")
+    return jsonify(logged_in_as=current_user), 200
+
+
 @api.route('/user', methods=['POST'])
-def create_user(): # FUNCIONA
+def create_user():  # FUNCIONA
     data = request.get_json()
     user = User(
         email=data['email'],
@@ -64,7 +75,8 @@ def create_user(): # FUNCIONA
         'user_name': user.user_name
     }), 201
 
-@api.route('/user', methods=['GET']) # FUNCIONA
+
+@api.route('/user', methods=['GET'])  # FUNCIONA
 def get_user(id):
     try:
         data = request.get_json()
@@ -80,10 +92,11 @@ def get_user(id):
             'email': user.email,
             'user_name': user.user_name
         }), 200
-    except Exception as e:
+    except APIException as e:
 
         return jsonify({'message': 'Error getting user: ', 'error': str(e)}), 500
-    
+
+
 @api.route('/user/<int:id>', methods=['GET'])
 def get_user_by_url(id):
     try:
@@ -98,12 +111,13 @@ def get_user_by_url(id):
             'email': user.email,
             'user_name': user.user_name
         }), 200
-    except Exception as e:
+    except APIException as e:
 
         return jsonify({'message': 'Error getting user: ', 'error': str(e)}), 500
 
+
 @api.route('/user', methods=['DELETE'])
-def delete_user(): # FUNCIONA
+def delete_user():  # FUNCIONA
     data = request.get_json()
     user_id = data.get('user_id')
     user = User.query.get(user_id)
@@ -113,8 +127,9 @@ def delete_user(): # FUNCIONA
     db.session.commit()
     return jsonify({'message': 'User deleted'}), 200
 
+
 @api.route('/player', methods=['POST'])
-def create_player(): 
+def create_player():
     data = request.get_json()
     player = Player(
         name=data['name'],
@@ -133,6 +148,8 @@ def create_player():
         'score': player.score,
         'level': player.level
     }), 201
+
+
 @api.route('/player/updateScore', methods=['PUT'])
 def update_score():
     data = request.get_json()
@@ -145,6 +162,7 @@ def update_score():
     player.score = score
     db.session.commit()
     return jsonify({'message': 'Score updated'}), 200
+
 
 @api.route('/player/updateLevel', methods=['PUT'])
 def update_level():
@@ -159,6 +177,7 @@ def update_level():
     db.session.commit()
     return jsonify({'message': 'Score updated'}), 200
 
+
 @api.route('/player', methods=['GET'])
 def get_players():
     players = Player.query.all()
@@ -168,6 +187,7 @@ def get_players():
         'type': player.type,
         'user_id': player.user_id
     } for player in players]), 200
+
 
 @api.route('/player', methods=['DELETE'])
 def delete_player():

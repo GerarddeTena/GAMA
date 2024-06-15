@@ -1,5 +1,5 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {useState, useEffect, useContext} from "react";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {useState, useEffect} from "react";
 import ProjectSlogan from "./src/views/ProjectEslogan.jsx";
 import AboutUs from "./src/views/AboutUs.jsx";
 import {PlayerLab} from "./src/views/Customization&Players/PlayerLab.jsx";
@@ -8,9 +8,10 @@ import Human from "./src/views/Customization&Players/Human.jsx";
 import Cyborg from "./src/views/Customization&Players/Cyborg.jsx";
 import Reptile from "./src/views/Customization&Players/Reptile.jsx";
 import Signup from "./src/views/SignUp&LogIn_Profile/SignUp.jsx";
-import InjectContext, {Context} from "./src/store/AppContext.jsx";
+import InjectContext from "./src/store/AppContext.jsx";
 import SignIn from "./src/views/SignUp&LogIn_Profile/SignIn.jsx";
 import User_Profile from "./src/views/SignUp&LogIn_Profile/User_Profile.jsx";
+import {logInUserRequests} from "./src/store/Http_calls/HTTP_User_Requests.jsx";
 //Navigate
 
 
@@ -19,8 +20,45 @@ const Layout = () => {
 
     const [isVisible, setIsVisible] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    //const {store} = useContext(Context);
-    // console.log('isAuthenticated', store.isAuthenticated);
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const validToken = async () => {
+
+        try {
+
+            const token = localStorage.getItem('token');
+            if (!token) {
+                setIsAuthenticated(false);
+            }
+
+            const response = await fetch('https://reimagined-fiesta-r44597qv44pqfr5v-3001.app.github.dev/api/validate-token', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (response.ok) {
+                setIsAuthenticated(true);
+
+            } else {
+                localStorage.removeItem('token');
+                setIsAuthenticated(false);
+            }
+
+
+        } catch (error) {
+
+            console.error({ 'Error validating token': error });
+            localStorage.removeItem('token');
+            setIsAuthenticated(false);
+        }
+    };
+
+    useEffect(() => {
+        validToken().then(() => console.log('Token validated'))
+    }, [isAuthenticated]);
+
     const toggleNavbar = () => {
         setIsVisible(!isVisible);
     };
@@ -46,13 +84,12 @@ const Layout = () => {
         }
     }, [windowWidth]);
 
-    // eslint-disable-next-line react/prop-types
-    // const PrivateRoute = ({component: Component, ...restOfComponents}) => {
-    //     const {store} = useContext(Context);
-    //     console.log('isAuthenticated', store.isAuthenticated);
-    //     return store.isAuthenticated ? <Component {...restOfComponents} /> : <Navigate to='/' />;
-    //
-    // }
+
+    const PrivateRoute = ({component: Component, ...restOfComponents}) => {
+        console.log('isAuthenticated', isAuthenticated);
+        return isAuthenticated ? <Component {...restOfComponents} /> : <Navigate to='/'/>;
+    }
+
     return (
         <BrowserRouter>
             <Navbar isVisible={isVisible} toggleNavbar={toggleNavbar} />
@@ -61,11 +98,26 @@ const Layout = () => {
                 <Route path='/about-us' element={<AboutUs />} />
                 <Route path='/sign-up' element={<Signup />} />
                 <Route path='/sign-in' element={<SignIn />} />
-                <Route path='/player-lab-create' element={ <PlayerLab />} />
-                <Route path='/player-info-human' element={<Human/>}/>
-                <Route path='/player-info-cyborg' element={<Cyborg />}/>
-                <Route path='/player-info-reptile' element={<Reptile />} />
-                <Route path='/user-profile' element={<User_Profile />}/>
+                <Route
+                    path='/player-lab-create'
+                    element={<PrivateRoute component={PlayerLab} />}
+                />
+                <Route
+                    path='/player-info-human'
+                    element={<PrivateRoute component={Human} />}
+                />
+                <Route
+                    path='/player-info-cyborg'
+                    element={<PrivateRoute component={Cyborg} />}
+                />
+                <Route
+                    path='/player-info-reptile'
+                    element={<PrivateRoute component={Reptile} />}
+                />
+                <Route
+                    path='/user-profile'
+                    element={<PrivateRoute component={User_Profile} />}
+                />
             </Routes>
         </BrowserRouter>
     )

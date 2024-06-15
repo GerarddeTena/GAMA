@@ -4,7 +4,7 @@ import '../../styles/views_Styles/PlayerLab.scss';
 import muscular from '../../Images/typesOfCharacter/Human_Thin.gif';
 import cyborg from '../../Images/typesOfCharacter/Cyborg.gif';
 import reptilian from '../../Images/typesOfCharacter/Reptile.gif';
-import PlayerCard from "../../components/PlayerCard.jsx";
+import PlayerCard from "../../components/Cards/PlayerCard.jsx";
 import '../../styles/components_Styles/Cards/PlayerCard.scss';
 export const PlayerLab = () => {
 
