@@ -7,12 +7,17 @@ export class Dragon extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this);
 
         scene.anims.create({
-            key: 'Dragon',
-            frames: scene.anims.generateFrameNumbers('Dragon', {start: 0, end: 7}),
+            key: 'dragon',
+            frames: scene.anims.generateFrameNumbers('dragon', {start: 0, end: 7}),
             frameRate: 10, repeat: -1
         });
 
+        scene.anims.create({
+            key: 'dragon_attack',
+            frames: scene.anims.generateFrameNumbers('dragon_attack', {start: 0, end: 20}),
+            frameRate: 10, repeat: -1
+        })
 
-     this.play('Dragon');
+     this.play('dragon');
     }
 }

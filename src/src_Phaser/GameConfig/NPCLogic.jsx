@@ -1,24 +1,48 @@
-export function NPCLogic (game, sprite, walk, idle, wTime, iTime) {
-    sprite.anims.play(walk);
-    sprite.setVelocity(50);
-    sprite.setFlipX(false);
+import Phaser from "phaser";
 
-    game.time.addEvent({
-        delay: wTime,
+export function randomMovement(sprite, platforms, velocity, walkAnim, idleAnim) {
+    let delay = Phaser.Math.Between(1000, 3000);
+    let direction = Math.random() < 0.5 ? -1 : 1;
+    let isWalking = false;
+
+    sprite.setCollideWorldBounds(true);
+    sprite.setBounce(1, 0);
+
+    this.time.addEvent({
+        delay: delay,
         callback: () => {
-            sprite.anims.play(idle);
-            sprite.setVelocity(0);
+            if (!isWalking) {
+                sprite.anims.play(walkAnim);
+                sprite.setVelocityX(velocity * direction);
+                sprite.setFlipX(direction < 0);
+                isWalking = true;
+            } else {
+                sprite.anims.play(idleAnim);
+                sprite.setVelocityX(0);
+                isWalking = false;
+            }
         },
-        loop: false
+        loop: true
     });
 
-    game.time.addEvent({
-        delay: wTime + iTime,
-        callback: () => {
-            sprite.anims.play(walk);
-            sprite.setVelocity(-50);
-            sprite.setFlipX(true);
-        },
-        loop: false
+    this.physics.add.collider(sprite, platforms, (sprite, platform) => {
+
+        if (sprite.body.touching.left && platform.body.touching.right) {
+            direction *= -1;
+            sprite.setFlipX(direction < 0);
+        }
+        if(sprite.body.touching.right && platform.body.touching.left) {
+            direction *= -1;
+            sprite.setFlipX(direction < 0);
+        }
+    });
+
+    sprite.body.onWorldBounds = true;
+    this.physics.world.on('worldbounds', (body) => {
+        if (body.gameObject === sprite) {
+            direction *= -1;
+            sprite.setFlipX(direction < 0);
+            sprite.setVelocityX(velocity * direction);
+        }
     });
 }
