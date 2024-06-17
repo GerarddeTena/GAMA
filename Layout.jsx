@@ -12,6 +12,7 @@ import InjectContext from "./src/store/AppContext.jsx";
 import SignIn from "./src/views/SignUp&LogIn_Profile/SignIn.jsx";
 import User_Profile from "./src/views/SignUp&LogIn_Profile/User_Profile.jsx";
 import {logInUserRequests} from "./src/store/Http_calls/HTTP_User_Requests.jsx";
+const serverURL = import.meta.env.VITE_APP_CODESPACES ? `https://${import.meta.env.VITE_APP_CODESPACE_NAME}-3001.app.github.dev` : 'http://localhost:3001';
 //Navigate
 
 
@@ -31,7 +32,7 @@ const Layout = () => {
                 setIsAuthenticated(false);
             }
 
-            const response = await fetch('https://reimagined-fiesta-r44597qv44pqfr5v-3001.app.github.dev/api/validate-token', {
+            const response = await fetch(`${serverURL}/api/validate-token`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
