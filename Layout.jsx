@@ -1,5 +1,5 @@
-import {BrowserRouter, Navigate, Route, Routes, useLocation} from "react-router-dom";
-import {useState, useEffect, useContext} from "react";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {useState, useEffect} from "react";
 import ProjectSlogan from "./src/views/ProjectEslogan.jsx";
 import AboutUs from "./src/views/AboutUs.jsx";
 import {PlayerLab} from "./src/views/Customization&Players/PlayerLab.jsx";
@@ -8,11 +8,11 @@ import Human from "./src/views/Customization&Players/Human.jsx";
 import Cyborg from "./src/views/Customization&Players/Cyborg.jsx";
 import Reptile from "./src/views/Customization&Players/Reptile.jsx";
 import Signup from "./src/views/SignUp&LogIn_Profile/SignUp.jsx";
-import InjectContext, {Context} from "./src/store/AppContext.jsx";
+import InjectContext from "./src/store/AppContext.jsx";
 import SignIn from "./src/views/SignUp&LogIn_Profile/SignIn.jsx";
 import User_Profile from "./src/views/SignUp&LogIn_Profile/User_Profile.jsx";
 import {logInUserRequests} from "./src/store/Http_calls/HTTP_User_Requests.jsx";
-import PhaserConfig from "./src/src_Phaser/GameConfig/PhaserConfig.jsx";
+const serverURL = import.meta.env.VITE_APP_CODESPACES ? `https://${import.meta.env.VITE_APP_CODESPACE_NAME}-3001.app.github.dev` : 'http://localhost:3001';
 //Navigate
 
 
@@ -32,7 +32,7 @@ const Layout = () => {
                 setIsAuthenticated(false);
             }
 
-            const response = await fetch('https://reimagined-fiesta-r44597qv44pqfr5v-3001.app.github.dev/api/validate-token', {
+            const response = await fetch(`${serverURL}/api/validate-token`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -69,7 +69,9 @@ const Layout = () => {
         const handleResize = () => {
             setWindowWidth(window.innerWidth);
         };
+
         window.addEventListener('resize', handleResize);
+
         return () => {
             window.removeEventListener('resize', handleResize);
         };
@@ -91,7 +93,7 @@ const Layout = () => {
 
     return (
         <BrowserRouter>
-            <Navbar isVisible={isVisible} toggleNavbar={toggleNavbar}/>
+            <Navbar isVisible={isVisible} toggleNavbar={toggleNavbar} />
             <Routes>
                 <Route path='/' element={<ProjectSlogan />} />
                 <Route path='/about-us' element={<AboutUs />} />
@@ -117,7 +119,6 @@ const Layout = () => {
                     path='/user-profile'
                     element={<PrivateRoute component={User_Profile} />}
                 />
-                <Route path='/game' element={<PhaserConfig />}/>
             </Routes>
         </BrowserRouter>
     )
