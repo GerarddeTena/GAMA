@@ -1,9 +1,9 @@
 import Phaser from "phaser";
 import {LoadAudio, Loader, LoadSprite} from "../Game_Objs/Loader.jsx";
 import {Platforms} from "../Game_Objs/Platforms.jsx";
-import {Hans} from "../Game_Objs/NPC/Hans.jsx";
-import {Skeleton} from "../Game_Objs/NPC/Skeleton.jsx";
-import {Dragon} from "../Game_Objs/NPC/Dragon.jsx";
+import {Hans} from "../Game_Objs/NPC/NPC LVL1/Hans.jsx";
+import {Skeleton} from "../Game_Objs/NPC/NPC LVL1/Skeleton.jsx";
+import {Dragon} from "../Game_Objs/NPC/NPC LVL1/Dragon.jsx";
 import {Human} from "../Game_Objs/Player/Player_Human.jsx";
 import {randomMovement} from "../GameConfig/NPCLogic.jsx";
 
@@ -13,12 +13,14 @@ export class Level1 extends Phaser.Scene {
         this.hans = null;
         this.skeleton = null;
         this.dragon = null;
+        // this.playerHealth = 1000; // Salud inicial del jugador
+        // this.livesText = null;
     }
 
     preload() {
         const loader = new Loader(this);
         const spriteLoad = new LoadSprite(this);
-        const audio = new LoadAudio(this);
+        const sceneAudio = new LoadAudio(this);
 
         loader.loadImage('background', 'background', 'Cathedral_1');
         loader.loadImage('platform', '', 'Platform');
@@ -40,11 +42,13 @@ export class Level1 extends Phaser.Scene {
         spriteLoad.loadSprite('human_Idle', 'Players', 'Human_Idle', 32, 64);
         spriteLoad.loadSprite('human_Walk', 'Players', 'Walking_Human', 64, 64);
         spriteLoad.loadSprite('human_Jump', 'Players', 'Jumping_Human', 48, 60);
+
+        sceneAudio.loadAudio('audioBoss1', '', 'AudioBoss');
     }
 
     create() {
 
-        this.add.image(0, 0, 'background').setOrigin(0, 0);
+        this.add.image(0, 0, 'background').setOrigin(0, 0).setScale(2);
         let platforms = new Platforms(this.physics.world, this, null, [
             {x: 100, y: 700, key: 'corridor'}, {x: 200, y: 700, key: 'corridor'}, {
                 x: 300,
@@ -67,19 +71,23 @@ export class Level1 extends Phaser.Scene {
 
         // NPC's:
         this.hans = new Hans(this, Math.floor(Math.random() * 1500), 100, 'hans_Idle');
+        this.hans.setScale(1.5);
         this.hans.setCollideWorldBounds(true);
         this.hans.body.pushable = false;
 
         this.skeleton = new Skeleton(this, Math.floor(Math.random() * 1500), 100, 'skeleton_Idle');
+        this.skeleton.setScale(1.5);
         this.skeleton.setCollideWorldBounds(true);
         this.skeleton.body.pushable = false;
 
         this.dragon = new Dragon(this, Math.floor(Math.random() * 1500), 100, 'dragon');
+        this.dragon.setScale(1.5);
         this.dragon.setCollideWorldBounds(true);
         this.dragon.body.pushable = false;
 
         // Players:
         this.human = new Human(this, 100, 100, 'human_Idle');
+        this.human.setScale(1.5);
         this.human.setCollideWorldBounds(true);
 
         // Automatic movement:
@@ -96,6 +104,25 @@ export class Level1 extends Phaser.Scene {
         this.physics.add.collider(this.human, this.hans);
         this.physics.add.collider(this.human, this.skeleton);
         this.physics.add.collider(this.human, this.dragon);
+        // AUDIO + CAMERA:
+
+        this.cameras.main.setBounds(0, 0, this.game.config.width * 2, this.game.config.height * 1);
+        this.cameras.main.startFollow(this.human, true, 0.05, 0.05);
+
+        let audio = this.sound.add('audioBoss1');
+        audio.play();
+
+        // LIVES:
+        this.livesText = this.add.text(160, 800, 'Vidas: ' + this.human.lives, {fontSize: '32px', fill: '#000'});
+        this.physics.add.collider(this.human, this.hans, () => {
+            this.human.handlePlayerHit(this.hans, this.livesText);
+        });
+        this.physics.add.collider(this.human, this.skeleton, () => {
+            this.human.handlePlayerHit(this.skeleton, this.livesText);
+        });
+        this.physics.add.collider(this.human, this.dragon, () => {
+            this.human.handlePlayerHit(this.dragon, this.livesText);
+        });
     }
 
     update() {
@@ -146,7 +173,7 @@ export class Level1 extends Phaser.Scene {
             if (this.human.x > this.hans.x && this.hans.scaleX < 0) {
                 this.hans.setFlipX(true);
 
-            } else if (this.human.x < this.hans.x && this.hans.scaleX > 0 ) {
+            } else if (this.human.x < this.hans.x && this.hans.scaleX > 0) {
                 this.hans.setFlipX(false);
             }
         }
