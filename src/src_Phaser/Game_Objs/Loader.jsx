@@ -28,3 +28,17 @@ export class LoadSprite {
         }
     }
 }
+
+export class LoadAudio {
+    constructor(scene)  {
+        this.scene = scene;
+    }
+
+    loadAudio(audio, dir, file) {
+        if(dir) {
+            this.scene.load.audio(audio, `src/src_Phaser/assets/audio/${dir}/${file}.mp3`);
+        } else {
+            this.scene.load.audio(audio, `src/src_Phaser/assets/audio/${file}.mp3`);
+        }
+    }
+}

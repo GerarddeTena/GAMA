@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import {Loader, LoadSprite} from "../Game_Objs/Loader.jsx";
+import {LoadAudio, Loader, LoadSprite} from "../Game_Objs/Loader.jsx";
 import {Platforms} from "../Game_Objs/Platforms.jsx";
 import {Hans} from "../Game_Objs/NPC/Hans.jsx";
 import {Skeleton} from "../Game_Objs/NPC/Skeleton.jsx";
@@ -18,6 +18,7 @@ export class Level1 extends Phaser.Scene {
     preload() {
         const loader = new Loader(this);
         const spriteLoad = new LoadSprite(this);
+        const audio = new LoadAudio(this);
 
         loader.loadImage('background', 'background', 'Cathedral_1');
         loader.loadImage('platform', '', 'Platform');
@@ -142,20 +143,13 @@ export class Level1 extends Phaser.Scene {
         }
 
         if (Phaser.Math.Distance.Between(this.human.x, this.human.y, this.hans.x, this.hans.y) < 100) {
-            if (this.human.x < this.hans.x && this.hans.scaleX > 0) {
+            if (this.human.x > this.hans.x && this.hans.scaleX < 0) {
                 this.hans.setFlipX(true);
-            } else if (this.human.x > this.hans.x && this.hans.scaleX < 0) {
+
+            } else if (this.human.x < this.hans.x && this.hans.scaleX > 0 ) {
                 this.hans.setFlipX(false);
             }
         }
-        // if (Phaser.Math.Distance.Between(this.human.x, this.human.y, this.skeleton.x, this.skeleton.y) < 100) {
-        //     this.skeleton.anim.play('skeleton_Attack', true);
-        //
-        // }
-        // if (Phaser.Math.Distance.Between(this.human.x, this.human.y, this.dragon.x, this.dragon.y) < 100) {
-        //
-        // }
-
     }
 
 }
