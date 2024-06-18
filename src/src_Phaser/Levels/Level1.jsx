@@ -113,15 +113,16 @@ export class Level1 extends Phaser.Scene {
     update() {
         const cursors = this.input.keyboard.createCursorKeys();
 
-        if (cursors.left.isDown && !cursors.space.isDown) {
+        if (cursors.left.isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
             this.human.setVelocityX(-100);
             this.human.play('human_Walk', true);
             this.human.setFlipX(true);
 
-        } else if (cursors.right.isDown && !cursors.space.isDown) {
+        } else if (cursors.right.isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
             this.human.setVelocityX(100);
             this.human.play('human_Walk', true);
             this.human.setFlipX(false);
+
         } else if (cursors.right.isUp && cursors.left.isUp) {
             this.human.setVelocityX(0);
             if (this.human.body.touching.down) {
@@ -129,10 +130,10 @@ export class Level1 extends Phaser.Scene {
             }
         }
 
-        if(cursors.shift.isDown && cursors.left.isDown) {
+        if(cursors.shift.isDown && cursors.left.isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
             this.human.setVelocityX(-250);
             this.human.play('human_Walk', true);
-        } else if(cursors.shift.isDown && cursors.right.isDown) {
+        } else if(cursors.shift.isDown && cursors.right.isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
             this.human.setVelocity(250);
         }
 
