@@ -11,3 +11,20 @@ export class Loader {
         }
     }
 }
+
+export class LoadSprite {
+    constructor(scene) {
+        this.scene = scene;
+    }
+
+    loadSprite(sprite, dir, file, frameWidth, frameHeight) {
+        if(dir) {
+            this.scene.load.spritesheet(sprite, `src/src_Phaser/assets/sprites/${dir}/${file}.png`, {
+                frameWidth: frameWidth,
+                frameHeight: frameHeight
+            });
+        } else {
+            return alert('Please provide a directory for the sprite file.');
+        }
+    }
+}

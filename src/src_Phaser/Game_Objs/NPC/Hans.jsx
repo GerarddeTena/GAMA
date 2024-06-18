@@ -20,6 +20,13 @@ export class Hans extends Phaser.Physics.Arcade.Sprite {
             repeat: -1
         });
 
+        scene.anims.create({
+            key: 'hans_Weapon',
+            frames: scene.anims.generateFrameNumbers('hans_Weapon', {start: 0, end: 8}),
+            frameRate: 10,
+            repeat: -1
+        })
+
         this.play('hans_Idle');
     }
 }
