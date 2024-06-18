@@ -1,5 +1,5 @@
 import fs from 'fs';
-import os from 'os';
+import process from 'node:process';
 
 let envContents = fs.readFileSync('.env', 'utf8');
 

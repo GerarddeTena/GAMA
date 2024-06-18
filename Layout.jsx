@@ -11,18 +11,18 @@ import Signup from "./src/views/SignUp&LogIn_Profile/SignUp.jsx";
 import InjectContext from "./src/store/AppContext.jsx";
 import SignIn from "./src/views/SignUp&LogIn_Profile/SignIn.jsx";
 import User_Profile from "./src/views/SignUp&LogIn_Profile/User_Profile.jsx";
-import {logInUserRequests} from "./src/store/Http_calls/HTTP_User_Requests.jsx";
-const serverURL = import.meta.env.VITE_APP_CODESPACES ? `https://${import.meta.env.VITE_APP_CODESPACE_NAME}-3001.app.github.dev` : 'http://localhost:3001';
-//Navigate
+import PhaserConfig from "./src/src_Phaser/GameConfig/PhaserConfig.jsx";
 
+
+const serverURL = import.meta.env.VITE_APP_CODESPACES ? `https://${import.meta.env.VITE_APP_CODESPACE_NAME}-3001.app.github.dev` : 'http://localhost:3001';
 
 // eslint-disable-next-line react-refresh/only-export-components
 const Layout = () => {
 
     const [isVisible, setIsVisible] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+
     const validToken = async () => {
 
         try {
@@ -118,6 +118,10 @@ const Layout = () => {
                 <Route
                     path='/user-profile'
                     element={<PrivateRoute component={User_Profile} />}
+                />
+                <Route
+                   path='/game'
+                   element={<PhaserConfig />}
                 />
             </Routes>
         </BrowserRouter>

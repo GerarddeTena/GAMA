@@ -6,6 +6,7 @@ import {Dragon} from "../Game_Objs/NPC/Dragon.jsx";
 import {Platforms} from "../Game_Objs/Platforms";
 import {randomMovement} from "./NPCLogic.jsx";
 import {Human} from "../Game_Objs/Player/Player_Human.jsx";
+import {Loader} from "../Game_Objs/Loader.jsx";
 
 
 const PhaserConfig = () => {
@@ -27,13 +28,13 @@ const PhaserConfig = () => {
 
             scene: {
                 preload: function () {
-                    // Platforms:
+                    const loader = new Loader(this);
 
-                    this.load.image('background', 'src/src_Phaser/assets/sprites/background/Cathedral_1.png');
-                    this.load.image('platform', 'src/src_Phaser/assets/sprites/Platform.png');
-                    this.load.image('corridor', 'src/src_Phaser/assets/sprites/Corridor.png');
-                    this.load.image('block', 'src/src_Phaser/assets/sprites/PlatformBlock.png');
-                    this.load.image('c_block', 'src/src_Phaser/assets/sprites/CathedralBlock.png');
+                    loader.loadImage('background', 'background', 'Cathedral_1');
+                    loader.loadImage('platform', '', 'Platform');
+                    loader.loadImage('corridor', '', 'Corridor');
+                    loader.loadImage('block', '', 'PlatformBlock');
+                    loader.loadImage('c_block', '' ,'CathedralBlock');
 
                     //Enemies:
 
