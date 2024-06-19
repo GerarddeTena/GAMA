@@ -24,7 +24,6 @@ const PhaserConfig = () => {
 
         return () => game.destroy(true);
     }, []);
-
 }
 
 export default PhaserConfig;

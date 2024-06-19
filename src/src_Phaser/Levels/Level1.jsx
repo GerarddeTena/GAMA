@@ -48,7 +48,7 @@ export class Level1 extends Phaser.Scene {
 
     create() {
 
-        this.add.image(0, 0, 'background').setOrigin(0, 0).setScale(2);
+        this.add.image(0, 0, 'background').setOrigin(0, 0).setScale(1.5);
         let platforms = new Platforms(this.physics.world, this, null, [
             {x: 100, y: 700, key: 'corridor'}, {x: 200, y: 700, key: 'corridor'}, {
                 x: 300,
@@ -113,8 +113,8 @@ export class Level1 extends Phaser.Scene {
         audio.play();
 
         // LIVES:
-        this.livesText = this.add.text(100, 500, 'Lives: ' + this.human.lives, {font: '32px BlockKie'});
-        this.livesText.setTint(0xff0000, 0xff0000, 0xff0000, 0xff0000);
+        this.livesText = this.add.text(100, 100, 'Lives: ' + this.human.lives, {font: '50px BlockKie'});
+        this.livesText.setTint(0xff0000, 0x0000ff, 0xff0000, 0xff00ff);
         this.physics.add.collider(this.human, this.hans, () => {
             this.human.handlePlayerHit(this.hans, this.livesText);
         });
