@@ -20,7 +20,7 @@ export class Menu extends Phaser.Scene {
         textMenu.on('pointerdown', () => this.scene.start('Level1'));
 
         let audioMenu = this.sound.add('MenuAudio');
-        audioMenu.play();
+        audioMenu.play({ volume: 0.01 });
         
     }
 }
