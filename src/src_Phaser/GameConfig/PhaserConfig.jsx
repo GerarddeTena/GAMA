@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import {useEffect} from "react";
 import {Level1} from "../Levels/Level1.jsx";
+import {Menu} from "../Levels/Menu.jsx";
 
 const PhaserConfig = () => {
 
@@ -16,7 +17,7 @@ const PhaserConfig = () => {
                     debug: false
                 }
             },
-            scene: Level1
+            scene: [Menu, Level1]
         };
 
         const game = new Phaser.Game(config);

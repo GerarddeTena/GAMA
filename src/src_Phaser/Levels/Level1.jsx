@@ -113,7 +113,8 @@ export class Level1 extends Phaser.Scene {
         audio.play();
 
         // LIVES:
-        this.livesText = this.add.text(160, 800, 'Vidas: ' + this.human.lives, {fontSize: '32px', fill: '#000'});
+        this.livesText = this.add.text(100, 500, 'Lives: ' + this.human.lives, {font: '32px BlockKie'});
+        this.livesText.setTint(0xff0000, 0xff0000, 0xff0000, 0xff0000);
         this.physics.add.collider(this.human, this.hans, () => {
             this.human.handlePlayerHit(this.hans, this.livesText);
         });
@@ -165,15 +166,15 @@ export class Level1 extends Phaser.Scene {
             this.hans.play('hans_Weapon', true);
         } else {
             if (this.hans.anims.currentAnim.key !== 'hans_Walk') {
-                this.hans.play('hans_Walk', true);
+                this.hans.play('hans_Idle', true);
             }
         }
 
         if (Phaser.Math.Distance.Between(this.human.x, this.human.y, this.hans.x, this.hans.y) < 100) {
-            if (this.human.x > this.hans.x && this.hans.scaleX < 0) {
+            if (this.human.x < this.hans.x && this.hans.scaleX > 0) {
                 this.hans.setFlipX(true);
 
-            } else if (this.human.x < this.hans.x && this.hans.scaleX > 0) {
+            } else if (this.human.x > this.hans.x && this.hans.scaleX < 0) {
                 this.hans.setFlipX(false);
             }
         }
