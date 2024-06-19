@@ -178,6 +178,10 @@ export class Level1 extends Phaser.Scene {
                 this.hans.setFlipX(false);
             }
         }
+
+        // FOLLOW PLAYER:
+        this.livesText.x = this.human.x - 100;
+
     }
 
 }
