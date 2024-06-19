@@ -43,6 +43,8 @@ export class Level1 extends Phaser.Scene {
         spriteLoad.loadSprite('human_Walk', 'Players', 'Walking_Human', 64, 64);
         spriteLoad.loadSprite('human_Jump', 'Players', 'Jumping_Human', 48, 60);
 
+        spriteLoad.loadSprite('cyborg_Idle', 'Players', 'Cyborg_Idle', 32, 48);
+        spriteLoad.loadSprite('cyborg_Walk', 'Players', 'Walking_Cyborg', 32, 48);
         sceneAudio.loadAudio('audioBoss1', '', 'AudioBoss');
     }
 
@@ -89,6 +91,7 @@ export class Level1 extends Phaser.Scene {
         this.human = new Human(this, 100, 100, 'human_Idle');
         this.human.setScale(1.5);
         this.human.setCollideWorldBounds(true);
+
 
         // Automatic movement:
         randomMovement.call(this, this.hans, platforms, 100, 'hans_Walk', 'hans_Idle', 'hans_Weapon');

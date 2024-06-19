@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import {useEffect} from "react";
-import {Level1} from "../Levels/Level1.jsx";
-import {Menu} from "../Levels/Menu.jsx";
+import {Level1} from "../Scenes/Level1.jsx";
+import {Menu} from "../Scenes/Menu.jsx";
 
 const PhaserConfig = () => {
 

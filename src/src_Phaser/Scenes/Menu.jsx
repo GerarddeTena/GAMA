@@ -21,6 +21,7 @@ export class Menu extends Phaser.Scene {
 
         let audioMenu = this.sound.add('MenuAudio');
         audioMenu.play();
-        
+
     }
+
 }

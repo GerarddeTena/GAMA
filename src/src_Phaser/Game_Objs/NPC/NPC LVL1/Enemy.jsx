@@ -1,9 +1,12 @@
+import Phaser from "phaser";
+
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y, texture, frames, points = 10, health = 3) {
+    constructor(scene, x, y, texture, frames, points = 10, health = 3, score = 0) {
         super(scene, x, y, texture, frames);
         this.scene = scene;
         this.points = points;
         this.health = health;
+        this.score = score;
 
         scene.add.existing(this);
         scene.physics.add.existing(this);
@@ -22,6 +25,6 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     }
 
     addPoints() {
-        this.scene.score += this.points;
+        this.score += this.points;
     }
 }
