@@ -113,7 +113,7 @@ export class Level1 extends Phaser.Scene {
         this.cameras.main.startFollow(this.human, true, 0.05, 0.05);
 
         let audio = this.sound.add('audioBoss1');
-        audio.play();
+        audio.play({ volume: 0.1 });
 
         // LIVES:
         this.livesText = this.add.text(100, 100, 'Lives: ' + this.human.lives, {font: '50px BlockKie'});
