@@ -7,12 +7,11 @@ export const AuthContext = createContext({
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const serverURL = import.meta.env.VITE_VALIDATE_TOKEN_URL
 
     const validToken = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${serverURL}`, {
+            const response = await fetch(`${import.meta.env.VITE_VALIDATE_TOKEN_URL}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`

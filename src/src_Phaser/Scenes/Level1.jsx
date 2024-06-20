@@ -6,16 +6,10 @@ import {Skeleton} from "../Game_Objs/NPC/NPC LVL1/Skeleton.jsx";
 import {Dragon} from "../Game_Objs/NPC/NPC LVL1/Dragon.jsx";
 import {Human} from "../Game_Objs/Player/Player_Human.jsx";
 import {randomMovement} from "../GameConfig/NPCLogic.jsx";
+import {Cyborg} from "../Game_Objs/Player/Player_Cyborg.jsx";
+import {Reptile} from "../Game_Objs/Player/Player_Reptile.jsx";
 
-export class Level1 extends Phaser.Scene {
-    constructor() {
-        super({key: 'Level1'});
-        this.hans = null;
-        this.skeleton = null;
-        this.dragon = null;
-        // this.playerHealth = 1000; // Salud inicial del jugador
-        // this.livesText = null;
-    }
+class PhaserGeneralMethods extends Phaser.Scene {
 
     preload() {
         const loader = new Loader(this);
@@ -39,18 +33,26 @@ export class Level1 extends Phaser.Scene {
         spriteLoad.loadSprite('dragon', 'Enemies', 'ManiacDragon', 32, 32);
         spriteLoad.loadSprite('dragon_attack', 'Enemies', 'Dragon_Hystheria', 32, 32);
 
-        spriteLoad.loadSprite('human_Idle', 'Players', 'Human_Idle', 32, 64);
-        spriteLoad.loadSprite('human_Walk', 'Players', 'Walking_Human', 64, 64);
+        spriteLoad.loadSprite('human_Idle', 'Players', 'Human_Idle', 32, 48);
+        spriteLoad.loadSprite('human_Walk', 'Players', 'Walking_Human', 32, 48);
         spriteLoad.loadSprite('human_Jump', 'Players', 'Jumping_Human', 48, 60);
 
         spriteLoad.loadSprite('cyborg_Idle', 'Players', 'Cyborg_Idle', 32, 48);
         spriteLoad.loadSprite('cyborg_Walk', 'Players', 'Walking_Cyborg', 32, 48);
 
-        sceneAudio.loadAudio('audioBoss1', '', 'AudioBoss');
+        spriteLoad.loadSprite('reptile_Idle', 'Players', 'Reptile_Idle', 32, 48);
+        spriteLoad.loadSprite('reptile_Walk', 'Players', 'Walking_Reptile', 32, 48);
+        spriteLoad.loadSprite('reptile_Jump', 'Players', 'Jumping_Reptile', 32, 44);
 
+        sceneAudio.loadAudio('audioBoss1', '', 'AudioBoss');
     }
 
     create() {
+
+        const Rand = (n) => Math.floor(Math.random() * n);
+        this.cursors = this.input.keyboard.createCursorKeys();
+        this.keys = this.input.keyboard.addKeys(['A', 'D']);
+
 
         this.add.image(0, 0, 'background').setOrigin(0, 0).setScale(1.5);
         let platforms = new Platforms(this.physics.world, this, null, [
@@ -73,121 +75,58 @@ export class Level1 extends Phaser.Scene {
             {x: 730, y: 608, key: 'c_block'}, {x: 1436, y: 605, key: 'c_block'}
         ]);
 
-        // NPC's:
-        this.hans = new Hans(this, Math.floor(Math.random() * 1500), 100, 'hans_Idle');
-        this.hans.setScale(1.5);
-        this.hans.setCollideWorldBounds(true);
-        this.hans.body.pushable = false;
 
-        this.skeleton = new Skeleton(this, Math.floor(Math.random() * 1500), 100, 'skeleton_Idle');
-        this.skeleton.setScale(1.5);
-        this.skeleton.setCollideWorldBounds(true);
-        this.skeleton.body.pushable = false;
+        const selectedCharacter = this.registry.get('Character Selected');
+        switch (selectedCharacter) {
+            case 'Human':
+                this.player = new Human(this, 100, 550, 'human_Idle');
+                break;
+            case 'Cyborg':
+                this.player = new Cyborg(this, 100, 550, 'cyborg_Idle');
+                break;
+            case 'Reptile':
+                this.player = new Reptile(this, 100, 550, 'reptile_Idle');
+                break;
+            default:
+                this.player = new Human(this, 100, 550, 'human_Idle');
+                break;
+        }
 
-        this.dragon = new Dragon(this, Math.floor(Math.random() * 1500), 100, 'dragon');
-        this.dragon.setScale(1.5);
-        this.dragon.setCollideWorldBounds(true);
-        this.dragon.body.pushable = false;
+        this.player.setScale(1.5);
+        this.cameras.main.startFollow(this.player);
+        this.cameras.main.setBounds(0, 0, 1600, 800);
+        this.physics.add.collider(this.player, platforms);
+        this.player.createAnimations(this);
 
-        // Players:
-        this.human = new Human(this, 100, 100, 'human_Idle');
-        this.human.setScale(1.5);
-        this.human.setCollideWorldBounds(true);
+        // Load NPCs
+        this.hans = new Hans(this, Rand(1800), 500, 'hans_Idle');
+        this.skeleton = new Skeleton(this, Rand(1800), 550, 'skeleton_Idle');
+        this.dragon = new Dragon(this, Rand(1800), 550, 'dragon');
 
-
-        // Automatic movement:
-        randomMovement.call(this, this.hans, platforms, 100, 'hans_Walk', 'hans_Idle', 'hans_Weapon');
-        randomMovement.call(this, this.skeleton, platforms, 100, 'skeleton_Walk', 'skeleton_Idle');
-        randomMovement.call(this, this.dragon, platforms, 100, 'dragon', 'dragon_attack');
-
-        // Add colliders:
         this.physics.add.collider(this.hans, platforms);
         this.physics.add.collider(this.skeleton, platforms);
         this.physics.add.collider(this.dragon, platforms);
-        this.physics.add.collider(this.human, platforms);
 
-        this.physics.add.collider(this.human, this.hans);
-        this.physics.add.collider(this.human, this.skeleton);
-        this.physics.add.collider(this.human, this.dragon);
-        // AUDIO + CAMERA:
+        // Automatic movement:
+        randomMovement.call(this, this.hans, platforms, 100, 'hans_Walk', 'hans_Idle');
+        randomMovement.call(this, this.skeleton, platforms, 100, 'skeleton_Walk', 'skeleton_Idle');
+        randomMovement.call(this, this.dragon, platforms, 100, 'dragon', 'dragon_attack');
 
-        this.cameras.main.setBounds(0, 0, this.game.config.width * 2, this.game.config.height * 1);
-        this.cameras.main.startFollow(this.human, true, 0.05, 0.05);
-
-        let audio = this.sound.add('audioBoss1');
-        audio.play({ volume: 0.1 });
-
-        // LIVES:
-        this.livesText = this.add.text(100, 100, 'Lives: ' + this.human.lives, {font: '50px BlockKie'});
-        this.livesText.setTint(0xff0000, 0x0000ff, 0xff0000, 0xff00ff);
-        this.physics.add.collider(this.human, this.hans, () => {
-            this.human.handlePlayerHit(this.hans, this.livesText);
-        });
-        this.physics.add.collider(this.human, this.skeleton, () => {
-            this.human.handlePlayerHit(this.skeleton, this.livesText);
-        });
-        this.physics.add.collider(this.human, this.dragon, () => {
-            this.human.handlePlayerHit(this.dragon, this.livesText);
-        });
     }
 
     update() {
-        const cursors = this.input.keyboard.createCursorKeys();
-        const keys = this.input.keyboard.addKeys(['W', 'A', 'S', 'D'])
 
-        if (keys[1].isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
-            this.human.setVelocityX(-100);
-            this.human.play('human_Walk', true);
-            this.human.setFlipX(true);
-
-        } else if (keys[3].isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
-            this.human.setVelocityX(100);
-            this.human.play('human_Walk', true);
-            this.human.setFlipX(false);
-
-        } else if (keys[1].isUp && keys[3].isUp) {
-            this.human.setVelocityX(0);
-            if (this.human.body.touching.down) {
-                this.human.play('human_Idle');
-            }
-        }
-
-        if (cursors.shift.isDown && keys[1].isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
-            this.human.setVelocityX(-250);
-            this.human.play('human_Walk', true);
-        } else if (cursors.shift.isDown && keys[3].isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
-            this.human.setVelocity(250);
-        }
-
-        if (cursors.space.isDown && this.human.body.touching.down) {
-            this.human.setVelocityY(-500);
-            if (!this.human.anims.isPlaying || this.human.anims.currentAnim.key !== 'human_Jump') {
-                this.human.play('human_Jump');
-            }
-        }
-
-        // Ataque de los NPC:
-
-        if (Phaser.Math.Distance.Between(this.human.x, this.human.y, this.hans.x, this.hans.y) < 100) {
-            this.hans.play('hans_Weapon', true);
-        } else {
-            if (this.hans.anims.currentAnim.key !== 'hans_Walk') {
-                this.hans.play('hans_Idle', true);
-            }
-        }
-
-        if (Phaser.Math.Distance.Between(this.human.x, this.human.y, this.hans.x, this.hans.y) < 100) {
-            if (this.human.x < this.hans.x && this.hans.scaleX > 0) {
-                this.hans.setFlipX(true);
-
-            } else if (this.human.x > this.hans.x && this.hans.scaleX < 0) {
-                this.hans.setFlipX(false);
-            }
-        }
-
-        // FOLLOW PLAYER:
-        this.livesText.x = this.human.x - 100;
-
+        this.player.handleAnimations(this.keys, this.cursors);
     }
+}
 
+export class Level1 extends PhaserGeneralMethods {
+    constructor() {
+        super({key: 'Level1'});
+        this.hans = null;
+        this.skeleton = null;
+        this.dragon = null;
+        // this.playerHealth = 1000; // Salud inicial del jugador
+        // this.livesText = null;
+    }
 }

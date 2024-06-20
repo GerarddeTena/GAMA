@@ -10,7 +10,6 @@ const SignIn = () => {
     const [password, setPassword] = useState('');
     const [email, setMail] = useState('');
     const [error, setError] = useState(null);
-    console.log(import.meta.env)
 
     const checkUser = async (e) => {
 

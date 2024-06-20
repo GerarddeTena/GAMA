@@ -9,6 +9,10 @@ export class Reptile extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         this.lives = 1000;
+        this.currentAnim = null;
+    }
+
+    createAnimations(scene) {
         scene.anims.create({
             key: 'reptile_Idle', frames: scene.anims.generateFrameNumbers('reptile_Idle', {start: 0, end: 4}),
             frameRate: 10, repeat: -1
@@ -19,13 +23,56 @@ export class Reptile extends Phaser.Physics.Arcade.Sprite {
             frameRate: 10, repeat: -1
         });
 
-        // scene.anims.create({
-        //     key: 'human_Jump', frames: scene.anims.generateFrameNumbers('human_Jump', {start: 0, end: 4}),
-        //     frameRate: 10, repeat: 0
-        // })
-
-        this.play('reptile_Idle');
+        scene.anims.create({
+            key: 'reptile_Jump', frames: scene.anims.generateFrameNumbers('reptile_Jump', {start: 0, end: 4}),
+            frameRate: 10, repeat: 0
+        })
     }
+
+    handleAnimations(keys, cursors) {
+
+        const onGround = this.body.blocked.down || this.body.touching.down;
+        const shiftPressed = cursors.shift.isDown;
+
+        if (cursors.space.isDown && onGround) {
+            this.body.setVelocityY(-500);
+            if (this.currentAnim !== 'reptile_Jump') {
+                this.anims.play('reptile_Jump');
+                this.currentAnim = 'reptile_Jump';
+            }
+        }
+
+        else if (keys[0].isDown) {
+            this.body.setVelocityX(shiftPressed ? -250 : -100);
+
+            if (onGround && this.currentAnim !== 'reptile_Walk') {
+                this.anims.play('reptile_Walk', true);
+                this.currentAnim = 'reptile_Walk';
+            }
+
+            this.flipX = true;
+        }
+
+        else if (keys[1].isDown) {
+            this.body.setVelocityX(shiftPressed ? 250 : 100);
+            if (onGround && this.currentAnim !== 'reptile_Walk') {
+                this.anims.play('reptile_Walk', true);
+                this.currentAnim = 'reptile_Walk';
+            }
+
+            this.flipX = false;
+        }
+
+        else if (keys[0].isUp && keys[1].isUp) {
+            this.body.setVelocityX(0);
+
+            if (onGround && this.currentAnim !== 'reptile_Idle') {
+                this.anims.play('reptile_Idle');
+                this.currentAnim = 'reptile_Idle';
+            }
+        }
+    }
+
     handlePlayerHit(enemy, livesText) {
 
         if (enemy instanceof Hans) {
