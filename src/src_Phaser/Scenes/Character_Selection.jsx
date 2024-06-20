@@ -11,7 +11,7 @@ export class Select_Character extends Phaser.Scene {
     }
 
     preload() {
-        const player_1 = new LoadSprite(this, );
+        const player_1 = new LoadSprite(this);
         player_1.loadSprite('human_Idle', 'Players', 'Human_Idle', 32, 64);
 
         const player_2 = new LoadSprite(this);
@@ -25,17 +25,21 @@ export class Select_Character extends Phaser.Scene {
         const CENT_X = this.cameras.main.centerX
         const CENT_Y = this.cameras.main.centerY
 
-        const player_1 = new Human(this, CENT_X * OFFSET / 2, CENT_Y * OFFSET, 'human_Idle');
+        const player_1 = new Human(this, CENT_X, CENT_Y , 'human_Idle');
         player_1.setInteractive();
         player_1.setScale();
+        player_1.setGravity(0, 0);
 
-        const player_2 = new Cyborg(this, CENT_X * OFFSET / 1.75, CENT_Y * OFFSET, 'cyborg_Idle');
+
+        const player_2 = new Cyborg(this, CENT_X, CENT_Y, 'cyborg_Idle');
         player_2.setInteractive();
         player_2.setScale();
+        player_2.setGravity(0, 0)
 
-        const player_3 = new Reptile(this, CENT_X * OFFSET / 1.25, CENT_Y * OFFSET, 'reptile_Idle');
+        const player_3 = new Reptile(this, CENT_X, CENT_Y, 'reptile_Idle');
         player_3.setInteractive();
         player_3.setScale();
+        player_3.setGravity(0, 0);
 
         this.charaters = [player_1, player_2, player_3];
         this.selectedCharacterIndex = 0;
