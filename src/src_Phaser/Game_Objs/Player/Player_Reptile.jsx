@@ -3,7 +3,7 @@ import {Hans} from "../NPC/NPC LVL1/Hans.jsx";
 import {Skeleton} from "../NPC/NPC LVL1/Skeleton.jsx";
 import {Dragon} from "../NPC/NPC LVL1/Dragon.jsx";
 
-export class Cyborg extends Phaser.Physics.Arcade.Sprite {
+export class Reptile extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, texture, frames) {
         super(scene, x, y, texture, frames);
         scene.add.existing(this);

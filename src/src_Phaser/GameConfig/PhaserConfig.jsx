@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import {useEffect} from "react";
 import {Level1} from "../Scenes/Level1.jsx";
 import {Menu} from "../Scenes/Menu.jsx";
+import {Select_Character} from "../Scenes/Character_Selection.jsx";
 
 const PhaserConfig = () => {
 
@@ -17,7 +18,7 @@ const PhaserConfig = () => {
                     debug: false
                 }
             },
-            scene: [Menu, Level1]
+            scene: [Menu, Select_Character, Level1]
         };
 
         const game = new Phaser.Game(config);

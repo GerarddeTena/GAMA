@@ -56,11 +56,11 @@ const stateOfComponents = ({getTheStore, setStore}) => {
                     const token = response.token;
                     if (!token) console.error('Login Failed');
                     localStorage.setItem('token', token);
-                    return token;
+                    return response;
 
                 } catch(error) {
                     console.error({'Error logging in user': error});
-
+                    return null;
                 }
             },
 

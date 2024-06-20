@@ -1,6 +1,6 @@
 import {useContext, useState} from "react";
 import '../../styles/views_Styles/Signup.scss';
-import {Context} from "../../store/AppContext.jsx";
+import {Context} from "../../store/GENERAL_CONTEXT/AppContext.jsx";
 
 const Signup = () => {
     const { actions } = useContext(Context)

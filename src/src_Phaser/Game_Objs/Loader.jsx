@@ -42,3 +42,16 @@ export class LoadAudio {
         }
     }
 }
+
+export class LoadKeyWords {
+    constructor(scene) {
+        this.scene = scene;
+    }
+
+    loadKeyWords(key, file, frameWidth, frameHeight) {
+        this.scene.load.spritesheet(key, `src/src_Phaser/assets/sprites/${file}.png`, {
+            frameWidth: frameWidth,
+            frameHeight: frameHeight
+        });
+    }
+}

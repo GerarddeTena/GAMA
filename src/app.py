@@ -45,6 +45,7 @@ setup_commands(app)
 # Add all endpoints form the API with a "api" prefix
 app.register_blueprint(api, url_prefix='/api')
 
+
 # Handle/serialize errors like a JSON object
 
 
@@ -52,16 +53,19 @@ app.register_blueprint(api, url_prefix='/api')
 def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
 
+
 # generate sitemap with all your endpoints
 @app.route('/<path:path>', methods=['OPTIONS'])
 def options(path):
     return jsonify({})
+
 
 @app.route('/')
 def sitemap():
     if ENV == "development":
         return generate_sitemap(app)
     return send_from_directory(static_file_dir, 'index.html')
+
 
 # any other endpoint will try to serve it like a static file
 

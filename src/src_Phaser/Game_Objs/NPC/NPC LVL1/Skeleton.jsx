@@ -1,4 +1,4 @@
-import { Enemy } from './Enemy';
+import { Enemy } from './Enemy.jsx';
 
 export class Skeleton extends Enemy {
     constructor(scene, x, y, texture) {

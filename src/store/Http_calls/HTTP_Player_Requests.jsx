@@ -11,10 +11,11 @@ export const setPlayerRequests = async (playerData) => {
 export const getPlayerRequests = async () => {
 
     const response = await fetch(import.meta.env.VITE_GET_PLAYER_URL);
-    const data = await response.json();
     if (!response.ok) {
         throw Error('Error Getting Players')
     }
+    const data = await response.json();
+    console.log(data);
     return data;
 }
 export const deletePlayerRequests = async (id) => {

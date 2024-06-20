@@ -45,7 +45,9 @@ export class Level1 extends Phaser.Scene {
 
         spriteLoad.loadSprite('cyborg_Idle', 'Players', 'Cyborg_Idle', 32, 48);
         spriteLoad.loadSprite('cyborg_Walk', 'Players', 'Walking_Cyborg', 32, 48);
+
         sceneAudio.loadAudio('audioBoss1', '', 'AudioBoss');
+
     }
 
     create() {
@@ -131,28 +133,29 @@ export class Level1 extends Phaser.Scene {
 
     update() {
         const cursors = this.input.keyboard.createCursorKeys();
+        const keys = this.input.keyboard.addKeys(['W', 'A', 'S', 'D'])
 
-        if (cursors.left.isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
+        if (keys[1].isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
             this.human.setVelocityX(-100);
             this.human.play('human_Walk', true);
             this.human.setFlipX(true);
 
-        } else if (cursors.right.isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
+        } else if (keys[3].isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
             this.human.setVelocityX(100);
             this.human.play('human_Walk', true);
             this.human.setFlipX(false);
 
-        } else if (cursors.right.isUp && cursors.left.isUp) {
+        } else if (keys[1].isUp && keys[3].isUp) {
             this.human.setVelocityX(0);
             if (this.human.body.touching.down) {
                 this.human.play('human_Idle');
             }
         }
 
-        if (cursors.shift.isDown && cursors.left.isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
+        if (cursors.shift.isDown && keys[1].isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
             this.human.setVelocityX(-250);
             this.human.play('human_Walk', true);
-        } else if (cursors.shift.isDown && cursors.right.isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
+        } else if (cursors.shift.isDown && keys[3].isDown && this.human.body.touching.down && this.human.currentAnim !== 'human_Jump') {
             this.human.setVelocity(250);
         }
 

@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from "react";
-import {Context} from "../../store/AppContext.jsx";
+import {Context} from "../../store/GENERAL_CONTEXT/AppContext.jsx";
 import '../../styles/views_Styles/PlayerLab.scss';
 import muscular from '../../Images/typesOfCharacter/Human_Thin.gif';
 import cyborg from '../../Images/typesOfCharacter/Cyborg.gif';
