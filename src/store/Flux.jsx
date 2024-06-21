@@ -31,6 +31,8 @@ const stateOfComponents = ({getTheStore, setStore}) => {
                 }
 
             ],
+
+            isLoggedIn: false
         },
         actions: {
             // USER DISPATCHER:
@@ -80,6 +82,11 @@ const stateOfComponents = ({getTheStore, setStore}) => {
                 const players = store.players.filter(player => player.id !== id);
                 setStore({...store, players: players});
             },
+
+            setIsLoggedIn: (bool) => {
+                const store = getTheStore();
+                setStore({...store, isLoggedIn: bool});
+            }
         }
     }
 }
