@@ -22,6 +22,7 @@ const SignIn = () => {
         try {
             console.log(userData);
             const response = await actions.loginUserDispatcher(userData);
+            console.log(response);
             if (response.token) {
                 localStorage.setItem('token', response.token);
                 setError(null);

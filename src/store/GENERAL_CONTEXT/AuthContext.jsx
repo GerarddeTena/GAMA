@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
     const validToken = async () => {
         try {
             const token = localStorage.getItem('token');
+            console.log(token);
             const response = await fetch(`${import.meta.env.VITE_VALIDATE_TOKEN_URL}`, {
                 method: 'GET',
                 headers: {
@@ -21,12 +22,12 @@ export const AuthProvider = ({ children }) => {
             if (response.ok) {
                 setIsAuthenticated(true);
             } else {
-                localStorage.removeItem('token');
+                // localStorage.removeItem('token');
                 setIsAuthenticated(false);
             }
         } catch (error) {
             console.error({'Error validating token': error});
-            localStorage.removeItem('token');
+            // localStorage.removeItem('token');
             setIsAuthenticated(false);
         }
     };

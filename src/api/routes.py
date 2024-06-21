@@ -55,8 +55,14 @@ def login_user():  # FUNCIONA
 def validate_token():
     current_user = get_jwt_identity()
     auth_header = request.headers.get('Authorization', None)
-    print(f"Authorization Header: {auth_header}")
-    return jsonify(logged_in_as=current_user), 200
+    try:
+        if current_user:
+            print(f"Authorization Header: {auth_header}")
+            return jsonify(logged_in_as=current_user), 200
+        else:
+            return jsonify({'message': 'Invalid token'}), 401
+    except APIException as e:
+        return jsonify({'message': 'Error validating token: ', 'error': str(e)}), 500
 
 
 @api.route('/user', methods=['POST'])
@@ -77,12 +83,12 @@ def create_user():  # FUNCIONA
 
 
 @api.route('/user', methods=['GET'])  # FUNCIONA
-def get_user():
+def get_user(id):
     try:
         data = request.get_json()
-        user_id = data.get('user_id')
+        data.get['user_id'] = id
 
-        user = User.query.get(user_id)
+        user = User.query.get(id)
 
         if user is None:
             return jsonify({'message': 'User not found'}), 404
@@ -98,10 +104,10 @@ def get_user():
 
 
 @api.route('/user/<int:id>', methods=['GET'])
-def get_user_by_url(id):
+def get_user_by_url(user_id):
     try:
 
-        user = User.query.get(id)
+        user = User.query.get(user_id)
 
         if user is None:
             return jsonify({'message': 'User not found'}), 404
