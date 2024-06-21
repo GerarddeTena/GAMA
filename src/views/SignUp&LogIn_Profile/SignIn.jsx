@@ -6,7 +6,7 @@ import {AuthContext} from "../../store/GENERAL_CONTEXT/AuthContext.jsx";
 const SignIn = () => {
 
     const {validToken} = useContext(AuthContext);
-    const {actions} = useContext(Context);
+    const {actions, store} = useContext(Context);
     const [password, setPassword] = useState('');
     const [email, setMail] = useState('');
     const [error, setError] = useState(null);
@@ -25,6 +25,7 @@ const SignIn = () => {
             if (response.token) {
                 localStorage.setItem('token', response.token);
                 setError(null);
+                actions.setIsLoggedIn(true);
             } else {
                 setError('Login failed: Invalid email or password');
             }

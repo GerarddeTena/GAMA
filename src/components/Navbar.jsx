@@ -1,9 +1,17 @@
 import "../styles/components_Styles/Navbar.scss";
+import { useContext } from "react";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+import { Context } from "../store/GENERAL_CONTEXT/AppContext.jsx";
+
 
 const Navbar = ({isVisible, toggleNavbar}) => {
-
+    const { actions, store } = useContext(Context);
+    const handleLogout = () => {
+        console.log('Cerrando sesión...');
+        actions.setIsLoggedIn(false);
+        localStorage.setItem('token', '');
+    };
     const NavBarComponents = [
         {
             svg: {
@@ -53,6 +61,7 @@ const Navbar = ({isVisible, toggleNavbar}) => {
                         <Link to={'/player-lab-create'} className='link'>Players Lab</Link>
                         <Link to={'/user-profile'} className='link'>User Profile</Link>
                         <Link to={'/game'} className='link'>Game</Link>
+                        {store.isLoggedIn && <Link to={'/sign-in'} className='link' onClick={handleLogout}>Sign out</Link>}
                     </ul>
                 </div>}
         </nav>
