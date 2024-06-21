@@ -32,9 +32,11 @@ export const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        validToken();
+        const token = localStorage.getItem('token');
+        if (token) {
+            validToken();
+        }
     }, []);
-
     return (
         <AuthContext.Provider value={{ isAuthenticated, validToken }}>
             {children}

@@ -36,7 +36,7 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
         });
         scene.anims.create({
             key: 'human_Run',
-            frames: scene.anims.generateFrameNumbers('human_Run', { start: 0, end: 4 }),
+            frames: scene.anims.generateFrameNumbers('human_Run', {start: 0, end: 4}),
             frameRate: 10,
             repeat: -1
         });
@@ -82,8 +82,7 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
             runAnimation();
             this.currentAnim = 'human_Run';
             this.flipX = true;
-        }
-        else if(shiftPressed && keys[1].isDown && this.currentAnim !== 'human_Run') {
+        } else if (shiftPressed && keys[1].isDown && this.currentAnim !== 'human_Run') {
             runAnimation();
             this.currentAnim = 'human_Run';
             this.flipX = false;
@@ -105,8 +104,8 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
             speedConditionWalkOrRun();
             runAnimation();
             walkAnimation();
-
             this.flipX = true;
+
         } else if (keys[1].isDown) {
             speedConditionWalkOrRun();
             walkAnimation();

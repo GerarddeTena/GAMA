@@ -77,7 +77,7 @@ def create_user():  # FUNCIONA
 
 
 @api.route('/user', methods=['GET'])  # FUNCIONA
-def get_user(id):
+def get_user():
     try:
         data = request.get_json()
         user_id = data.get('user_id')

@@ -35,7 +35,7 @@ class PhaserGeneralMethods extends Phaser.Scene {
 
         spriteLoad.loadSprite('human_Idle', 'Players', 'Human_Idle', 32, 48);
         spriteLoad.loadSprite('human_Walk', 'Players', 'Walking_Human', 32, 48);
-        spriteLoad.loadSprite('human_Jump', 'Players', 'Jumping_Human', 48, 60);
+        spriteLoad.loadSprite('human_Jump', 'Players', 'Jumping_Human', 34, 48);
         spriteLoad.loadSprite('human_Run', 'Players', 'Human_Run', 30, 51);
 
         spriteLoad.loadSprite('cyborg_Idle', 'Players', 'Cyborg_Idle', 32, 48);
@@ -57,11 +57,13 @@ class PhaserGeneralMethods extends Phaser.Scene {
         this.add.image(0, 0, 'background').setOrigin(0, 0).setScale(1);
 
         this.platforms = new Platforms(this.physics.world, this, null, [
-            {x: 100, y: 700, key: 'corridor'}, {x: 200, y: 700, key: 'corridor'}, {x: 300, y: 700, key: 'corridor'},
-            {x: 400, y: 700, key: 'corridor'}, {x: 500, y: 700, key: 'corridor'}, {x: 585, y: 700, key: 'corridor'},
+            {x: 130, y: 735, key: 'corridor'}, {x: 250, y: 735, key: 'corridor'}, {x: 300, y: 735, key: 'corridor'},
+            {x: 400, y: 735, key: 'corridor'}, {x: 500, y: 735, key: 'corridor'}, {x: 575, y: 735, key: 'corridor'},
             {x: 890, y: 605, key: 'corridor'}, {x: 1100, y: 605, key: 'corridor'}, { x: 1280, y: 605, key: 'corridor'},
-            {x: 1380, y: 605, key: 'corridor'}, {x: 1480, y: 605, key: 'corridor'},
-            {x: 730, y: 608, key: 'c_block'}, {x: 1436, y: 605, key: 'c_block'}
+            {x: 1380, y: 605, key: 'corridor'}, {x: 1410, y: 605, key: 'corridor'},
+            {x: 730, y: 608, key: 'c_block'}, {x:730, y: 675, key: 'c_block'},{x:730, y: 740, key: 'c_block'},
+            {x: 1436, y: 605, key: 'c_block'}, {x: 300, y: 650, key: 'block'}, {x: 450, y: 450, key: 'block'},
+            {x: 750, y: 475, key: 'block'}, {x: 600, y: 300, key: 'block'}
         ]);
 
 
