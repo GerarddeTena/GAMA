@@ -83,13 +83,11 @@ export class Select_Character extends Phaser.Scene {
             fill: '#ffffff'
         }).setOrigin(0.5, 0.5);
 
-        this.updateCharacterSelection();
-    }
-
-    updateCharacterSelection() {
-        this.characters.forEach((character, index) => {
-            character.setTint(index === this.selectedCharacterIndex ? 0xff0000 : 0xffffff);
-            this.characterTexts[index].setTint(index === this.selectedCharacterIndex ? 0xff0000 : 0xffffff);
-        });
+        this.updateCharacterSelection = () => {
+            this.characters.forEach((character, index) => {
+                character.setTint(index === this.selectedCharacterIndex ? 0xff0000 : 0xffffff);
+                this.characterTexts[index].setTint(index === this.selectedCharacterIndex ? 0xff0000 : 0xffffff);
+            });
+        }
     }
 }
