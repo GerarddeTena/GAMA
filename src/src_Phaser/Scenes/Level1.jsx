@@ -36,7 +36,7 @@ class PhaserGeneralMethods extends Phaser.Scene {
         spriteLoad.loadSprite('human_Idle', 'Players', 'Human_Idle', 32, 48);
         spriteLoad.loadSprite('human_Walk', 'Players', 'Walking_Human', 32, 48);
         spriteLoad.loadSprite('human_Jump', 'Players', 'Jumping_Human', 48, 60);
-        spriteLoad.loadSprite('human_Run', 'Players', 'Human_Run', 32, 51);
+        spriteLoad.loadSprite('human_Run', 'Players', 'Human_Run', 30, 51);
 
         spriteLoad.loadSprite('cyborg_Idle', 'Players', 'Cyborg_Idle', 32, 48);
         spriteLoad.loadSprite('cyborg_Walk', 'Players', 'Walking_Cyborg', 32, 48);
@@ -58,7 +58,7 @@ class PhaserGeneralMethods extends Phaser.Scene {
 
         this.platforms = new Platforms(this.physics.world, this, null, [
             {x: 100, y: 700, key: 'corridor'}, {x: 200, y: 700, key: 'corridor'}, {x: 300, y: 700, key: 'corridor'},
-            {x: 400, y: 700, key: 'corridor'}, {x: 500, y: 700, key: 'corridor'}, {x: 600, y: 700, key: 'corridor'},
+            {x: 400, y: 700, key: 'corridor'}, {x: 500, y: 700, key: 'corridor'}, {x: 585, y: 700, key: 'corridor'},
             {x: 890, y: 605, key: 'corridor'}, {x: 1100, y: 605, key: 'corridor'}, { x: 1280, y: 605, key: 'corridor'},
             {x: 1380, y: 605, key: 'corridor'}, {x: 1480, y: 605, key: 'corridor'},
             {x: 730, y: 608, key: 'c_block'}, {x: 1436, y: 605, key: 'c_block'}
@@ -68,16 +68,16 @@ class PhaserGeneralMethods extends Phaser.Scene {
         const selectedCharacter = this.registry.get('Character Selected');
         switch (selectedCharacter) {
             case 'Human':
-                this.player = new Human(this, 100, 550, 'human_Idle');
+                this.player = new Human(this, 100, 550, 'human_Idle', 10);
                 break;
             case 'Cyborg':
-                this.player = new Cyborg(this, 100, 550, 'cyborg_Idle');
+                this.player = new Cyborg(this, 100, 550, 'cyborg_Idle', 10);
                 break;
             case 'Reptile':
-                this.player = new Reptile(this, 100, 550, 'reptile_Idle');
+                this.player = new Reptile(this, 100, 550, 'reptile_Idle', 10);
                 break;
             default:
-                this.player = new Human(this, 100, 550, 'human_Idle');
+                this.player = new Human(this, 100, 550, 'human_Idle', 10);
                 break;
         }
 
@@ -85,14 +85,18 @@ class PhaserGeneralMethods extends Phaser.Scene {
         this.player.createAnimations(this);
 
         // Load NPCs
-        this.hans = new Hans(this, Rand(1800), 500, 'hans_Idle');
-        this.skeleton = new Skeleton(this, Rand(1800), 550, 'skeleton_Idle');
-        this.dragon = new Dragon(this, Rand(1800), 550, 'dragon');
+        this.hans = new Hans(this, Rand(1800), 500, 'hans_Idle', 10).setScale(1.5);
+        this.skeleton = new Skeleton(this, Rand(1800), 550, 'skeleton_Idle', 10);
+        this.dragon = new Dragon(this, Rand(1800), 550, 'dragon', 10);
 
         this.physics.add.collider(this.hans, this.platforms);
         this.physics.add.collider(this.skeleton, this.platforms);
         this.physics.add.collider(this.dragon, this.platforms);
         this.physics.add.collider(this.player, this.platforms);
+        this.physics.add.collider(this.player, this.dragon);
+        this.physics.add.collider(this.player, this.skeleton);
+        this.physics.add.collider(this.player, this.hans);
+
 
         // Automatic movement:
         randomMovement.call(this, this.hans, this.platforms, 100, 'hans_Walk', 'hans_Idle');

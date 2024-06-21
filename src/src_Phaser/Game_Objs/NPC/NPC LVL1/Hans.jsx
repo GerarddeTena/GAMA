@@ -1,8 +1,8 @@
 import { Enemy } from './Enemy.jsx';
 
 export class Hans extends Enemy {
-    constructor(scene, x, y, texture) {
-        super(scene, x, y, texture, 'hans_Idle', 20, 5);
+    constructor(scene, x, y, texture, frames) {
+        super(scene, x, y, texture, frames);
 
         scene.anims.create({
             key: 'hans_Idle',

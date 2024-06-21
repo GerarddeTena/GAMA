@@ -10,22 +10,43 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);
         scene.physics.add.existing(this);
         scene.physics.collide(this, scene.platforms);
+        this.body.setGravityY(300);
         this.lives = 1000;
         this.currentAnim = null;
     }
 
     createAnimations(scene) {
-        scene.anims.create({ key: 'human_Idle', frames: scene.anims.generateFrameNumbers('human_Idle', {start: 0, end: 4}), frameRate: 10, repeat: -1 });
-        scene.anims.create({ key: 'human_Walk', frames: scene.anims.generateFrameNumbers('human_Walk', {start: 0, end: 8}), frameRate: 10, repeat: -1 });
-        scene.anims.create({ key: 'human_Jump', frames: scene.anims.generateFrameNumbers('human_Jump', {start: 0, end: 4}), frameRate: 10, repeat: 0 });
-        scene.anims.create({ key: 'human_Run', frames: scene.anims.generateFrameNumbers('human_Run', {start: 0, end: 4}), frameRate: 10, repeat: -1 });
+        scene.anims.create({
+            key: 'human_Idle',
+            frames: scene.anims.generateFrameNumbers('human_Idle', {start: 0, end: 4}),
+            frameRate: 10,
+            repeat: -1
+        });
+        scene.anims.create({
+            key: 'human_Walk',
+            frames: scene.anims.generateFrameNumbers('human_Walk', {start: 0, end: 8}),
+            frameRate: 10,
+            repeat: -1
+        });
+        scene.anims.create({
+            key: 'human_Jump',
+            frames: scene.anims.generateFrameNumbers('human_Jump', {start: 0, end: 4}),
+            frameRate: 10,
+            repeat: 0
+        });
+        scene.anims.create({
+            key: 'human_Run',
+            frames: scene.anims.generateFrameNumbers('human_Run', { start: 0, end: 4 }),
+            frameRate: 10,
+            repeat: -1
+        });
     }
 
     extractedMethods(cursors, onGround, shiftPressed, keys) {
 
         const speedConditionWalkOrRun = () => {
-            if(keys[0].isDown) return this.body.setVelocityX(shiftPressed ? -250 : -100);
-            if(keys[1].isDown) return this.body.setVelocityX(shiftPressed ? 250 : 100);
+            if (keys[0].isDown) return this.body.setVelocityX(shiftPressed ? -250 : -100);
+            if (keys[1].isDown) return this.body.setVelocityX(shiftPressed ? 250 : 100);
 
         };
 
@@ -33,6 +54,8 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
             if (shiftPressed && onGround && this.currentAnim !== 'human_Run') {
                 this.anims.play('human_Run', true);
                 this.currentAnim = 'human_Run';
+            } else if (!shiftPressed && onGround && this.currentAnim === 'human_Run') {
+                this.anims.play('human_Walk', true);
             }
         }
 
@@ -43,13 +66,28 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
             }
         }
 
-        return { speedConditionWalkOrRun, runAnimation, walkAnimation };
+        return {speedConditionWalkOrRun, runAnimation, walkAnimation};
     }
 
     handleAnimations(keys, cursors) {
-        const onGround = this.body.touching.down;
+        const onGround = this.body.blocked.down || this.body.touching.down;
         const shiftPressed = cursors.shift.isDown;
-        const { speedConditionWalkOrRun, runAnimation, walkAnimation } = this.extractedMethods(cursors, onGround, shiftPressed, keys);
+        const {
+            speedConditionWalkOrRun,
+            runAnimation,
+            walkAnimation
+        } = this.extractedMethods(cursors, onGround, shiftPressed, keys);
+
+        if (shiftPressed && keys[0].isDown && this.currentAnim !== 'human_Run') {
+            runAnimation();
+            this.currentAnim = 'human_Run';
+            this.flipX = true;
+        }
+        else if(shiftPressed && keys[1].isDown && this.currentAnim !== 'human_Run') {
+            runAnimation();
+            this.currentAnim = 'human_Run';
+            this.flipX = false;
+        }
 
         if (cursors.space.isDown && onGround) {
             this.body.setVelocityY(-500);
@@ -58,25 +96,23 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
                 this.anims.play('human_Jump');
                 this.currentAnim = 'human_Jump';
             }
-        }
-
-        else if (keys[0].isDown) {
+        } else if (cursors.space.isUp && !onGround) {
+            if (this.currentAnim === 'human_Jump') {
+                this.anims.play('human_Walk');
+                this.currentAnim = 'human_Walk';
+            }
+        } else if (keys[0].isDown) {
             speedConditionWalkOrRun();
             runAnimation();
             walkAnimation();
 
             this.flipX = true;
-        }
-
-        else if (keys[1].isDown) {
+        } else if (keys[1].isDown) {
             speedConditionWalkOrRun();
-            runAnimation();
             walkAnimation();
 
             this.flipX = false;
-        }
-
-        else if (keys[0].isUp && keys[1].isUp) {
+        } else if (keys[0].isUp && keys[1].isUp) {
             this.body.setVelocityX(0);
 
             if (onGround && this.currentAnim !== 'human_Idle') {

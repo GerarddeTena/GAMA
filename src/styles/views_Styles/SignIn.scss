@@ -9,7 +9,7 @@
   background-image: url("src/Images/pixel-night.gif");
   background-size: cover;
 
-  gap: 5rem;
+  gap: 3.5rem;
 
   & .Form_Title {
     font-family: "Press Start 2P", system-ui;
@@ -17,13 +17,11 @@
     font-size: 4rem;
   }
   & .Body_Form_SI {
-
     @include displayFlex(column, $cent, $cent);
     gap: 1.5rem;
     @include box-shadow(5, white);
-    padding: .5em;
-    width: 50%;
-    height: 60vh;
+    width: 40vw;
+    height: 50vh;
     backdrop-filter: blur(0.5rem);
 
     & label {
