@@ -1,10 +1,10 @@
 import Phaser from 'phaser';
-import { LoadAudio, LoadKeyWords } from "../Game_Objs/Loader.jsx";
-import { KeyBoard } from "../Game_Objs/KEYBOARD_KEYS/KEYBOARD.tsx";
+import {LoadAudio, LoadKeyWords} from "../Game_Objs/Loader.jsx";
+import {KeyBoard} from "../Game_Objs/KEYBOARD_KEYS/KEYBOARD.jsx";
 
 export class Menu extends Phaser.Scene {
     constructor() {
-        super({ key: 'Menu' });
+        super({key: 'Menu'});
     }
 
     preload() {
@@ -29,7 +29,7 @@ export class Menu extends Phaser.Scene {
         textMenu.setTint(0xff00ff, 0xff00ff, 0x0000ff, 0x0000ff);
 
         let audioMenu = this.sound.add('MenuAudio');
-        audioMenu.play({ volume: 0.01 });
+        audioMenu.play({volume: 0.01});
 
         this.A = new KeyBoard(this, centerX - 1.5 * offset, centerY, 'A', 0).setScale(2);
         this.D = new KeyBoard(this, centerX + offset * 1.5, centerY, 'D', 0).setScale(2);
@@ -42,8 +42,8 @@ export class Menu extends Phaser.Scene {
             Together, they lead a resistance to dismantle The Bald One's regime, facing deadly traps, mutated creatures, and cybernetic soldiers. 
             Join their perilous journey and fight for liberation in this thrilling adventure.
         `;
-        
-        const startText = this.add.text(centerX, centerY + offset * 3, 'Press Enter to Start', {
+
+        this.add.text(centerX, centerY + offset * 3, 'Press Enter to Start', {
             font: '32px Arial',
             fill: '#ffffff'
         }).setOrigin(0.5);
@@ -52,7 +52,7 @@ export class Menu extends Phaser.Scene {
             font: '16px Arial',
             fill: '#ffffff',
             align: 'center',
-            wordWrap: { width: 700 }
+            wordWrap: {width: 700}
         }).setOrigin(0.5);
 
         this.input.keyboard.on('keydown-ENTER', () => {

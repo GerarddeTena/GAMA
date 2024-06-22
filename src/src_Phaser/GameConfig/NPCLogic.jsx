@@ -1,45 +1,23 @@
-import Phaser from "phaser";
-
-export function randomMovement(sprite, platforms, velocity, walkAnim, idleAnim){
-    let delay = Phaser.Math.Between(1000, 3000);
-    let direction = Math.random() < 0.5 ? -1 : 1;
-    let isWalking = false;
-
+export function followPlayer(sprite, player, velocity, walkAnim, idleAnim){
     sprite.setCollideWorldBounds(true);
-    sprite.setBounce(1, 0);
+    sprite.setBounce(0.2, 0);
 
     this.time.addEvent({
-        delay: delay,
+        delay: 1500,
         callback: () => {
-            if (!isWalking) {
+            if (player.x > sprite.x) {
+                sprite.setVelocityX(velocity);
+                sprite.setFlipX(false);
                 sprite.anims.play(walkAnim);
-                sprite.setVelocityX(velocity * direction);
-                sprite.setFlipX(direction < 0);
-                isWalking = true;
+            } else if (player.x < sprite.x) {
+                sprite.setVelocityX(-velocity);
+                sprite.setFlipX(true);
+                sprite.anims.play(walkAnim);
             } else {
-                sprite.anims.play(idleAnim);
                 sprite.setVelocityX(0);
-                isWalking = false;
+                sprite.anims.play(idleAnim);
             }
         },
-        loop: true
-    });
-
-    this.physics.add.collider(sprite, platforms, (sprite, platform) => {
-
-        if (sprite.body.touching.left && platform.body.touching.right || sprite.body.touching.right && platform.body.touching.left) {
-            direction *= -1;
-            sprite.setFlipX(direction < 0);
-        }
-
-    });
-
-    sprite.body.onWorldBounds = true;
-    this.physics.world.on('worldbounds', (body) => {
-        if (body.gameObject === sprite) {
-            direction *= -1;
-            sprite.setFlipX(direction < 0);
-            sprite.setVelocityX(velocity * direction);
-        }
+        loop: true,
     });
 }

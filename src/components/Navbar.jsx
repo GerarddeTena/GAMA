@@ -6,12 +6,15 @@ import { Context } from "../store/GENERAL_CONTEXT/AppContext.jsx";
 
 
 const Navbar = ({isVisible, toggleNavbar}) => {
+
     const { actions, store } = useContext(Context);
+
     const handleLogout = () => {
         console.log('Cerrando sesión...');
         actions.setIsLoggedIn(false);
-        localStorage.setItem('token', '');
+        localStorage.clear();
     };
+
     const NavBarComponents = [
         {
             svg: {

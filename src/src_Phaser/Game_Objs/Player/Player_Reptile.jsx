@@ -26,7 +26,7 @@ export class Reptile extends Phaser.Physics.Arcade.Sprite {
         scene.anims.create({
             key: 'reptile_Jump', frames: scene.anims.generateFrameNumbers('reptile_Jump', {start: 0, end: 4}),
             frameRate: 10, repeat: 0
-        })
+        });
     }
 
     handleAnimations(keys, cursors) {
@@ -35,14 +35,12 @@ export class Reptile extends Phaser.Physics.Arcade.Sprite {
         const shiftPressed = cursors.shift.isDown;
 
         if (cursors.space.isDown && onGround) {
-            this.body.setVelocityY(-500);
+            this.body.setVelocityY(-560);
             if (this.currentAnim !== 'reptile_Jump') {
                 this.anims.play('reptile_Jump');
                 this.currentAnim = 'reptile_Jump';
             }
-        }
-
-        else if (keys[0].isDown) {
+        } else if (keys[0].isDown) {
             this.body.setVelocityX(shiftPressed ? -250 : -100);
 
             if (onGround && this.currentAnim !== 'reptile_Walk') {
@@ -51,9 +49,7 @@ export class Reptile extends Phaser.Physics.Arcade.Sprite {
             }
 
             this.flipX = true;
-        }
-
-        else if (keys[1].isDown) {
+        } else if (keys[1].isDown) {
             this.body.setVelocityX(shiftPressed ? 250 : 100);
             if (onGround && this.currentAnim !== 'reptile_Walk') {
                 this.anims.play('reptile_Walk', true);
@@ -61,9 +57,7 @@ export class Reptile extends Phaser.Physics.Arcade.Sprite {
             }
 
             this.flipX = false;
-        }
-
-        else if (keys[0].isUp && keys[1].isUp) {
+        } else if (keys[0].isUp && keys[1].isUp) {
             this.body.setVelocityX(0);
 
             if (onGround && this.currentAnim !== 'reptile_Idle') {

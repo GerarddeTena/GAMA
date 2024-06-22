@@ -6,7 +6,7 @@ import {AuthContext} from "../../store/GENERAL_CONTEXT/AuthContext.jsx";
 const SignIn = () => {
 
     const {validToken} = useContext(AuthContext);
-    const {actions, store} = useContext(Context);
+    const {actions} = useContext(Context);
     const [password, setPassword] = useState('');
     const [email, setMail] = useState('');
     const [error, setError] = useState(null);

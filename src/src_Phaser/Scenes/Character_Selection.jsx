@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { LoadSprite } from "../Game_Objs/Loader.jsx";
+import {LoadSprites} from "../Game_Objs/Loader.jsx";
 import { Human } from "../Game_Objs/Player/Player_Human.jsx";
 import { Cyborg } from "../Game_Objs/Player/Player_Cyborg.jsx";
 import { Reptile } from "../Game_Objs/Player/Player_Reptile.jsx";
@@ -10,14 +10,8 @@ export class Select_Character extends Phaser.Scene {
     }
 
     preload() {
-        const player = new LoadSprite(this);
-
-        player.loadSprite('human_Idle', 'Players', 'Human_Idle', 32, 48);
-        player.loadSprite('human_Walk', 'Players', 'Walking_Human', 32, 48);
-        player.loadSprite('cyborg_Idle', 'Players', 'Cyborg_Idle', 32, 48);
-        player.loadSprite('cyborg_Walk', 'Players', 'Walking_Cyborg', 32, 48);
-        player.loadSprite('reptile_Idle', 'Players', 'Reptile_Idle', 32, 48);
-        player.loadSprite('reptile_Walk', 'Players', 'Walking_Reptile', 32, 48);
+        const player = new LoadSprites(this);
+        player.loadAllSprites();
     }
 
     create() {

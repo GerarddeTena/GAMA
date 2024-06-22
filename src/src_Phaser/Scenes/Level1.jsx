@@ -1,11 +1,11 @@
 import Phaser from "phaser";
-import {LoadAudio, Loader, LoadSprite} from "../Game_Objs/Loader.jsx";
+import {LoadAudio, Loader, LoadSprites} from "../Game_Objs/Loader.jsx";
 import {Platforms} from "../Game_Objs/Platforms.jsx";
 import {Hans} from "../Game_Objs/NPC/NPC LVL1/Hans.jsx";
 import {Skeleton} from "../Game_Objs/NPC/NPC LVL1/Skeleton.jsx";
 import {Dragon} from "../Game_Objs/NPC/NPC LVL1/Dragon.jsx";
 import {Human} from "../Game_Objs/Player/Player_Human.jsx";
-import {randomMovement} from "../GameConfig/NPCLogic.jsx";
+import {followPlayer} from "../GameConfig/NPCLogic.jsx";
 import {Cyborg} from "../Game_Objs/Player/Player_Cyborg.jsx";
 import {Reptile} from "../Game_Objs/Player/Player_Reptile.jsx";
 
@@ -13,7 +13,7 @@ class PhaserGeneralMethods extends Phaser.Scene {
 
     preload() {
         const loader = new Loader(this);
-        const spriteLoad = new LoadSprite(this);
+        const spriteLoad = new LoadSprites(this);
         const sceneAudio = new LoadAudio(this);
 
         loader.loadImage('background', 'background', 'Cathedral_1');
@@ -21,30 +21,8 @@ class PhaserGeneralMethods extends Phaser.Scene {
         loader.loadImage('corridor', '', 'Corridor');
         loader.loadImage('block', '', 'PlatformBlock');
         loader.loadImage('c_block', '', 'CathedralBlock');
-
-        spriteLoad.loadSprite('hans_Idle', 'Enemies', 'H_Idle', 38, 47);
-        spriteLoad.loadSprite('hans_Walk', 'Enemies', 'H_Walk_Right', 28, 48);
-        spriteLoad.loadSprite('hans_Weapon', 'Enemies', 'Hans_Weapon', 92, 48);
-
-        spriteLoad.loadSprite('skeleton_Idle', 'Enemies', 'Skeleton_Idle_Right', 32, 48);
-        spriteLoad.loadSprite('skeleton_Walk', 'Enemies', 'Skeleton_Walk_Right', 32, 48);
-        spriteLoad.loadSprite('skeleton_Attack', 'Enemies', 'Skeleton_Attack_R', 32, 48);
-
-        spriteLoad.loadSprite('dragon', 'Enemies', 'ManiacDragon', 32, 32);
-        spriteLoad.loadSprite('dragon_attack', 'Enemies', 'Dragon_Hystheria', 32, 32);
-
-        spriteLoad.loadSprite('human_Idle', 'Players', 'Human_Idle', 32, 48);
-        spriteLoad.loadSprite('human_Walk', 'Players', 'Walking_Human', 32, 48);
-        spriteLoad.loadSprite('human_Jump', 'Players', 'Jumping_Human', 34, 48);
-        spriteLoad.loadSprite('human_Run', 'Players', 'Human_Run', 30, 51);
-
-        spriteLoad.loadSprite('cyborg_Idle', 'Players', 'Cyborg_Idle', 32, 48);
-        spriteLoad.loadSprite('cyborg_Walk', 'Players', 'Walking_Cyborg', 32, 48);
-
-        spriteLoad.loadSprite('reptile_Idle', 'Players', 'Reptile_Idle', 32, 48);
-        spriteLoad.loadSprite('reptile_Walk', 'Players', 'Walking_Reptile', 32, 48);
-        spriteLoad.loadSprite('reptile_Jump', 'Players', 'Jumping_Reptile', 32, 44);
-
+        loader.loadImage('rope', '', 'Rope');
+        spriteLoad.loadAllSprites();
         sceneAudio.loadAudio('audioBoss1', '', 'AudioBoss');
     }
 
@@ -62,7 +40,7 @@ class PhaserGeneralMethods extends Phaser.Scene {
             {x: 890, y: 605, key: 'corridor'}, {x: 1100, y: 605, key: 'corridor'}, { x: 1280, y: 605, key: 'corridor'},
             {x: 1380, y: 605, key: 'corridor'}, {x: 1410, y: 605, key: 'corridor'},
             {x: 730, y: 608, key: 'c_block'}, {x:730, y: 675, key: 'c_block'},{x:730, y: 740, key: 'c_block'},
-            {x: 1436, y: 605, key: 'c_block'}, {x: 300, y: 650, key: 'block'}, {x: 450, y: 450, key: 'block'},
+            {x: 1436, y: 605, key: 'c_block'}, {x: 300, y: 580, key: 'block'}, {x: 450, y: 450, key: 'block'},
             {x: 750, y: 475, key: 'block'}, {x: 600, y: 300, key: 'block'}
         ]);
 
@@ -88,8 +66,11 @@ class PhaserGeneralMethods extends Phaser.Scene {
 
         // Load NPCs
         this.hans = new Hans(this, Rand(1800), 500, 'hans_Idle', 10).setScale(1.5);
+        this.hans.setPushable(false);
         this.skeleton = new Skeleton(this, Rand(1800), 550, 'skeleton_Idle', 10);
+        this.skeleton.setPushable(false);
         this.dragon = new Dragon(this, Rand(1800), 550, 'dragon', 10);
+        this.dragon.setPushable(false);
 
         this.physics.add.collider(this.hans, this.platforms);
         this.physics.add.collider(this.skeleton, this.platforms);
@@ -98,18 +79,31 @@ class PhaserGeneralMethods extends Phaser.Scene {
         this.physics.add.collider(this.player, this.dragon);
         this.physics.add.collider(this.player, this.skeleton);
         this.physics.add.collider(this.player, this.hans);
+        this.physics.add.collider(this.skeleton, this.hans && this.dragon);
+        this.physics.add.collider(this.dragon, this.hans && this.skeleton);
+        this.physics.add.collider(this.hans, this.skeleton && this.dragon);
 
 
         // Automatic movement:
-        randomMovement.call(this, this.hans, this.platforms, 100, 'hans_Walk', 'hans_Idle');
-        randomMovement.call(this, this.skeleton, this.platforms, 100, 'skeleton_Walk', 'skeleton_Idle');
-        randomMovement.call(this, this.dragon, this.platforms, 100, 'dragon', 'dragon_attack');
+        followPlayer.call(this, this.hans, this.player, 100, 'hans_Walk', 'hans_Idle');
+        followPlayer.call(this, this.skeleton, this.player, 100, 'skeleton_Walk', 'skeleton_Idle');
+        followPlayer.call(this, this.dragon, this.player, 100, 'dragon', 'dragon_attack');
 
+        this.livesText = this.add.text(10, 10, 'Lives: ' + this.player.lives, { fontSize: '32px blockKie'});
+        this.livesText.setTint(0xff0000, 0xff0000, 0x0000ff, 0x0000ff);
+        this.livesText.setScrollFactor(0);
     }
 
     update() {
         this.player.handleAnimations(this.keys, this.cursors);
         this.physics.add.collider(this.player, this.platforms);
+        if(this.player.x > this.hans.x - 100 && this.player.x < this.hans.x + 100){
+            this.hans.anims.play('hans_Weapon', true);
+            this.hans.setFlipX(this.hans.x < this.player.x);
+        } else {
+            this.hans.anims.play('hans_Walk', true);
+            this.hans.setFlipX(this.player.x < this.hans.x);
+        }
     }
 }
 

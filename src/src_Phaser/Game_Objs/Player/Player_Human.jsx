@@ -45,8 +45,8 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
     extractedMethods(cursors, onGround, shiftPressed, keys) {
 
         const speedConditionWalkOrRun = () => {
-            if (keys[0].isDown) return this.body.setVelocityX(shiftPressed ? -250 : -100);
-            if (keys[1].isDown) return this.body.setVelocityX(shiftPressed ? 250 : 100);
+            if (keys[0].isDown) return this.body.setVelocityX(shiftPressed ? -150 : -80);
+            if (keys[1].isDown) return this.body.setVelocityX(shiftPressed ? 150 : 80);
 
         };
 
@@ -121,7 +121,7 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    handlePlayerHit(enemy, livesText) {
+    handlePlayerHit(enemy, livesText, scene) {
 
         if (enemy instanceof Hans) {
             this.lives -= 10;
@@ -131,6 +131,6 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
             this.lives -= 30;
         }
 
-        livesText.setText('Lives: ' + this.lives);
+        scene.livesText.setText('Lives: ' + this.lives);
     }
 }
