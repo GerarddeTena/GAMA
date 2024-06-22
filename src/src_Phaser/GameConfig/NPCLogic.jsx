@@ -24,10 +24,10 @@ export function followPlayer(sprite, player, velocity, walkAnim, idleAnim, jumpA
                 sprite.anims.play(attackAnim, true);
                 sprite.setFlipX(sprite.x < player.x);
             }
-            else
-
-            sprite.setVelocityX(0);
-            sprite.anims.play(idleAnim);
+            else {
+                sprite.setVelocityX(0);
+                sprite.anims.play(idleAnim);
+            }
 
         },
         loop: true,

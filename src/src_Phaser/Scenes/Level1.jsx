@@ -85,9 +85,9 @@ class PhaserGeneralMethods extends Phaser.Scene {
 
 
         // Automatic movement:
-        followPlayer.call(this, this.hans, this.player, 100, 'hans_Walk', 'hans_Idle');
-        followPlayer.call(this, this.skeleton, this.player, 100, 'skeleton_Walk', 'skeleton_Idle');
-        followPlayer.call(this, this.dragon, this.player, 100, 'dragon', 'dragon_attack');
+        followPlayer.call(this, this.hans, this.player, 100, 'hans_Walk', 'hans_Idle', 'hans_Jump', 'hans_Weapon');
+        followPlayer.call(this, this.skeleton, this.player, 100, 'skeleton_Walk', 'skeleton_Idle', 'skeleton_Jump', 'skeleton_Attack');
+        followPlayer.call(this, this.dragon, this.player, 100, 'dragon', 'dragon', 'dragon_Jump', 'dragon_attack');
 
         this.livesText = this.add.text(10, 10, 'Lives: ' + this.player.lives, { fontSize: '32px blockKie'});
         this.livesText.setTint(0xff0000, 0xff0000, 0x0000ff, 0x0000ff);
@@ -103,26 +103,6 @@ class PhaserGeneralMethods extends Phaser.Scene {
         this.player.handleAnimations(this.keys, this.cursors);
         this.physics.add.collider(this.player, this.platforms);
 
-        if(this.player.y < this.hans.y - 150 && this.player.x < this.hans.x + 100 && this.hans.body.blocked.down && this.hans.currentAnim !== 'hans_Jump') {
-            this.hans.setVelocityY(-500);
-            this.hans.anims.play('hans_Jump', true);
-            this.hans.setFlipX(this.hans.x < this.player.x);
-            this.currentAnim = 'hans_Jump';
-        } else {
-            this.hans.anims.play('hans_Walk', true);
-            this.hans.setFlipX(this.player.x < this.hans.x);
-            this.currentAnim = 'hans_Walk';
-        }
-
-        // if(this.player.y < this.hans.y - 200 && this.player.x < this.hans.x + 100 && this.hans.body.blocked.down && this.hans.currentAnim !== 'hans_Jump') {
-        //     this.hans.setVelocityY(-500);
-        //     this.hans.anims.play('hans_Jump', true);
-        //     this.hans.setFlipX(this.player.x < this.hans.x);
-        // } else {
-        //     this.hans.anims.play('hans_Walk', true);
-        //     this.hans.setFlipX(this.hans.x < this.player.x);
-        // }
-
         if(this.player.x > this.hans.x - 100 && this.player.x < this.hans.x + 100) {
             this.hans.anims.play('hans_Weapon', true);
             this.hans.setFlipX(this.hans.x < this.player.x);
@@ -131,6 +111,25 @@ class PhaserGeneralMethods extends Phaser.Scene {
             this.hans.anims.play('hans_Walk', true);
             this.hans.setFlipX(this.player.x < this.hans.x);
             this.currentAnim = 'hans_Walk';
+        }
+
+        if(this.player.x > this.skeleton.x - 100 && this.player.x < this.skeleton.x + 100) {
+            this.skeleton.anims.play('skeleton_Attack', true);
+            this.skeleton.setFlipX(this.skeleton.x > this.player.x);
+            this.currentAnim = 'skeleton_Attack';
+        } else {
+            this.skeleton.anims.play('skeleton_Walk', true);
+            this.skeleton.setFlipX(this.player.x < this.skeleton.x);
+            this.currentAnim = 'skeleton_Walk';
+        }
+        if(this.player.x > this.dragon.x - 100 && this.player.x < this.dragon.x + 100) {
+            this.dragon.anims.play('dragon_attack', true);
+            this.dragon.setFlipX(this.dragon.x > this.player.x);
+            this.currentAnim = 'dragon_attack';
+        } else {
+            this.dragon.anims.play('dragon', true);
+            this.dragon.setFlipX(this.player.x < this.dragon.x);
+            this.currentAnim = 'dragon';
         }
     }
 }
