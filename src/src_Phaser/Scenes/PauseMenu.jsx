@@ -7,7 +7,7 @@ class PauseMenu extends Phaser.Scene {
   }
 
   create() {
-    this.add.text(100, 50, "Pause Menu", { fontSize: "32px", fill: "#fff" });
+    this.add.text(100, 50, "Pause Menu", { fontSize: "32px BlockKie"});
 
     this.text = [
       this.add.text(100, 100, "Resume", { color: "#ffffff" }),
@@ -31,10 +31,11 @@ class PauseMenu extends Phaser.Scene {
     this.input.keyboard.on("keydown-ENTER", () => {
       const selectedText = this.text[this.selectedTextIndex].text;
       if (selectedText === "Resume") {
-        this.scene.resume("Game");
-        this.scene.stop();
-      } else if (selectedText === "Exit") {
-        this.scene.stop("Game");
+        this.scene.stop("PauseMenu");
+        this.scene.resume("Level1");
+      }
+      else if (selectedText === "Exit") {
+        this.scene.stop("Level1");
         this.scene.start("Menu");
       }
     });

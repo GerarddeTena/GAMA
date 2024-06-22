@@ -28,6 +28,9 @@ class PhaserGeneralMethods extends Phaser.Scene {
 
     create() {
 
+        const CENT_X = this.cameras.main.centerX;
+        const CENT_Y = this.cameras.main.centerY;
+
         const Rand = (n) => Math.floor(Math.random() * n);
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keys = this.input.keyboard.addKeys(['A', 'D']);
@@ -37,9 +40,9 @@ class PhaserGeneralMethods extends Phaser.Scene {
         this.platforms = new Platforms(this.physics.world, this, null, [
             {x: 130, y: 735, key: 'corridor'}, {x: 250, y: 735, key: 'corridor'}, {x: 300, y: 735, key: 'corridor'},
             {x: 400, y: 735, key: 'corridor'}, {x: 500, y: 735, key: 'corridor'}, {x: 575, y: 735, key: 'corridor'},
-            {x: 890, y: 605, key: 'corridor'}, {x: 1100, y: 605, key: 'corridor'}, { x: 1280, y: 605, key: 'corridor'},
+            {x: 890, y: 605, key: 'corridor'}, {x: 1100, y: 605, key: 'corridor'}, {x: 1280, y: 605, key: 'corridor'},
             {x: 1380, y: 605, key: 'corridor'}, {x: 1410, y: 605, key: 'corridor'},
-            {x: 730, y: 608, key: 'c_block'}, {x:730, y: 675, key: 'c_block'},{x:730, y: 740, key: 'c_block'},
+            {x: 730, y: 608, key: 'c_block'}, {x: 730, y: 675, key: 'c_block'}, {x: 730, y: 740, key: 'c_block'},
             {x: 1436, y: 605, key: 'c_block'}, {x: 300, y: 580, key: 'block'}, {x: 450, y: 450, key: 'block'},
             {x: 750, y: 475, key: 'block'}, {x: 600, y: 300, key: 'block'}
         ]);
@@ -85,25 +88,31 @@ class PhaserGeneralMethods extends Phaser.Scene {
 
 
         // Automatic movement:
-        followPlayer.call(this, this.hans, this.player, 100, 'hans_Walk', 'hans_Idle', 'hans_Jump', 'hans_Weapon');
-        followPlayer.call(this, this.skeleton, this.player, 100, 'skeleton_Walk', 'skeleton_Idle', 'skeleton_Jump', 'skeleton_Attack');
-        followPlayer.call(this, this.dragon, this.player, 100, 'dragon', 'dragon', 'dragon_Jump', 'dragon_attack');
+        followPlayer.call(this, this.hans, this.player, 100, 'hans_Walk', 'hans_Idle', 'hans_Jump');
+        followPlayer.call(this, this.skeleton, this.player, 100, 'skeleton_Walk', 'skeleton_Idle', 'skeleton_Jump');
+        followPlayer.call(this, this.dragon, this.player, 100, 'dragon', 'dragon', 'dragon_Jump');
 
-        this.livesText = this.add.text(10, 10, 'Lives: ' + this.player.lives, { fontSize: '32px blockKie'});
+        this.livesText = this.add.text(CENT_X, CENT_Y, `Lives: ${this.playerHealth}`, {font: '32px blockKie'});
         this.livesText.setTint(0xff0000, 0xff0000, 0x0000ff, 0x0000ff);
+        this.livesText.setPosition(this.player.x, this.player.y - 300);
         this.livesText.setScrollFactor(0);
 
+
         this.input.keyboard.on('keydown-ESC', () => {
-            this.scene.pause();
             this.scene.launch('PauseMenu');
+            this.scene.pause('Level1');
+
         })
     }
 
     update() {
         this.player.handleAnimations(this.keys, this.cursors);
         this.physics.add.collider(this.player, this.platforms);
+        let H_Attack = this.hans.currentAnim === 'hans_Weapon';
+        let S_Attack = this.hans.currentAnim === 'skeleton_Attack';
+        let D_Attack = this.hans.currentAnim === 'dragon_attack';
 
-        if(this.player.x > this.hans.x - 100 && this.player.x < this.hans.x + 100) {
+        if (this.player.x > this.hans.x - 100 && this.player.x < this.hans.x + 100) {
             this.hans.anims.play('hans_Weapon', true);
             this.hans.setFlipX(this.hans.x < this.player.x);
             this.currentAnim = 'hans_Weapon';
@@ -113,7 +122,7 @@ class PhaserGeneralMethods extends Phaser.Scene {
             this.currentAnim = 'hans_Walk';
         }
 
-        if(this.player.x > this.skeleton.x - 100 && this.player.x < this.skeleton.x + 100) {
+        if (this.player.x > this.skeleton.x - 100 && this.player.x < this.skeleton.x + 100) {
             this.skeleton.anims.play('skeleton_Attack', true);
             this.skeleton.setFlipX(this.skeleton.x > this.player.x);
             this.currentAnim = 'skeleton_Attack';
@@ -122,7 +131,7 @@ class PhaserGeneralMethods extends Phaser.Scene {
             this.skeleton.setFlipX(this.player.x < this.skeleton.x);
             this.currentAnim = 'skeleton_Walk';
         }
-        if(this.player.x > this.dragon.x - 100 && this.player.x < this.dragon.x + 100) {
+        if (this.player.x > this.dragon.x - 100 && this.player.x < this.dragon.x + 100) {
             this.dragon.anims.play('dragon_attack', true);
             this.dragon.setFlipX(this.dragon.x > this.player.x);
             this.currentAnim = 'dragon_attack';
@@ -130,6 +139,17 @@ class PhaserGeneralMethods extends Phaser.Scene {
             this.dragon.anims.play('dragon', true);
             this.dragon.setFlipX(this.player.x < this.dragon.x);
             this.currentAnim = 'dragon';
+        }
+        if (H_Attack && this.player.x > this.hans.x + 20 && this.player.x < this.hans.x - 20) {
+            this.playerHealth = this.player.handlePlayerHit(this.hans, this.livesText, this.player.x, this.player.y - 300, this.playerHealth);
+        }
+
+        if (S_Attack && this.player.x > this.skeleton.x + 20 && this.player.x < this.skeleton.x - 20) {
+            this.playerHealth = this.player.handlePlayerHit(this.skeleton, this.livesText, this.player.x, this.player.y - 300, this.playerHealth);
+        }
+
+        if (D_Attack && this.player.x < this.dragon.x + 20 && this.player.x > this.dragon.x - 20) {
+            this.playerHealth = this.player.handlePlayerHit(this.dragon, this.livesText, this.player.x, this.player.y - 300, this.playerHealth);
         }
     }
 }

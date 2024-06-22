@@ -124,11 +124,11 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
     handlePlayerHit(enemy, livesText, scene) {
 
         if (enemy instanceof Hans) {
-            this.lives -= 10;
+            this.lives -= 40;
         } else if (enemy instanceof Skeleton) {
             this.lives -= 20;
         } else if (enemy instanceof Dragon) {
-            this.lives -= 30;
+            this.lives -= 20;
         }
 
         scene.livesText.setText('Lives: ' + this.lives);

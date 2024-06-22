@@ -70,6 +70,7 @@ export class Level2 extends Phaser.Scene {
     this.dragon = new Dragon(this, Rand(1800), 550, "dragon", 10);
     this.dragon.setPushable(false);
 
+
     // Colisiones
     this.physics.add.collider(this.hans, this.platforms);
     this.physics.add.collider(this.skeleton, this.platforms);
