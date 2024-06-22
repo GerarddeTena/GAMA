@@ -22,6 +22,7 @@ export class LoadSprites {
             {name: 'hans_Idle', dir: 'Enemies', file: 'H_Idle', fW: 38, fH: 47},
             {name: 'hans_Walk', dir: 'Enemies', file: 'H_Walk_Right', fW: 28, fH: 48},
             {name: 'hans_Weapon', dir: 'Enemies', file: 'Hans_Weapon', fW: 92, fH: 48},
+            {name: 'hans_Jump', dir: 'Enemies', file: 'H_Jump_Right', fW: 32, fH: 48},
             {name: 'skeleton_Idle', dir: 'Enemies', file: 'Skeleton_Idle_Right', fW: 32, fH: 48},
             {name: 'skeleton_Walk', dir: 'Enemies', file: 'skeleton_Walk_Right', fW: 32, fH: 48},
             {name: 'skeleton_Attack', dir: 'Enemies', file: 'Skeleton_Attack_R', fW: 32, fH: 48},

@@ -15,12 +15,12 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
 
         scene.anims.create({
             key: 'cyborg_Idle', frames: scene.anims.generateFrameNumbers('cyborg_Idle', {start: 0, end: 4}),
-            frameRate: 10, repeat: -1
+            frameRate: 5, repeat: -1
         });
 
         scene.anims.create({
             key: 'cyborg_Walk', frames: scene.anims.generateFrameNumbers('cyborg_Walk', {start: 0, end: 8}),
-            frameRate: 10, repeat: -1
+            frameRate: 9, repeat: -1
         });
 
     }

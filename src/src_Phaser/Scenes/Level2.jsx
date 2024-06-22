@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import {Loader, LoadSprites} from "../Game_Objs/Loader.jsx";
 
-export class PhaserGeneralMethods {
+class PhaserGeneralMethods extends Phaser.Scene {
     preload(){
         const loadSprite = new LoadSprites(this);
         const loadImage = new Loader(this);
@@ -23,3 +23,4 @@ export class PhaserGeneralMethods {
 
     }
 }
+

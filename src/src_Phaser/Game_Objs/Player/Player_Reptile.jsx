@@ -15,17 +15,17 @@ export class Reptile extends Phaser.Physics.Arcade.Sprite {
     createAnimations(scene) {
         scene.anims.create({
             key: 'reptile_Idle', frames: scene.anims.generateFrameNumbers('reptile_Idle', {start: 0, end: 4}),
-            frameRate: 10, repeat: -1
+            frameRate: 6, repeat: -1
         });
 
         scene.anims.create({
             key: 'reptile_Walk', frames: scene.anims.generateFrameNumbers('reptile_Walk', {start: 0, end: 8}),
-            frameRate: 10, repeat: -1
+            frameRate: 9, repeat: -1
         });
 
         scene.anims.create({
             key: 'reptile_Jump', frames: scene.anims.generateFrameNumbers('reptile_Jump', {start: 0, end: 4}),
-            frameRate: 10, repeat: 0
+            frameRate: 5, repeat: 0
         });
     }
 

@@ -19,25 +19,25 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
         scene.anims.create({
             key: 'human_Idle',
             frames: scene.anims.generateFrameNumbers('human_Idle', {start: 0, end: 4}),
-            frameRate: 10,
+            frameRate: 5,
             repeat: -1
         });
         scene.anims.create({
             key: 'human_Walk',
             frames: scene.anims.generateFrameNumbers('human_Walk', {start: 0, end: 8}),
-            frameRate: 10,
+            frameRate: 9,
             repeat: -1
         });
         scene.anims.create({
             key: 'human_Jump',
             frames: scene.anims.generateFrameNumbers('human_Jump', {start: 0, end: 4}),
-            frameRate: 10,
+            frameRate: 5,
             repeat: 0
         });
         scene.anims.create({
             key: 'human_Run',
             frames: scene.anims.generateFrameNumbers('human_Run', {start: 0, end: 4}),
-            frameRate: 10,
+            frameRate: 5,
             repeat: -1
         });
     }

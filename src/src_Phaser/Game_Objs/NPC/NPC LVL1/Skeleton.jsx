@@ -7,21 +7,21 @@ export class Skeleton extends Enemy {
         scene.anims.create({
             key: 'skeleton_Idle',
             frames: scene.anims.generateFrameNumbers('skeleton_Idle', { start: 0, end: 7 }),
-            frameRate: 10,
+            frameRate: 8,
             repeat: -1
         });
 
         scene.anims.create({
             key: 'skeleton_Walk',
             frames: scene.anims.generateFrameNumbers('skeleton_Walk', { start: 0, end: 3 }),
-            frameRate: 5,
+            frameRate: 4,
             repeat: -1
         });
 
         scene.anims.create({
             key: 'skeleton_Attack',
             frames: scene.anims.generateFrameNumbers('skeleton_Attack', { start: 0, end: 3 }),
-            frameRate: 5,
+            frameRate: 4,
             repeat: -1
         });
 

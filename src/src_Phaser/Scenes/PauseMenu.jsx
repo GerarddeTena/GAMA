@@ -13,13 +13,13 @@ export class PauseMenu extends Phaser.Scene {
         this.Pause_Title = this.add.text(CENT_X, CENT_Y, 'Pause Menu', {fontSize: '32px BlockKie'}).setOrigin(0.5);
         this.Pause_Title.setTint(0xff0000, 0xff0000, 0x0000ff, 0x0000ff);
 
-        this.resume = this.add.text(CENT_X, CENT_Y + Offset, 'Options', {fontSize: '32px BlockKie'}).setOrigin(0.5);
-        this.resume.setTint(0xff0000, 0xff0000, 0x0000ff, 0x0000ff);
+        this.resume = this.add.text(CENT_X, CENT_Y + Offset, 'Resume', {fontSize: '32px BlockKie'}).setOrigin(0.5);
         this.resume.setInteractive();
 
         this.exit = this.add.text(CENT_X, CENT_Y + Offset + 50, 'Exit', {fontSize: '32px BlockKie'}).setOrigin(0.5);
-        this.exit.setTint(0xff0000, 0xff0000, 0x0000ff, 0x0000ff);
         this.exit.setInteractive();
+
+
 
         this.text = [this.resume, this.exit];
         this.textWords = ['Resume', 'Exit'];
@@ -47,7 +47,7 @@ export class PauseMenu extends Phaser.Scene {
         });
 
         this.input.keyboard.on('keydown-ENTER', () => {
-            const selectedText = this.textWords[this.selectedTextIndex];
+            const selectedText = this.text[this.selectedTextIndex].text;
             if (selectedText === 'Resume') {
                 this.scene.resume('Game');
                 this.scene.stop();
