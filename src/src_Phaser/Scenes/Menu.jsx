@@ -49,13 +49,11 @@ export class Menu extends Phaser.Scene {
         }).setOrigin(0.5);
 
         this.add.text(centerX, centerY + offset * 5, gameDescription, {
-            font: '16px Arial',
-            fill: '#ffffff',
-            align: 'center',
-            wordWrap: {width: 700}
+            font: '16px Arial', fill: '#ffffff', align: 'center', wordWrap: {width: 700}
         }).setOrigin(0.5);
 
-        this.input.keyboard.on('keydown-ENTER', () => {
+        this.input.keyboard.on('keydown-ENTER', () => this.cameras.main.fadeOut(1000, 0, 0, 0));
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
             this.scene.start('Select_Character');
         });
     }

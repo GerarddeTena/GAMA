@@ -11,7 +11,7 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this);
         scene.physics.collide(this, scene.platforms);
         this.body.setGravityY(300);
-        this.lives = 1000;
+        this.playerHealth = 1000;
         this.currentAnim = null;
     }
 
@@ -121,16 +121,16 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    handlePlayerHit(enemy, livesText, scene) {
+    handlePlayerHit(enemy, livesText) {
 
         if (enemy instanceof Hans) {
-            this.lives -= 40;
+            this.playerHealth -= 80;
         } else if (enemy instanceof Skeleton) {
-            this.lives -= 20;
+            this.playerHealth -= 40;
         } else if (enemy instanceof Dragon) {
-            this.lives -= 20;
+            this.playerHealth -= 15;
         }
 
-        scene.livesText.setText('Lives: ' + this.lives);
+        livesText.setText('Lives: ' + this.playerHealth);
     }
 }

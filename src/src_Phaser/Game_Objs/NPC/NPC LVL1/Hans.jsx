@@ -3,6 +3,7 @@ import { Enemy } from './Enemy.jsx';
 export class Hans extends Enemy {
     constructor(scene, x, y, texture, frames) {
         super(scene, x, y, texture, frames);
+        this.hits = 0;
         scene.anims.create({
             key: 'hans_Idle',
             frames: scene.anims.generateFrameNumbers('hans_Idle', { start: 0, end: 6 }),
@@ -18,8 +19,8 @@ export class Hans extends Enemy {
         });
 
         scene.anims.create({
-            key: 'hans_Weapon',
-            frames: scene.anims.generateFrameNumbers('hans_Weapon', { start: 0, end: 8 }),
+            key: 'hans_Attack',
+            frames: scene.anims.generateFrameNumbers('hans_Attack', { start: 0, end: 8 }),
             frameRate: 9,
             repeat: -1
         });

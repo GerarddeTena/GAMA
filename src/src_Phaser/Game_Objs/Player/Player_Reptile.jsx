@@ -8,7 +8,7 @@ export class Reptile extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, texture, frames);
     scene.add.existing(this);
     scene.physics.add.existing(this);
-    this.playeHealth = 1000;
+    this.playerHealth = 1000;
     this.currentAnim = null;
   }
 
@@ -81,25 +81,16 @@ export class Reptile extends Phaser.Physics.Arcade.Sprite {
     }
   }
 
-  handlePlayerHit(e1, e2, e3, livesText, posX, posY, playerHealth) {
+  handlePlayerHit(enemy, livesText) {
 
-    playerHealth = this.playerHealth;
-    if (e1 instanceof Hans) {
-      playerHealth -= 40;
-    } else if (e2 instanceof Skeleton) {
-        playerHealth -= 20;
-    } else if (e3 instanceof Dragon) {
-        playerHealth -= 20;
-    }
-    if (livesText === undefined || typeof livesText.setText !== 'function') {
-      livesText = this.scene.add.text(posX, posY, 'Lives: ' + playerHealth, {font: '32px blockKie'});
-      livesText.setTint(0xff0000, 0xff0000, 0x0000ff, 0x0000ff);
-      livesText.setScrollFactor(0);
+    if (enemy instanceof Hans) {
+      this.playerHealth -= 80;
+    } else if (enemy instanceof Skeleton) {
+      this.playerHealth -= 40;
+    } else if (enemy instanceof Dragon) {
+      this.playerHealth -= 15;
     }
 
-    livesText.setText('Lives: ' + playerHealth);
-
-    return playerHealth;
-
+    livesText.setText('Lives: ' + this.playerHealth);
   }
 }

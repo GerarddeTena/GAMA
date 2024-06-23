@@ -1,135 +1,109 @@
-import Phaser from "phaser";
-import { Loader, LoadSprites } from "../Game_Objs/Loader.jsx";
-import { Platforms } from "../Game_Objs/Platforms.jsx";
-import { Hans } from "../Game_Objs/NPC/NPC LVL1/Hans.jsx";
-import { Skeleton } from "../Game_Objs/NPC/NPC LVL1/Skeleton.jsx";
-import { Dragon } from "../Game_Objs/NPC/NPC LVL1/Dragon.jsx";
-import { Human } from "../Game_Objs/Player/Player_Human.jsx";
-import { followPlayer } from "../GameConfig/NPCLogic.jsx";
-import { Cyborg } from "../Game_Objs/Player/Player_Cyborg.jsx";
-import { Reptile } from "../Game_Objs/Player/Player_Reptile.jsx";
+import {Loader, LoadSprites} from "../Game_Objs/Loader.jsx";
+import {Platforms} from "../Game_Objs/Platforms.jsx";
+import {Hans} from "../Game_Objs/NPC/NPC LVL1/Hans.jsx";
+import {Skeleton} from "../Game_Objs/NPC/NPC LVL1/Skeleton.jsx";
+import {Dragon} from "../Game_Objs/NPC/NPC LVL1/Dragon.jsx";
+import {followPlayer} from "../GameConfig/NPCLogic.jsx";
+import {Base_Level} from "../Base_Level.jsx";
 
-export class Level2 extends Phaser.Scene {
-  constructor() {
-    super({ key: "Level2" });
-  }
 
-  preload() {
-    const loader = new Loader(this);
-    const spriteLoad = new LoadSprites(this);
+export class Level2 extends Base_Level {
+    constructor() {
+        super('Level2');
+    }
+    preload() {
+        const loader = new Loader(this);
+        const spriteLoad = new LoadSprites(this);
 
-    loader.loadImage("background", "background", "Subway");
-    loader.loadImage("platform", "", "Platform");
-    loader.loadImage("block", "", "PlatformBlock");
-    spriteLoad.loadAllSprites();
-  }
-
-  create() {
-    const centerX = this.cameras.main.centerX;
-    const centerY = this.cameras.main.centerY;
-    const offset = 100;
-
-    const Rand = (n) => Math.floor(Math.random() * n);
-    this.cursors = this.input.keyboard.createCursorKeys();
-    this.keys = this.input.keyboard.addKeys(["A", "D"]);
-
-    this.add
-      .image(centerX - offset * 15, centerY - offset, "background")
-      .setOrigin(0, 0)
-      .setScale(1.87);
-
-    this.platforms = new Platforms(this.physics.world, this, null, [
-      { x: 100, y: 600, key: "platform" },
-      { x: 300, y: 600, key: "platform" },
-    ]);
-
-    const selectedCharacter = this.registry.get("Character Selected");
-    switch (selectedCharacter) {
-      case "Human":
-        this.player = new Human(this, 100, 500, "human", 10);
-        break;
-      case "Cyborg":
-        this.player = new Cyborg(this, 100, 500, "cyborg_Idle", 10);
-        break;
-      case "Reptile":
-        this.player = new Reptile(this, 100, 500, "reptile_Idle", 10);
-        break;
-      default:
-        this.player = new Human(this, 100, 500, "human", 10);
-        break;
+        loader.loadImage("background", "background", "Subway");
+        loader.loadImage("platform", "", "Platform");
+        loader.loadImage("block", "", "PlatformBlock");
+        spriteLoad.loadAllSprites();
     }
 
-    this.cameras.main.startFollow(this.player, true, 0.05, 0.05, 0, 0);
-    this.player.createAnimations(this);
+    create() {
+        const centerX = this.cameras.main.centerX;
+        const centerY = this.cameras.main.centerY;
+        const offset = 100;
 
-    // NPCs
-    this.hans = new Hans(this, Rand(1800), 500, "hans_Idle", 10).setScale(1.5);
-    this.hans.setPushable(false);
-    this.skeleton = new Skeleton(this, Rand(1800), 550, "skeleton_Idle", 10);
-    this.skeleton.setPushable(false);
-    this.dragon = new Dragon(this, Rand(1800), 550, "dragon", 10);
-    this.dragon.setPushable(false);
+        const Rand = (n) => Math.floor(Math.random() * n);
+        this.cursors = this.input.keyboard.createCursorKeys();
+        this.keys = this.input.keyboard.addKeys(["A", "D"]);
+
+        this.add
+            .image(centerX - offset * 15, centerY - offset, "background")
+            .setOrigin(0, 0)
+            .setScale(1.87);
+
+        this.platforms = new Platforms(this.physics.world, this, null, [
+            {x: 100, y: 600, key: "platform"},
+            {x: 300, y: 600, key: "platform"},
+        ]);
 
 
-    // Colisiones
-    this.physics.add.collider(this.hans, this.platforms);
-    this.physics.add.collider(this.skeleton, this.platforms);
-    this.physics.add.collider(this.dragon, this.platforms);
-    this.physics.add.collider(this.player, this.platforms);
-    this.physics.add.collider(this.player, this.dragon);
-    this.physics.add.collider(this.player, this.skeleton);
-    this.physics.add.collider(this.player, this.hans);
-    this.physics.add.collider(this.skeleton, this.hans && this.dragon);
-    this.physics.add.collider(this.dragon, this.hans && this.skeleton);
+        const characters = [
+            {name: 'hans', class: Hans, x: Rand(1800), y: 500, key: 'hans_Idle', scale: 1.5, pushable: false},
+            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle'},
+            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle'},
+            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle'},
+            {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon'},
+            {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon'},
+            {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon'},
+            {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon'},
+            {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon'}
+        ];
 
-    followPlayer.call(
-      this,
-      this.hans,
-      this.player,
-      100,
-      "hans_Walk",
-      "hans_Idle"
-    );
-    followPlayer.call(
-      this,
-      this.skeleton,
-      this.player,
-      100,
-      "skeleton_Walk",
-      "skeleton_Idle"
-    );
-    followPlayer.call(
-      this,
-      this.dragon,
-      this.player,
-      100,
-      "dragon",
-      "dragon_attack"
-    );
+        let npcCharacters = [];
 
-    // Texto de vidas
-    this.livesText = this.add.text(10, 10, "Lives: " + this.player.lives, {
-      fontSize: "32px",
-      fill: "#fff",
-    });
-    this.livesText.setScrollFactor(0);
-  }
+        characters.forEach(config => {
+                if (this.scene.isActive()) {
+                    const character = new config.class(config.x, config.y, config.key, 10);
+                    character.hits = 0;
+                    if (config.scale) character.setScale(config.scale);
+                    if (config.pushable !== undefined) character.setPushable(config.pushable);
+                    this.physics.add.collider(character, this.platforms);
 
-  update() {
-    this.player.handleAnimations(this.keys, this.cursors);
-    this.physics.add.collider(this.player, this.platforms);
+                    if (config.name === 'hans') {
+                        this.hans = character;
+                    }
+                    if (config.name === 'skeleton') {
+                        this.skeleton = character;
+                    }
+                    if (config.name === 'dragon') {
+                        this.dragon = character;
+                    }
 
-    if (
-      this.player.x > this.hans.x - 100 &&
-      this.player.x < this.hans.x + 100
-    ) {
-      this.hans.anims.play("hans_Weapon", true);
-      this.hans.setFlipX(this.hans.x < this.player.x);
-    } else {
-      this.hans.anims.play("hans_Walk", true);
-      this.hans.setFlipX(this.player.x < this.hans.x);
+                    npcCharacters.push(character);
+                }
+            }
+        );
+        super.createCharacter();
+        npcCharacters.forEach(npc => {
+            this.physics.add.collider(this.player, npc);
+            npcCharacters.forEach(otherNpc => {
+                if (npc !== otherNpc) {
+                    this.physics.add.collider(npc, otherNpc);
+                }
+            })
+        })
+
+        npcCharacters.forEach(npc => {
+            followPlayer.call(this, npc, this.player, 100, `${npc.name}_Walk, ${npc.name}_Idle, ${npc.name}_Jump`);
+        });
+
+        this.handlePlayerCam(this.player);
+
+
+        this.livesText = this.add.text(10, 10, "Health: " + this.player.lives, {
+            fontSize: "32px",
+            fill: "#fff",
+        });
+        this.livesText.setScrollFactor(0);
+
+
     }
-  }
+
+    update() {
+        super.update();
+    }
 }
-
-export default Level2;
