@@ -2,6 +2,7 @@ import Phaser from 'phaser'
 import {Human} from "./Game_Objs/Player/Player_Human.jsx";
 import {Cyborg} from "./Game_Objs/Player/Player_Cyborg.jsx";
 import {Reptile} from "./Game_Objs/Player/Player_Reptile.jsx";
+import {Loader} from "./Game_Objs/Loader.jsx";
 
 
 export class Base_Level extends Phaser.Scene {
@@ -14,7 +15,6 @@ export class Base_Level extends Phaser.Scene {
         this.playerHealth = 1000;
         this.score = 0;
     }
-
 
     create() {
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -67,6 +67,18 @@ export class Base_Level extends Phaser.Scene {
         }
     }
 
+    scoreManagement() {
+        const updateScore = () => {
+            this.score += 50;
+        }
+        this.time.addEvent({
+            delay: 1000,
+            callback: updateScore,
+            callbackScope: this,
+            loop: true
+        });
+    }
+
     handleCharacterOverlap(character, animKey, maxHits) {
         if (character && this.physics.overlap(this.player, character)) {
             const playerBottom = this.player.getBounds().bottom;
@@ -75,7 +87,7 @@ export class Base_Level extends Phaser.Scene {
             if (playerBottom <= characterTop && this.player.body.velocity.y > 0) {
                 if (!character.isJumpingOnEnemy) {
                     character.isJumpingOnEnemy = true;
-                    character.hits = (character.hits || 0) + 1 && this.player.score++;
+                    character.hits = (character.hits || 0) + 1;
                     if (character.hits >= maxHits) {
                         character.anims.play(animKey, true);
                         this.time.delayedCall(1000, () => {
@@ -107,6 +119,7 @@ export class Base_Level extends Phaser.Scene {
             });
         }
     }
+
     update() {
         this.player.handleAnimations(this.keys, this.cursors);
         this.physics.add.collider(this.player, this.platforms);
@@ -133,16 +146,17 @@ export class Base_Level extends Phaser.Scene {
 
 
     nextLevel(scene) {
-        if(this.npcCharacters.every(npc => npc === null)) {
+        if (this.npcCharacters.every(npc => npc === null)) {
             this.time.delayedCall(5000, () => {
-                this.scene.transition({ target: scene, sleep: true , duration: 1000 });
+                this.scene.transition({target: scene, sleep: true, duration: 1000});
             });
         }
     }
 
     gameOver(scene) {
+
         if (this.player.playerHealth <= 0) {
-            this.scene.transition({ target: scene, duration: 1000 });
+            this.scene.transition({target: scene, duration: 1000});
         }
     }
 }

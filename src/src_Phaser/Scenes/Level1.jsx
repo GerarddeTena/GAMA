@@ -104,6 +104,8 @@ export class Level1 extends Base_Level {
 
     update() {
         super.update();
+        // super.scoreManagement();
+        console.log(this.score);
         super.nextLevel('Level2');
         super.gameOver('Menu');
     }
