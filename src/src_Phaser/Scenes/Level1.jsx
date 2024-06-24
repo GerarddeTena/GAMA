@@ -102,14 +102,14 @@ export class Level1 extends Base_Level {
 
         this.input.keyboard.on('keydown-ESC', () => {
             this.scene.launch('PauseMenu');
-            this.scene.pause('Level1');
-
+            this.scene.pause(this);
         });
     }
 
     update() {
         super.update();
 
+        if(this.playerHealth <= 0) super.gameOver(this);
         if(this.hans.hits >= 2 && this.skeleton.hits >= 2 && this.dragon.hits >= 2) {
             this.time.delayedCall(5000, () => {
                 this.scene.transition({ target: 'Level2', duration: 1000 });

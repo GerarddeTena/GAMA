@@ -74,13 +74,13 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
     handlePlayerHit(enemy, livesText) {
 
         if (enemy instanceof Hans) {
-            this.lives -= 10;
+            this.playerHealth -= 80;
         } else if (enemy instanceof Skeleton) {
-            this.lives -= 20;
+            this.playerHealth -= 40;
         } else if (enemy instanceof Dragon) {
-            this.lives -= 30;
+            this.playerHealth -= 15;
         }
 
-        livesText.setText('Lives: ' + this.lives);
+        livesText.setText('Lives: ' + this.playerHealth);
     }
 }

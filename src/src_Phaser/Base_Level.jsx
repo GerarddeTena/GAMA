@@ -120,9 +120,6 @@ export class Base_Level extends Phaser.Scene {
 
     }
 
-
-
-
     gameOver(scene) {
         if (this.playerHealth <= 0) {
             this.player.setVelocity(0, 0);
