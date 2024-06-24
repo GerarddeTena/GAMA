@@ -45,10 +45,7 @@ export class Level1 extends Base_Level {
             {x: 750, y: 475, key: 'block'}, {x: 600, y: 300, key: 'block'}
         ]);
 
-        super.createCharacter();
-        super.handlePlayerCam(this.player);
-        this.player.createAnimations(this);
-        super.boundsCollision(this.player);
+        super.create();
 
         // Load NPCS:
 

@@ -12,6 +12,7 @@ export class Base_Level extends Phaser.Scene {
         this.dragon = null;
         this.currentAnim = null;
         this.playerHealth = 1000;
+        this.score = 0;
     }
 
 
@@ -74,8 +75,7 @@ export class Base_Level extends Phaser.Scene {
             if (playerBottom <= characterTop && this.player.body.velocity.y > 0) {
                 if (!character.isJumpingOnEnemy) {
                     character.isJumpingOnEnemy = true;
-                    character.hits = (character.hits || 0) + 1;
-
+                    character.hits = (character.hits || 0) + 1 && this.player.score++;
                     if (character.hits >= maxHits) {
                         character.anims.play(animKey, true);
                         this.time.delayedCall(1000, () => {
@@ -107,39 +107,42 @@ export class Base_Level extends Phaser.Scene {
             });
         }
     }
-
     update() {
         this.player.handleAnimations(this.keys, this.cursors);
         this.physics.add.collider(this.player, this.platforms);
 
-        this.npcCharacters.forEach(npc => {
-            if(npc !== null) {
-                this.physics.overlap(this.player, npc, this.handlePlayerEnemyCollision, null, this);
-                this.handleCharacterAnimations(npc, `${npc.name}_Attack`, `${npc.name}_Walk`, this.player.x > npc.x - 100 && this.player.x < npc.x + 100);
-                this.handleCharacterOverlap(npc, `${npc.name}_Death`, 1);
-            }
-        });
+        if (this.hans !== null) {
+            this.physics.overlap(this.player, this.hans, this.handlePlayerEnemyCollision, null, this);
+            this.handleCharacterAnimations(this.hans, 'hans_Attack', 'hans_Walk', this.player.x > this.hans.x - 100 && this.player.x < this.hans.x + 100);
+            this.handleCharacterOverlap(this.hans, '', 1);
+        }
 
+        if (this.skeleton !== null) {
+            this.physics.overlap(this.player, this.skeleton, this.handlePlayerEnemyCollision, null, this);
+            this.handleCharacterAnimations(this.skeleton, 'skeleton_Attack', 'skeleton_Walk', this.skeleton && this.player.x > this.skeleton.x - 100 && this.player.x < this.skeleton.x + 100);
+            this.handleCharacterOverlap(this.skeleton, 'skeleton_Death', 20);
+        }
+
+        if (this.dragon !== null) {
+            this.physics.overlap(this.player, this.dragon, this.handlePlayerEnemyCollision, null, this);
+            this.handleCharacterAnimations(this.dragon, 'dragon_attack', 'dragon', this.dragon && this.player.x > this.dragon.x - 100 && this.player.x < this.dragon.x + 100);
+            this.handleCharacterOverlap(this.dragon, 'dragon', 1);
+        }
 
     }
+
 
     nextLevel(scene) {
         if(this.npcCharacters.every(npc => npc === null)) {
             this.time.delayedCall(5000, () => {
-                this.scene.transition({ target: scene, duration: 1000 });
+                this.scene.transition({ target: scene, sleep: true , duration: 1000 });
             });
         }
     }
 
     gameOver(scene) {
         if (this.player.playerHealth <= 0) {
-            this.player.setVelocity(0, 0);
-            this.physics.world.gravity.y = 0;
-            this.cameras.main.fadeOut(3000, 0, 0, 0);
-            this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
-                this.scene.stop(scene);
-                this.scene.start('Menu');
-            });
+            this.scene.transition({ target: scene, duration: 1000 });
         }
     }
 }

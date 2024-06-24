@@ -46,11 +46,11 @@ const Layout = () => {
     }, [windowWidth]);
 
 
-    const PrivateRoute = ({component: Component, ...restOfComponents}) => {
-        const {isAuthenticated} = useContext(AuthContext);
-        console.log('isAuthenticated', isAuthenticated);
-        return isAuthenticated ? <Component {...restOfComponents} /> : <Navigate to='/'/>;
-    }
+    // const PrivateRoute = ({component: Component, ...restOfComponents}) => {
+    //     const {isAuthenticated} = useContext(AuthContext);
+    //     console.log('isAuthenticated', isAuthenticated);
+    //     return isAuthenticated ? <Component {...restOfComponents} /> : <Navigate to='/'/>;
+    // }
 
     return (<BrowserRouter>
         <Navbar isVisible={isVisible} toggleNavbar={toggleNavbar}/>
@@ -65,7 +65,7 @@ const Layout = () => {
                 <Route path='/player-info-human' element={<Human/>}/>
                 <Route path='/player-info-cyborg' element={<Cyborg/>}/>
                 <Route path='/player-info-reptile' element={<Reptile/>}/>
-                <Route path='/user-profile' element={<PrivateRoute component={<User_Profile/>}/>}/>
+                <Route path='/user-profile' element={<User_Profile/>}/>
                 <Route path='/game' element={<PhaserConfig/>}/>
             </Routes>
         </AuthProvider>
