@@ -32,7 +32,7 @@ export class Level2 extends Base_Level {
         this.add.image(CENT_X - OFFSET * 15, CENT_Y - OFFSET * 2, "level2BG").setOrigin(0, 0).setScale(1.87);
 
         this.platforms = new Platforms(this.physics.world, this, null, [
-            {x: 100, y: 600, key: "platform"}, {x: 500, y: 600, key: "platform"},{x: 300, y: 500, key: "block"}
+            {x: 100, y: 500, key: "platform"}, {x: 500, y: 600, key: "platform"},{x: 300, y: 500, key: "block"}
         ]);
         super.createCharacter();
         super.handlePlayerCam(this.player);
@@ -93,7 +93,7 @@ export class Level2 extends Base_Level {
         this.livesText.setScrollFactor(0);
 
         this.input.keyboard.on('keydown-ESC', () => {
-            this.scene.launch('PauseMenu');
+            this.scene.launch('Menu');
             this.scene.pause(this);
         });
 
@@ -102,6 +102,7 @@ export class Level2 extends Base_Level {
 
     update() {
         super.update();
+        super.gameOver('Menu');
 
     }
 }
