@@ -3,6 +3,7 @@ import {Human} from "./Game_Objs/Player/Player_Human.jsx";
 import {Cyborg} from "./Game_Objs/Player/Player_Cyborg.jsx";
 import {Reptile} from "./Game_Objs/Player/Player_Reptile.jsx";
 
+
 export class Base_Level extends Phaser.Scene {
     constructor(key) {
         super({key: key});
@@ -11,6 +12,16 @@ export class Base_Level extends Phaser.Scene {
         this.dragon = null;
         this.currentAnim = null;
         this.playerHealth = 1000;
+    }
+
+
+    create() {
+        this.cursors = this.input.keyboard.createCursorKeys();
+        this.keys = this.input.keyboard.addKeys(['A', 'D']);
+        this.createCharacter();
+        this.handlePlayerCam(this.player);
+        this.player.createAnimations(this);
+        this.boundsCollision(this.player);
     }
 
     boundsCollision(player) {
@@ -39,6 +50,7 @@ export class Base_Level extends Phaser.Scene {
                 break;
         }
     }
+
 
     handleCharacterAnimations(character, animKey, defaultAnimKey, condition) {
         if (character && character.anims) {
@@ -100,28 +112,27 @@ export class Base_Level extends Phaser.Scene {
         this.player.handleAnimations(this.keys, this.cursors);
         this.physics.add.collider(this.player, this.platforms);
 
-        if (this.hans !== null) {
-            this.physics.overlap(this.player, this.hans, this.handlePlayerEnemyCollision, null, this);
-            this.handleCharacterAnimations(this.hans, 'hans_Attack', 'hans_Walk', this.player.x > this.hans.x - 100 && this.player.x < this.hans.x + 100);
-            this.handleCharacterOverlap(this.hans, '', 40);
-        }
+        this.npcCharacters.forEach(npc => {
+            if(npc !== null) {
+                this.physics.overlap(this.player, npc, this.handlePlayerEnemyCollision, null, this);
+                this.handleCharacterAnimations(npc, `${npc.name}_Attack`, `${npc.name}_Walk`, this.player.x > npc.x - 100 && this.player.x < npc.x + 100);
+                this.handleCharacterOverlap(npc, `${npc.name}_Death`, 1);
+            }
+        });
 
-        if (this.skeleton !== null) {
-            this.physics.overlap(this.player, this.skeleton, this.handlePlayerEnemyCollision, null, this);
-            this.handleCharacterAnimations(this.skeleton, 'skeleton_Attack', 'skeleton_Walk', this.skeleton && this.player.x > this.skeleton.x - 100 && this.player.x < this.skeleton.x + 100);
-            this.handleCharacterOverlap(this.skeleton, 'skeleton_Death', 20);
-        }
-
-        if (this.dragon !== null) {
-            this.physics.overlap(this.player, this.dragon, this.handlePlayerEnemyCollision, null, this);
-            this.handleCharacterAnimations(this.dragon, 'dragon_attack', 'dragon', this.dragon && this.player.x > this.dragon.x - 100 && this.player.x < this.dragon.x + 100);
-            this.handleCharacterOverlap(this.dragon, 'dragon', 10);
-        }
 
     }
 
+    nextLevel(scene) {
+        if(this.npcCharacters.every(npc => npc === null)) {
+            this.time.delayedCall(5000, () => {
+                this.scene.transition({ target: scene, duration: 1000 });
+            });
+        }
+    }
+
     gameOver(scene) {
-        if (this.playerHealth <= 0) {
+        if (this.player.playerHealth <= 0) {
             this.player.setVelocity(0, 0);
             this.physics.world.gravity.y = 0;
             this.cameras.main.fadeOut(3000, 0, 0, 0);

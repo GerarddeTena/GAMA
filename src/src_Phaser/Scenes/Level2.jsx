@@ -22,88 +22,88 @@ export class Level2 extends Base_Level {
     }
 
     create() {
-        const centerX = this.cameras.main.centerX;
-        const centerY = this.cameras.main.centerY;
-        const offset = 100;
-
+        const CENT_X = this.cameras.main.centerX;
+        const CENT_Y = this.cameras.main.centerY;
+        const OFFSET = 100;
         const Rand = (n) => Math.floor(Math.random() * n);
-        this.cursors = this.input.keyboard.createCursorKeys();
-        this.keys = this.input.keyboard.addKeys(["A", "D"]);
 
-        this.add
-            .image(centerX - offset * 15, centerY - offset, "background")
-            .setOrigin(0, 0)
-            .setScale(1.87);
+        this.cursors = this.input.keyboard.createCursorKeys();
+        this.keys = this.input.keyboard.addKeys(['A', 'D']);
+        this.add.image(0, 0, 'background').setOrigin(0, 0).setScale(1);
+
+        this.add.image(CENT_X - OFFSET * 15, CENT_Y - OFFSET * 2, "background").setOrigin(0, 0).setScale(1.87);
 
         this.platforms = new Platforms(this.physics.world, this, null, [
-            {x: 100, y: 600, key: "platform"},
-            {x: 300, y: 600, key: "platform"},
+            {x: 100, y: 600, key: "platform"}, {x: 500, y: 600, key: "platform"},{x: 300, y: 500, key: "block"}
         ]);
+        super.createCharacter();
+        super.handlePlayerCam(this.player);
+        this.player.createAnimations(this);
+        super.boundsCollision(this.player);
+
 
 
         const characters = [
             {name: 'hans', class: Hans, x: Rand(1800), y: 500, key: 'hans_Idle', scale: 1.5, pushable: false},
-            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle'},
-            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle'},
-            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle'},
-            {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon'},
-            {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon'},
-            {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon'},
-            {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon'},
-            {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon'}
+            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon', scale: 2, pushable: false},
+            {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon', scale: 2, pushable: false},
+            {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon', scale: 2, pushable: false}
         ];
 
-        let npcCharacters = [];
+        this.npcCharacters = [];
 
         characters.forEach(config => {
-                if (this.scene.isActive()) {
-                    const character = new config.class(config.x, config.y, config.key, 10);
-                    character.hits = 0;
-                    if (config.scale) character.setScale(config.scale);
-                    if (config.pushable !== undefined) character.setPushable(config.pushable);
-                    this.physics.add.collider(character, this.platforms);
+            const character = new config.class(this, config.x, config.y, config.key, 10);
+            character.hits = 0;
+            if (config.scale) character.setScale(config.scale);
+            if (config.pushable !== undefined) character.setPushable(config.pushable);
+            this.physics.add.collider(character, this.platforms);
 
-                    if (config.name === 'hans') {
-                        this.hans = character;
-                    }
-                    if (config.name === 'skeleton') {
-                        this.skeleton = character;
-                    }
-                    if (config.name === 'dragon') {
-                        this.dragon = character;
-                    }
-
-                    npcCharacters.push(character);
-                }
+            if (config.name === 'hans') {
+                this.hans = character;
+            } else if (config.name === 'skeleton') {
+                this.skeleton = character;
+            } else if (config.name === 'dragon') {
+                this.dragon = character;
             }
-        );
-        super.createCharacter();
-        npcCharacters.forEach(npc => {
+
+            this.npcCharacters.push(character);
+        });
+
+        this.npcCharacters.forEach(npc => {
             this.physics.add.collider(this.player, npc);
-            npcCharacters.forEach(otherNpc => {
+            this.npcCharacters.forEach(otherNpc => {
                 if (npc !== otherNpc) {
                     this.physics.add.collider(npc, otherNpc);
                 }
-            })
-        })
-
-        npcCharacters.forEach(npc => {
-            followPlayer.call(this, npc, this.player, 100, `${npc.name}_Walk, ${npc.name}_Idle, ${npc.name}_Jump`);
+            });
         });
 
-        this.handlePlayerCam(this.player);
+        this.npcCharacters.map(npc => {
+            if (npc !== null) {
+                followPlayer.call(this, npc, this.player, 100, `${npc.name}_Walk`, `${npc.name}_Idle`, `${npc.name}_Jump`);
+            }
 
-
-        this.livesText = this.add.text(10, 10, "Health: " + this.player.lives, {
-            fontSize: "32px",
-            fill: "#fff",
         });
+
+        this.livesText = this.add.text(CENT_X, CENT_Y, `Health: ${this.player.playerHealth}`, {font: '32px blockKie'});
+        this.livesText.setTint(0xff0000, 0xff0000, 0x0000ff, 0x0000ff);
+        this.livesText.setPosition(this.player.x, this.player.y - 300);
         this.livesText.setScrollFactor(0);
+
+        this.input.keyboard.on('keydown-ESC', () => {
+            this.scene.launch('PauseMenu');
+            this.scene.pause(this);
+        });
 
 
     }
 
     update() {
         super.update();
+
     }
 }

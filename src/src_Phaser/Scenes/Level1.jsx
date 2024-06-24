@@ -15,7 +15,6 @@ export class Level1 extends Base_Level {
         const loader = new Loader(this);
         const spriteLoad = new LoadSprites(this);
         const sceneAudio = new LoadAudio(this);
-
         loader.loadImage('background', 'background', 'Cathedral_1');
         loader.loadImage('platform', '', 'Platform');
         loader.loadImage('corridor', '', 'Corridor');
@@ -108,12 +107,7 @@ export class Level1 extends Base_Level {
 
     update() {
         super.update();
-
-        if(this.playerHealth <= 0) super.gameOver(this);
-        if(this.hans.hits >= 2 && this.skeleton.hits >= 2 && this.dragon.hits >= 2) {
-            this.time.delayedCall(5000, () => {
-                this.scene.transition({ target: 'Level2', duration: 1000 });
-            });
-        }
+        super.nextLevel('Level2');
+        super.gameOver('Menu');
     }
 }
