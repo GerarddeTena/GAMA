@@ -1,4 +1,4 @@
-//import {getPlayerRequests, deletePlayerRequests, setPlayerRequests} from "./Http_calls/HTTP_Player_Requests.jsx";
+import {getPlayerRequests, deletePlayerRequests, setPlayerRequests} from "./Http_calls/HTTP_Player_Requests.jsx";
 import {logInUserRequests, registerUserRequests} from "./Http_calls/HTTP_User_Requests.jsx";
 
 const stateOfComponents = ({getTheStore, setStore}) => {
@@ -7,6 +7,7 @@ const stateOfComponents = ({getTheStore, setStore}) => {
             users: [
                 {
                     register_user: {
+                        user_id: 0,
                         user_name: '',
                         email: '',
                         password: ''
@@ -18,21 +19,22 @@ const stateOfComponents = ({getTheStore, setStore}) => {
                 }
             ],
 
-            // players: [
-            //
-            //     {
-            //         name: '',
-            //         weight: 0,
-            //         strength: 0,
-            //         speed: 0,
-            //         agility: 0,
-            //         endurance: 0,
-            //         type: ['Human', 'Cyborg', 'Reptile'],
-            //         score: 0,
-            //         level: 0,
-            //     }
-            //
-            // ],
+            players: [
+
+                {
+                    player_id: 0,
+                    name: '',
+                    weight: 0,
+                    strength: 0,
+                    speed: 0,
+                    agility: 0,
+                    endurance: 0,
+                    type: ['Human', 'Cyborg', 'Reptile'],
+                    score: 0,
+                    level: 0,
+                }
+
+            ],
         },
         actions: {
             // USER DISPATCHER:
@@ -68,20 +70,20 @@ const stateOfComponents = ({getTheStore, setStore}) => {
 
             //PLAYER DISPATCHER:
 
-            // getPlayersDispatcher: async () => {
-            //     const players = await getPlayerRequests();
-            //     const store = getTheStore();
-            //     setStore({...store, players: players});
-            // },
-            // setPlayersDispatcher: async (playerData) => {
-            //     await setPlayerRequests(playerData);
-            // },
-            // deletePlayersDispatcher: async (id) => {
-            //     await deletePlayerRequests(id);
-            //     const store = getTheStore();
-            //     const players = store.players.filter(player => player.id !== id);
-            //     setStore({...store, players: players});
-            // }
+            getPlayersDispatcher: async () => {
+                const players = await getPlayerRequests();
+                const store = getTheStore();
+                setStore({...store, players: players});
+            },
+            setPlayersDispatcher: async (playerData) => {
+                await setPlayerRequests(playerData);
+            },
+            deletePlayersDispatcher: async (id) => {
+                await deletePlayerRequests(id);
+                const store = getTheStore();
+                const players = store.players.filter(player => player.id !== id);
+                setStore({...store, players: players});
+            }
         }
     }
 }

@@ -1,7 +1,8 @@
 import { createContext, useState, useEffect } from 'react';
-
+const serverURL = import.meta.env.VITE_APP_CODESPACE_NAME !== 'undefined' ? `https://${import.meta.env.VITE_APP_CODESPACE_NAME}-3001.app.github.dev/api` : 'http://127.0.0.1:3001/api';
 export const AuthContext = createContext({
     isAuthenticated: false,
+    logOut: () => {},
     validToken: () => {},
 });
 
@@ -11,8 +12,7 @@ export const AuthProvider = ({ children }) => {
     const validToken = async () => {
         try {
             const token = localStorage.getItem('token');
-            console.log(token);
-            const response = await fetch(`${import.meta.env.VITE_VALIDATE_TOKEN_URL}`, {
+            const response = await fetch(`${serverURL}/validate-token`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -22,24 +22,23 @@ export const AuthProvider = ({ children }) => {
             if (response.ok) {
                 setIsAuthenticated(true);
             } else {
-                // localStorage.removeItem('token');
                 setIsAuthenticated(false);
             }
         } catch (error) {
             console.error({'Error validating token': error});
-            // localStorage.removeItem('token');
             setIsAuthenticated(false);
         }
     };
 
+    const logOut = () => setIsAuthenticated(false)
+
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (token) {
-            validToken();
-        }
-    }, []);
+        token ? validToken() : logOut();
+
+    }, [isAuthenticated]);
     return (
-        <AuthContext.Provider value={{ isAuthenticated, validToken }}>
+        <AuthContext.Provider value={{ isAuthenticated, logOut, validToken }}>
             {children}
         </AuthContext.Provider>
     );

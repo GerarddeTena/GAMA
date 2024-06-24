@@ -8,7 +8,7 @@ import Human from "./src/views/Customization&Players/Human.jsx";
 import Cyborg from "./src/views/Customization&Players/Cyborg.jsx";
 import Reptile from "./src/views/Customization&Players/Reptile.jsx";
 import Signup from "./src/views/SignUp&LogIn_Profile/SignUp.jsx";
-import InjectContext from "./src/store/GENERAL_CONTEXT/AppContext.jsx";
+import InjectContext from './src/store/GENERAL_CONTEXT/AppContext.jsx';
 import SignIn from "./src/views/SignUp&LogIn_Profile/SignIn.jsx";
 import User_Profile from "./src/views/SignUp&LogIn_Profile/User_Profile.jsx";
 import PhaserConfig from "./src/src_Phaser/GameConfig/PhaserConfig.jsx";
@@ -16,8 +16,7 @@ import {AuthContext, AuthProvider} from "./src/store/GENERAL_CONTEXT/AuthContext
 
 // eslint-disable-next-line react-refresh/only-export-components
 const Layout = () => {
-
-    const [isVisible, setIsVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const toggleNavbar = () => {
@@ -46,14 +45,13 @@ const Layout = () => {
     }, [windowWidth]);
 
 
-    // const PrivateRoute = ({component: Component, ...restOfComponents}) => {
-    //     const {isAuthenticated} = useContext(AuthContext);
-    //     console.log('isAuthenticated', isAuthenticated);
-    //     return isAuthenticated ? <Component {...restOfComponents} /> : <Navigate to='/'/>;
-    // }
+    const PrivateRoute = ({component: Component, ...restOfComponents}) => {
+        const {isAuthenticated} = useContext(AuthContext);
+        return isAuthenticated ? <Component {...restOfComponents} /> : <Navigate to='/'/>;
+    }
 
     return (<BrowserRouter>
-        <Navbar isVisible={isVisible} toggleNavbar={toggleNavbar}/>
+        <Navbar toggleNavbar={toggleNavbar} isVisible={isVisible} />
         <AuthProvider>
             <Routes>
 
@@ -61,12 +59,12 @@ const Layout = () => {
                 <Route path='/about-us' element={<AboutUs/>}/>
                 <Route path='/sign-up' element={<Signup/>}/>
                 <Route path='/sign-in' element={<SignIn/>}/>
-                <Route path='/player-lab-create' element={<PlayerLab/>}/>
-                <Route path='/player-info-human' element={<Human/>}/>
-                <Route path='/player-info-cyborg' element={<Cyborg/>}/>
-                <Route path='/player-info-reptile' element={<Reptile/>}/>
-                <Route path='/user-profile' element={<User_Profile/>}/>
-                <Route path='/game' element={<PhaserConfig/>}/>
+                {/*<Route path='/player-lab-create' element={<PrivateRoute component={PlayerLab}/>}/>*/}
+                <Route path='/player-info-human' element={<PrivateRoute component={Human} />}/>
+                <Route path='/player-info-cyborg' element={<PrivateRoute component={Cyborg} />}/>
+                <Route path='/player-info-reptile' element={<PrivateRoute component={Reptile} />}/>
+                <Route path='/user-profile' element={<PrivateRoute component={User_Profile} />}/>
+                <Route path='/game' element={<PrivateRoute component={PhaserConfig}/>}/>
             </Routes>
         </AuthProvider>
     </BrowserRouter>)

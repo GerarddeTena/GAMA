@@ -13,9 +13,8 @@ export const registerUserRequests = async (userData) => {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = await response.json();
-    console.log('Response:', data);
-    return data;
+    return await response.json();
+
 }
 
 export const logInUserRequests = async (userData) => {
@@ -29,7 +28,19 @@ export const logInUserRequests = async (userData) => {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const data = await response.json();
-    console.log('Response:', data);
-    return data;
+    return await response.json();
+
+}
+export const getUsers = async () => {
+    const response = await fetch(`${serverURL}/user`, {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+
 }

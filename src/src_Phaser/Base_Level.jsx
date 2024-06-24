@@ -2,7 +2,7 @@ import Phaser from 'phaser'
 import {Human} from "./Game_Objs/Player/Player_Human.jsx";
 import {Cyborg} from "./Game_Objs/Player/Player_Cyborg.jsx";
 import {Reptile} from "./Game_Objs/Player/Player_Reptile.jsx";
-import {Loader} from "./Game_Objs/Loader.jsx";
+
 
 
 export class Base_Level extends Phaser.Scene {
