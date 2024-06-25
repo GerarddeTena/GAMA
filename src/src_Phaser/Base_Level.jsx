@@ -4,7 +4,6 @@ import {Cyborg} from "./Game_Objs/Player/Player_Cyborg.jsx";
 import {Reptile} from "./Game_Objs/Player/Player_Reptile.jsx";
 
 
-
 export class Base_Level extends Phaser.Scene {
     constructor(key) {
         super({key: key});
@@ -17,13 +16,22 @@ export class Base_Level extends Phaser.Scene {
     }
 
     create() {
+
+        this.score = this.registry.get('score') || 0;
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keys = this.input.keyboard.addKeys(['A', 'D']);
         this.createCharacter();
         this.handlePlayerCam(this.player);
         this.player.createAnimations(this);
         this.boundsCollision(this.player);
+        this.events.on('characterDestroyed', () => {
+            this.score += 50;
+            this.registry.set('score', this.score);
+            this.scoreText.setText('Score: ' + this.score);
+            localStorage.setItem('score', this.score);
+        });
     }
+
 
     boundsCollision(player) {
         player.setCollideWorldBounds(true);
@@ -52,7 +60,6 @@ export class Base_Level extends Phaser.Scene {
         }
     }
 
-
     handleCharacterAnimations(character, animKey, defaultAnimKey, condition) {
         if (character && character.anims) {
             if (condition) {
@@ -67,15 +74,6 @@ export class Base_Level extends Phaser.Scene {
         }
     }
 
-    scoreManagement(character) {
-       if(this.scene.isActive()) {
-           const enemiesDefeated = character === null
-           if(enemiesDefeated) {
-               this.player.score = (this.player.score || 0) + 50;
-           }
-       }
-
-    }
 
     handleCharacterOverlap(character, animKey, maxHits) {
         if (character && this.physics.overlap(this.player, character)) {
@@ -88,13 +86,12 @@ export class Base_Level extends Phaser.Scene {
                     character.hits = (character.hits || 0) + 1;
                     if (character.hits >= maxHits) {
                         character.anims.play(animKey, true);
-                        this.time.delayedCall(1000, () => {
-                            if (character) {
-                                character.destroy();
-                                this.npcCharacters = this.npcCharacters.filter(npc => npc !== character);
-                                character = null;
-                            }
-                        });
+                        if (character) {
+                            character.destroy();
+                            this.npcCharacters = this.npcCharacters.filter(npc => npc !== character);
+                            this.events.emit('characterDestroyed');
+                            character = null;
+                        }
                     }
                 }
             } else {
@@ -102,7 +99,6 @@ export class Base_Level extends Phaser.Scene {
             }
         }
     }
-
 
     handlePlayerEnemyCollision(player, enemy) {
         if (player.y < enemy.y) {
@@ -118,35 +114,24 @@ export class Base_Level extends Phaser.Scene {
         }
     }
 
+
     update() {
+
         this.player.handleAnimations(this.keys, this.cursors);
         this.physics.add.collider(this.player, this.platforms);
 
-        if (this.hans !== null) {
-            this.physics.overlap(this.player, this.hans, this.handlePlayerEnemyCollision, null, this);
-            this.handleCharacterAnimations(this.hans, 'hans_Attack', 'hans_Walk', this.player.x > this.hans.x - 100 && this.player.x < this.hans.x + 100);
-            this.handleCharacterOverlap(this.hans, '', 1);
-        }
-
-        if (this.skeleton !== null) {
-            this.physics.overlap(this.player, this.skeleton, this.handlePlayerEnemyCollision, null, this);
-            this.handleCharacterAnimations(this.skeleton, 'skeleton_Attack', 'skeleton_Walk', this.skeleton && this.player.x > this.skeleton.x - 100 && this.player.x < this.skeleton.x + 100);
-            this.handleCharacterOverlap(this.skeleton, 'skeleton_Death', 20);
-        }
-
-        if (this.dragon !== null) {
-            this.physics.overlap(this.player, this.dragon, this.handlePlayerEnemyCollision, null, this);
-            this.handleCharacterAnimations(this.dragon, 'dragon_attack', 'dragon', this.dragon && this.player.x > this.dragon.x - 100 && this.player.x < this.dragon.x + 100);
-            this.handleCharacterOverlap(this.dragon, 'dragon', 1);
-        }
+        this.characterMap.forEach((animKeys, character) => {
+            this.physics.overlap(this.player, character, this.handlePlayerEnemyCollision, null, this);
+            this.handleCharacterAnimations(character, animKeys.attackAnim, animKeys.walkAnim, character && this.player.x > character.x - 100 && this.player.x < character.x + 100);
+            this.handleCharacterOverlap(character, animKeys.deathAnim, 1);
+        });
 
     }
 
-
     nextLevel(scene) {
         if (this.npcCharacters.every(npc => npc === null)) {
-            this.time.delayedCall(5000, () => {
-                this.scene.transition({target: scene, sleep: true, duration: 1000});
+            this.time.delayedCall(3000, () => {
+                this.scene.transition({target: scene, sleep: false, duration: 1000});
             });
         }
     }
@@ -157,5 +142,7 @@ export class Base_Level extends Phaser.Scene {
             this.scene.transition({target: scene, duration: 1000});
         }
     }
+
+
 }
 

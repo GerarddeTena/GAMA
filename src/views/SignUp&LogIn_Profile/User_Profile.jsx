@@ -6,6 +6,7 @@ import '../../styles/views_Styles/Stathic/User_Profile.scss';
 const UserProfile = () => {
     const [userNameStore] = useUser('username', 'defaultUserName');
     const [userEmailStore] = useUser('email', 'defaultEmail');
+    const [userScore] = useUser('score', 'defaultScore')
     const [isEditing, setIsEditing] = useState(false);
 
     const [user, setUser] = useState({});
@@ -47,7 +48,7 @@ const UserProfile = () => {
 
                 <div className="User_Stats">
                     <p>Nivel: {user.level}</p>
-                    <p>Puntos: {user.points}</p>
+                    <p>Score: {userScore}</p>
                 </div>
             </section>
             <button onClick={handleEditClick}>Edit profile</button>

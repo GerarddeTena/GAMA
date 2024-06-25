@@ -46,7 +46,6 @@ export class Level1 extends Base_Level {
         ]);
 
         super.create();
-
         // Load NPCS:
 
         const characters = [
@@ -56,6 +55,7 @@ export class Level1 extends Base_Level {
         ];
 
         this.npcCharacters = [];
+        this.characterMap = new Map();
 
         characters.forEach(config => {
             const character = new config.class(this, config.x, config.y, config.key, 10);
@@ -72,8 +72,14 @@ export class Level1 extends Base_Level {
                 this.dragon = character;
             }
 
+            this.characterMap.set(character, {
+                attackAnim: `${config.name}_Attack`,
+                walkAnim: `${config.name}_Walk`,
+                deathAnim: `${config.name}_Death`
+            });
             this.npcCharacters.push(character);
         });
+
 
         this.npcCharacters.forEach(npc => {
             this.physics.add.collider(this.player, npc);
@@ -96,17 +102,22 @@ export class Level1 extends Base_Level {
         this.livesText.setPosition(this.player.x, this.player.y - 300);
         this.livesText.setScrollFactor(0);
 
+        this.scoreText = this.add.text(CENT_X, CENT_Y - 100, 'score: 0', {fontSize: '32px blockKie'});
+        this.scoreText.setTint(0xff00ff, 0xff00ff, 0x0000ff, 0x0000ff);
+        this.scoreText.setPosition(this.player.x, this.player.y - 400);
+        this.scoreText.setScrollFactor(0);
+
         this.input.keyboard.on('keydown-ESC', () => {
             this.scene.launch('PauseMenu');
             this.scene.pause(this);
         });
+
     }
 
     update() {
         super.update();
-        super.scoreManagement(this.npcCharacters, this);
-        console.log(this.score);
         super.nextLevel('Level2');
         super.gameOver('Menu');
+
     }
 }
