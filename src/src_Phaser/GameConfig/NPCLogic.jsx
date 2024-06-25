@@ -1,24 +1,37 @@
-export function NPCLogic (game, sprite, walk, idle, wTime, iTime) {
-    sprite.anims.play(walk);
-    sprite.setVelocity(50);
-    sprite.setFlipX(false);
+export function followPlayer(sprite, player, velocity, walkAnim, idleAnim, jumpAnim) {
+    if (sprite !== null) {
+        sprite.setCollideWorldBounds(true);
+        sprite.setBounce(0.2, 0);
+    }
 
-    game.time.addEvent({
-        delay: wTime,
-        callback: () => {
-            sprite.anims.play(idle);
-            sprite.setVelocity(0);
-        },
-        loop: false
-    });
 
-    game.time.addEvent({
-        delay: wTime + iTime,
+    this.time.addEvent({
+        delay: 1500,
         callback: () => {
-            sprite.anims.play(walk);
-            sprite.setVelocity(-50);
-            sprite.setFlipX(true);
+
+            if (sprite && sprite.body && player.y < sprite.y - 100 && player.x < sprite.x + 100 && sprite.body.blocked.down && sprite.currentAnim !== jumpAnim) {
+                sprite.body.setVelocityY(-500);
+                sprite.body.setVelocityX(player.x < sprite.x ? -velocity : velocity);
+                sprite.anims.play(jumpAnim, true);
+                sprite.setFlipX(sprite.x < player.x);
+            }
+            else if (sprite && sprite.body && player.x > sprite.x) {
+                sprite.body.setVelocityX(velocity);
+                sprite.setFlipX(false);
+                sprite.anims.play(walkAnim);
+            }
+            else if (sprite && sprite.body && player.x < sprite.x) {
+                sprite.body.setVelocityX(-velocity);
+                sprite.setFlipX(true);
+                sprite.anims.play(walkAnim);
+            }
+            else if (sprite && sprite.body) {
+                sprite.body.setVelocityX(0);
+                sprite.anims.play(idleAnim);
+            }
+
+
         },
-        loop: false
+        loop: true,
     });
 }

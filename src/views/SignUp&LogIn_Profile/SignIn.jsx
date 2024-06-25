@@ -1,14 +1,15 @@
-import {useContext, useState} from "react";
-import {Context} from "../../store/AppContext.jsx";
+import {useContext, useEffect, useState} from "react";
+import {Context} from "../../store/GENERAL_CONTEXT/AppContext.jsx";
 import '../../styles/views_Styles/SignIn.scss';
+import {AuthContext} from "../../store/GENERAL_CONTEXT/AuthContext.jsx";
 
 const SignIn = () => {
 
+    const {validToken} = useContext(AuthContext);
     const {actions} = useContext(Context);
     const [password, setPassword] = useState('');
     const [email, setMail] = useState('');
     const [error, setError] = useState(null);
-
 
     const checkUser = async (e) => {
 
@@ -21,7 +22,8 @@ const SignIn = () => {
         try {
             console.log(userData);
             const response = await actions.loginUserDispatcher(userData);
-            if (response && response.token) {
+            console.log(response);
+            if (response.token) {
                 localStorage.setItem('token', response.token);
                 setError(null);
             } else {
@@ -31,10 +33,13 @@ const SignIn = () => {
         } catch (error) {
             setError('An error occurred while logging in');
             console.error('Error logging in user:', error);
-
         }
-
     };
+
+    useEffect(() => {
+        validToken();
+    }, []);
+
 
     return (
         <>
@@ -43,7 +48,6 @@ const SignIn = () => {
                 <form className='Body_Form_SI'>
                     <div className="Label_Div">
                         <label>E-MAIL: </label>
-                        <input type="email" value={email} onChange={(e) => setMail(e.target.value)}/>
                         <input type="email" value={email} onChange={(e) => setMail(e.target.value)}/>
                     </div>
 

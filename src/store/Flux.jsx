@@ -7,6 +7,7 @@ const stateOfComponents = ({getTheStore, setStore}) => {
             users: [
                 {
                     register_user: {
+                        user_id: 0,
                         user_name: '',
                         email: '',
                         password: ''
@@ -21,13 +22,16 @@ const stateOfComponents = ({getTheStore, setStore}) => {
             players: [
 
                 {
+                    player_id: 0,
                     name: '',
                     weight: 0,
                     strength: 0,
                     speed: 0,
                     agility: 0,
                     endurance: 0,
-                    type: ['Human', 'Cyborg', 'Reptile']
+                    type: ['Human', 'Cyborg', 'Reptile'],
+                    score: 0,
+                    level: 0,
                 }
 
             ],
@@ -56,11 +60,11 @@ const stateOfComponents = ({getTheStore, setStore}) => {
                     const token = response.token;
                     if (!token) console.error('Login Failed');
                     localStorage.setItem('token', token);
-                    return token;
+                    return response;
 
                 } catch(error) {
                     console.error({'Error logging in user': error});
-
+                    return null;
                 }
             },
 
@@ -79,7 +83,7 @@ const stateOfComponents = ({getTheStore, setStore}) => {
                 const store = getTheStore();
                 const players = store.players.filter(player => player.id !== id);
                 setStore({...store, players: players});
-            },
+            }
         }
     }
 }

@@ -15,8 +15,8 @@ ul {
   @include displayFlex(column, center, center);
   position: $rel;
   border-radius: .25rem;
-  min-width: calc(100vw);
-  min-height: calc(100vh);
+  min-width: 100vw;
+  min-height: 150vh;
   background-image: url("src/Images/Lab_Background.gif");
   background-size: cover;
   padding: .5rem;

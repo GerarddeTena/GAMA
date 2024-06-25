@@ -1,8 +1,20 @@
 import "../styles/components_Styles/Navbar.scss";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+import {AuthContext} from "../store/GENERAL_CONTEXT/AuthContext.jsx";
+import {useContext, useState} from "react";
 
 const Navbar = ({isVisible, toggleNavbar}) => {
+    const {isAuthenticated, logOut} = useContext(AuthContext);
+    const [isLoggedOut, setIsLoggedOut] = useState(true);
+    const handleLogout = () => {
+        if (isAuthenticated) {
+            setIsLoggedOut(true);
+            localStorage.removeItem('token');
+            logOut();
+        }
+        setIsLoggedOut(false);
+    };
 
     const NavBarComponents = [
         {
@@ -50,9 +62,11 @@ const Navbar = ({isVisible, toggleNavbar}) => {
                     <ul {...ul}>
                         <Link to={'/'} className='link'>Home</Link>
                         <Link to={'/about-us'} className='link'>About</Link>
-                        <Link to={'/player-lab-create'} className='link'>Players Lab</Link>
+                        {/*<Link to={'/player-lab-create'} className='link'>Players Lab</Link>*/}
                         <Link to={'/user-profile'} className='link'>User Profile</Link>
                         <Link to={'/game'} className='link'>Game</Link>
+                        <Link to={'/sign-in'} className='link'>Sign In</Link>
+                        {isLoggedOut && <Link to={'/'} className='link' onClick={handleLogout}>Log Out</Link>}
                     </ul>
                 </div>}
         </nav>
