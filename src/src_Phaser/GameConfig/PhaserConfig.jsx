@@ -10,7 +10,7 @@ import {Level1} from "../Scenes/Level1.jsx";
 const PhaserConfig = () => {
   useEffect(() => {
     const config = {
-      type: Phaser.WEBGL,
+      type: Phaser.AUTO,
       width: window.innerWidth,
       height: window.innerHeight,
       physics: {

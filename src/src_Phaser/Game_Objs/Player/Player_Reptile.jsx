@@ -9,6 +9,7 @@ export class Reptile extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
     this.playerHealth = 1000;
+    this.score = 0;
     this.currentAnim = null;
   }
 
