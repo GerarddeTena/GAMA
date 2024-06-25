@@ -67,16 +67,14 @@ export class Base_Level extends Phaser.Scene {
         }
     }
 
-    scoreManagement() {
-        const updateScore = () => {
-            this.score += 50;
-        }
-        this.time.addEvent({
-            delay: 1000,
-            callback: updateScore,
-            callbackScope: this,
-            loop: true
-        });
+    scoreManagement(character) {
+       if(this.scene.isActive()) {
+           const enemiesDefeated = character === null
+           if(enemiesDefeated) {
+               this.player.score = (this.player.score || 0) + 50;
+           }
+       }
+
     }
 
     handleCharacterOverlap(character, animKey, maxHits) {

@@ -2,7 +2,6 @@ import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {useState, useEffect, useContext} from "react";
 import ProjectSlogan from "./src/views/ProjectEslogan.jsx";
 import AboutUs from "./src/views/AboutUs.jsx";
-import {PlayerLab} from "./src/views/Customization&Players/PlayerLab.jsx";
 import Navbar from "./src/components/Navbar.jsx";
 import Human from "./src/views/Customization&Players/Human.jsx";
 import Cyborg from "./src/views/Customization&Players/Cyborg.jsx";

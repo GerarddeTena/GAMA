@@ -13,6 +13,7 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
         this.body.setGravityY(300);
         this.playerHealth = 1000;
         this.currentAnim = null;
+        this.score = 0;
     }
 
     createAnimations(scene) {
