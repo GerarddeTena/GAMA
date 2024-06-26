@@ -1,0 +1,8 @@
+@import '../global.variables';
+
+.Profile {
+  @include displayFlex(column, $cent, $cent);
+  min-width: 50vw;
+  min-height: 50vh;
+  padding: 0.5rem;
+}

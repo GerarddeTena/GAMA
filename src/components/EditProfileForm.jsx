@@ -1,10 +1,16 @@
 import { useState } from 'react';
+import ProfileImage from "./ProfileImage.jsx";
+import '../styles/components_Styles/EditProfileForm.scss';
 
 const EditProfileForm = ({ user, onSave }) => {
     const [formData, setFormData] = useState(user);
 
-    const handleChange = () => {
-        setFormData({ ...formData });
+    const handleImageUpload = (imageUrl) => {
+        setFormData({ ...formData, profilePic: imageUrl });
+    };
+
+    const handleChange = (event) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value });
     };
 
     const handleSubmit = (e) => {
@@ -13,7 +19,9 @@ const EditProfileForm = ({ user, onSave }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='Profile' onSubmit={handleSubmit}>
+            <label>Foto perfil:</label>
+            <ProfileImage onImageUpload={handleImageUpload} />
             <label>
                 Biografía:
                 <textarea name="bio" value={formData.bio} onChange={handleChange}></textarea>

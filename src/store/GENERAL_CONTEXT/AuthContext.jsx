@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
         const token = localStorage.getItem('token');
         token ? validToken() : logOut();
 
-    }, [isAuthenticated]);
+    }, []);
     return (
         <AuthContext.Provider value={{ isAuthenticated, logOut, validToken }}>
             {children}

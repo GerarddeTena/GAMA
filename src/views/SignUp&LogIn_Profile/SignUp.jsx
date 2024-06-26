@@ -1,14 +1,18 @@
 import {useContext, useState} from "react";
 import '../../styles/views_Styles/Signup.scss';
 import {Context} from "../../store/GENERAL_CONTEXT/AppContext.jsx";
+import {AuthContext} from "../../store/GENERAL_CONTEXT/AuthContext.jsx";
+import {useNavigate} from "react-router";
 
 const Signup = () => {
+    const {validToken} = useContext(AuthContext);
+
     const { actions } = useContext(Context)
     const [user_name, setUser_Name] = useState('');
     const [password, setPassword] = useState('');
     const [email, setMail] = useState('');
     const [error, setError] = useState('');
-
+    const Navigate = useNavigate()
     const submitUser = async (e) => {
         e.preventDefault();
     const userData = {
@@ -24,6 +28,10 @@ const Signup = () => {
             setError('REGISTRATION SUCCESFUL');
             localStorage.setItem(`username`, `${user_name}`);
             localStorage.setItem(`email`, `${email}`);
+            localStorage.setItem('token', result.token);
+            validToken();
+            Navigate('/user-profile');
+
         } else {
             setError('Registration failed');
             console.error('Registration failed:', result);

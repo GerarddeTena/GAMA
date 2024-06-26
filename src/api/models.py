@@ -21,6 +21,13 @@ class User(db.Model):
             "email": self.email
         }
 
+    def to_dict(self):
+        return {
+            'user_id': self.user_id,
+            'email': self.email,
+            'user_name': self.user_name,
+        }
+
 
 class Player(db.Model):
     __tablename__ = 'player'

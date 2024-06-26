@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import {Context} from "../../store/GENERAL_CONTEXT/AppContext.jsx";
 import '../../styles/views_Styles/SignIn.scss';
 import {AuthContext} from "../../store/GENERAL_CONTEXT/AuthContext.jsx";
@@ -25,7 +25,10 @@ const SignIn = () => {
             console.log(response);
             if (response.token) {
                 localStorage.setItem('token', response.token);
+                localStorage.getItem('username');
+                localStorage.getItem('email')
                 setError(null);
+                validToken();
             } else {
                 setError('Login failed: Invalid email or password');
             }
@@ -35,11 +38,6 @@ const SignIn = () => {
             console.error('Error logging in user:', error);
         }
     };
-
-    useEffect(() => {
-        validToken();
-    }, []);
-
 
     return (
         <>

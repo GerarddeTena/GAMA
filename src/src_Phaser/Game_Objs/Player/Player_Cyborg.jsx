@@ -10,7 +10,7 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this);
         this.playerHealth = 1000;
         this.currentAnim = null;
-        this.score = 0;
+
 
     }
     createAnimations(scene) {

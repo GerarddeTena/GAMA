@@ -21,6 +21,7 @@ typing-extensions = "*"
 flask-jwt-extended = "*"
 pymysql = "*"
 mysqlclient = "*"
+google-auth = "*"
 
 [requires]
 python_version = "3.12.3"
