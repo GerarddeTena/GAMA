@@ -33,7 +33,7 @@ const ProfileImage = ({onImageUpload}) => {
             {loading ? (
                 <h3>Cargando...</h3>
             ) : (
-                <img src={imageUrl} alt="Perfil de Personaje" style={{ width: '300px' }} />
+                <img src={imageUrl} alt="Perfil de Personaje" style={{ width: '50px', height: '50px', borderRadius: '.25rem'}} />
             )}
         </div>
     );

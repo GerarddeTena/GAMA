@@ -78,20 +78,22 @@ def create_user():  # FUNCIONA
 
 
 @api.route('/user', methods=['GET'])
-def get_user():  # OK!
+def get_user():
     try:
         user_id = request.args.get('user_id')
-        user = User.query.get(user_id)
-        if user is None:
-            return jsonify({'message': 'User not found'}), 404
-        if user:
-            return jsonify({
-                'user_id': user.user_id,
-                'email': user.email,
-                'user_name': user.user_name
-            }), 200
+        if user_id:
+            user = User.query.get(user_id)
+            if user is None:
+                return jsonify({'message': 'User not found'}), 404
+            else:
+                return jsonify({
+                    'user_id': user.user_id,
+                    'email': user.email,
+                    'user_name': user.user_name
+                }), 200
         else:
-            return User.query.all()
+            users = User.query.all()
+            return jsonify([user.to_dict() for user in users]), 200
 
     except APIException as e:
         return jsonify({'message': 'Error getting user: ', 'error': str(e)}), 500

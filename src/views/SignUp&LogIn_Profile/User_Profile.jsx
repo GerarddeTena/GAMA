@@ -4,18 +4,15 @@ import EditProfileForm from "../../components/EditProfileForm.jsx";
 import '../../styles/views_Styles/Stathic/User_Profile.scss';
 
 const UserProfile = () => {
-    const [userNameStore] = useUser('username', 'userName');
+    const [userNameStore] = useUser('username', 'defaultUserName');
     const [userEmailStore] = useUser('email', 'defaultEmail');
     const [userScore] = useUser('score', 'defaultScore')
     const [isEditing, setIsEditing] = useState(false);
 
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState({});
+
     useEffect(() => {
         const userState = {
-            profilePic: '',
-            name: `${userNameStore}`,
-            mail: `${userEmailStore}`,
-            score: `${userScore}`,
             bio: 'I am a user',
             level: 1,
             points: 0,
@@ -39,11 +36,11 @@ const UserProfile = () => {
 
     return (
         <main className="Profile_Container">
-            {/*<img className="profile-pic" src="https://i.imgur.com/0rX1WmD.png" alt="Avatar de prueba"/>*/}
+            <img className="profile-pic" src={user.profilePic} alt="Avatar de prueba"/>
             <section className='Profile_Body'>
                 <div className='User_Creds'>
-                    <h2>{user.name}</h2>
-                    <p>{user.mail}</p>
+                    <h2>{userNameStore}</h2>
+                    <p>{userEmailStore}</p>
                 </div>
                 <div className='User_Bio'>
                     <p>{user.bio}</p>
@@ -51,11 +48,10 @@ const UserProfile = () => {
 
                 <div className="User_Stats">
                     <p>Nivel: {user.level}</p>
-                    <p>Score: {user.score}</p>
+                    <p>Score: {userScore}</p>
                 </div>
-                <button onClick={handleEditClick}>Edit profile</button>
             </section>
-
+            <button onClick={handleEditClick}>Edit profile</button>
         </main>
     );
 };

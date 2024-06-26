@@ -1,7 +1,6 @@
 import {getPlayerRequests, deletePlayerRequests, setPlayerRequests} from "./Http_calls/HTTP_Player_Requests.jsx";
 import {logInUserRequests, registerUserRequests} from "./Http_calls/HTTP_User_Requests.jsx";
 
-
 const stateOfComponents = ({getTheStore, setStore}) => {
     return {
         store: {
@@ -40,7 +39,6 @@ const stateOfComponents = ({getTheStore, setStore}) => {
         actions: {
             // USER DISPATCHER:
 
-
             registerUserDispatcher: async (userData) => {
                 try {
                     const newUser = await registerUserRequests(userData);
@@ -62,7 +60,6 @@ const stateOfComponents = ({getTheStore, setStore}) => {
                     const token = response.token;
                     if (!token) console.error('Login Failed');
                     localStorage.setItem('token', token);
-                    localStorage.setItem('username', userData);
                     return response;
 
                 } catch(error) {

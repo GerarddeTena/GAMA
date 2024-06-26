@@ -26,12 +26,7 @@ export class Level1 extends Base_Level {
     }
 
     create() {
-        let audioMenu = this.sound.get('MenuAudio')
-        if(audioMenu) {
-            audioMenu.stop()
-        }
-        const audiolvl1 = this.sound.add('audioBoss1')
-        audiolvl1.play({volume: 0.01})
+
         const CENT_X = this.cameras.main.centerX;
         const CENT_Y = this.cameras.main.centerY;
         const Rand = (n) => Math.floor(Math.random() * n);
