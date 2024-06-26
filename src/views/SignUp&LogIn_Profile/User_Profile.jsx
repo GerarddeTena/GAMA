@@ -36,9 +36,10 @@ const UserProfile = () => {
         return <EditProfileForm user={user} onSave={handleSave}/>;
     }
 
+
     return (
         <main className="Profile_Container">
-            <img className="profile-pic" src={user.profilePic} alt="Avatar de prueba"/>
+            {/*<img className="profile-pic" src="https://i.imgur.com/0rX1WmD.png" alt="Avatar de prueba"/>*/}
             <section className='Profile_Body'>
                 <div className='User_Creds'>
                     <h2>{user.name}</h2>
