@@ -11,6 +11,7 @@ export class Level2 extends Base_Level {
     constructor() {
         super('Level2');
     }
+
     preload() {
         const loader = new Loader(this);
         const spriteLoad = new LoadSprites(this);
@@ -26,19 +27,12 @@ export class Level2 extends Base_Level {
         const CENT_Y = this.cameras.main.centerY;
         const OFFSET = 100;
         const Rand = (n) => Math.floor(Math.random() * n);
-
-        this.cursors = this.input.keyboard.createCursorKeys();
-        this.keys = this.input.keyboard.addKeys(['A', 'D']);
         this.add.image(CENT_X - OFFSET * 15, CENT_Y - OFFSET * 2, "level2BG").setOrigin(0, 0).setScale(1.87);
 
         this.platforms = new Platforms(this.physics.world, this, null, [
-            {x: 100, y: 500, key: "platform"}, {x: 500, y: 600, key: "platform"},{x: 300, y: 500, key: "block"}
+            {x: 100, y: 600, key: "platform"}, {x: 500, y: 600, key: "platform"}, {x: 300, y: 500, key: "block"}
         ]);
-        super.createCharacter();
-        super.handlePlayerCam(this.player);
-        this.player.createAnimations(this);
-        super.boundsCollision(this.player);
-
+        super.create();
 
 
         const characters = [
@@ -51,7 +45,9 @@ export class Level2 extends Base_Level {
             {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon', scale: 2, pushable: false}
         ];
 
+
         this.npcCharacters = [];
+        this.characterMap = new Map();
 
         characters.forEach(config => {
             const character = new config.class(this, config.x, config.y, config.key, 10);
@@ -68,6 +64,11 @@ export class Level2 extends Base_Level {
                 this.dragon = character;
             }
 
+            this.characterMap.set(character, {
+                attackAnim: `${config.name}_Attack`,
+                walkAnim: `${config.name}_Walk`,
+                deathAnim: `${config.name}_Death`
+            });
             this.npcCharacters.push(character);
         });
 
@@ -80,7 +81,7 @@ export class Level2 extends Base_Level {
             });
         });
 
-        this.npcCharacters.map(npc => {
+        this.npcCharacters.forEach(npc => {
             if (npc !== null) {
                 followPlayer.call(this, npc, this.player, 100, `${npc.name}_Walk`, `${npc.name}_Idle`, `${npc.name}_Jump`);
             }
@@ -92,11 +93,15 @@ export class Level2 extends Base_Level {
         this.livesText.setPosition(this.player.x, this.player.y - 300);
         this.livesText.setScrollFactor(0);
 
+        this.scoreText = this.add.text(CENT_X, CENT_Y - 100, 'score: 0', {fontSize: '32px blockKie'});
+        this.scoreText.setTint(0xff00ff, 0xff00ff, 0x0000ff, 0x0000ff);
+        this.scoreText.setPosition(this.player.x, this.player.y - 400);
+        this.scoreText.setScrollFactor(0);
+
         this.input.keyboard.on('keydown-ESC', () => {
-            this.scene.launch('Menu');
+            this.scene.launch('PauseMenu');
             this.scene.pause(this);
         });
-
 
     }
 

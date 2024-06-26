@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import {AuthContext} from "../store/GENERAL_CONTEXT/AuthContext.jsx";
 import {useContext, useState} from "react";
+import {useRemoveUser} from "../DATA/customHooks.jsx";
 
 const Navbar = ({isVisible, toggleNavbar}) => {
     const {isAuthenticated, logOut} = useContext(AuthContext);
@@ -10,7 +11,7 @@ const Navbar = ({isVisible, toggleNavbar}) => {
     const handleLogout = () => {
         if (isAuthenticated) {
             setIsLoggedOut(true);
-            localStorage.removeItem('token');
+            localStorage.removeItem('username');
             logOut();
         }
         setIsLoggedOut(false);

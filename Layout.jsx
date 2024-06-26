@@ -3,6 +3,9 @@ import {useState, useEffect, useContext} from "react";
 import ProjectSlogan from "./src/views/ProjectEslogan.jsx";
 import AboutUs from "./src/views/AboutUs.jsx";
 import Navbar from "./src/components/Navbar.jsx";
+import UploadWidget from "./src/components/ProfileImage.jsx";
+//import { Cloudinary } from "@cloudinary/url-gen";
+// import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
 import Human from "./src/views/Customization&Players/Human.jsx";
 import Cyborg from "./src/views/Customization&Players/Cyborg.jsx";
 import Reptile from "./src/views/Customization&Players/Reptile.jsx";
@@ -46,7 +49,7 @@ const Layout = () => {
 
     const PrivateRoute = ({component: Component, ...restOfComponents}) => {
         const {isAuthenticated} = useContext(AuthContext);
-        return isAuthenticated ? <Component {...restOfComponents} /> : <Navigate to='/'/>;
+        return isAuthenticated ? <Component {...restOfComponents} /> : <Navigate to='/sign-in'/>;
     }
 
     return (<BrowserRouter>
@@ -55,6 +58,7 @@ const Layout = () => {
             <Routes>
 
                 <Route path='/' element={<ProjectSlogan/>}/>
+                <Route path='/upload-wodget' element={<UploadWidget/>}/>
                 <Route path='/about-us' element={<AboutUs/>}/>
                 <Route path='/sign-up' element={<Signup/>}/>
                 <Route path='/sign-in' element={<SignIn/>}/>

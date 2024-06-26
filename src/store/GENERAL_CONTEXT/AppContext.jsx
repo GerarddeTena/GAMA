@@ -1,4 +1,4 @@
-import {createContext, useEffect, useState} from "react";
+import {createContext, useState} from "react";
 import stateOfComponents from "../Flux.jsx";
 
 export const Context = createContext(null);

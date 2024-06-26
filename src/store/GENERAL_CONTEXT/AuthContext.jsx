@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from 'react';
+import {useRemoveUser, useUser} from "../../DATA/customHooks.jsx";
 const serverURL = import.meta.env.VITE_APP_CODESPACE_NAME !== 'undefined' ? `https://${import.meta.env.VITE_APP_CODESPACE_NAME}-3001.app.github.dev/api` : 'http://127.0.0.1:3001/api';
 export const AuthContext = createContext({
     isAuthenticated: false,
@@ -8,7 +9,7 @@ export const AuthContext = createContext({
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+    const {userStored} = useRemoveUser('username', 'username')
     const validToken = async () => {
         try {
             const token = localStorage.getItem('token');
@@ -30,7 +31,9 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const logOut = () => setIsAuthenticated(false)
+    const logOut = () => userStored
+
+
 
     useEffect(() => {
         const token = localStorage.getItem('token');

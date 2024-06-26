@@ -1,11 +1,10 @@
 import {useContext, useEffect, useState} from "react";
 import {Context} from "../../store/GENERAL_CONTEXT/AppContext.jsx";
 import '../../styles/views_Styles/SignIn.scss';
-import {AuthContext} from "../../store/GENERAL_CONTEXT/AuthContext.jsx";
+// import {AuthContext} from "../../store/GENERAL_CONTEXT/AuthContext.jsx";
+// import {useNavigate} from 'react-router-dom'
 
 const SignIn = () => {
-
-    const {validToken} = useContext(AuthContext);
     const {actions} = useContext(Context);
     const [password, setPassword] = useState('');
     const [email, setMail] = useState('');
@@ -20,7 +19,6 @@ const SignIn = () => {
         };
 
         try {
-            console.log(userData);
             const response = await actions.loginUserDispatcher(userData);
             console.log(response);
             if (response.token) {
@@ -35,10 +33,6 @@ const SignIn = () => {
             console.error('Error logging in user:', error);
         }
     };
-
-    useEffect(() => {
-        validToken();
-    }, []);
 
 
     return (
