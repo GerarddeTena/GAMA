@@ -4,9 +4,7 @@ import EditProfileForm from "../../components/EditProfileForm.jsx";
 import '../../styles/views_Styles/Stathic/User_Profile.scss';
 
 const UserProfile = () => {
-    const [userNameStore] = useUser('username', 'defaultUserName');
-    const [userEmailStore] = useUser('email', 'defaultEmail');
-    const [userScore] = useUser('score', 'defaultScore')
+    const [userScore] = useUser('score', 0)
     const [isEditing, setIsEditing] = useState(false);
 
     const [user, setUser] = useState({});
@@ -36,11 +34,11 @@ const UserProfile = () => {
 
     return (
         <main className="Profile_Container">
-            <img className="profile-pic" src={user.profilePic} alt="Avatar de prueba"/>
             <section className='Profile_Body'>
+                <img className="Profile_Pic" src={user.profilePic} alt="Avatar de prueba"/>
                 <div className='User_Creds'>
-                    <h2>{userNameStore}</h2>
-                    <p>{userEmailStore}</p>
+                    <h2>Name</h2>
+                    <p>Email</p>
                 </div>
                 <div className='User_Bio'>
                     <p>{user.bio}</p>

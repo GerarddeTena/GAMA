@@ -11,15 +11,19 @@ const ProfileImage = ({onImageUpload}) => {
         data.append('file', files[0]);
         data.append('upload_preset', 'gamapreset');
         setLoading(true);
-        const res = await axios.post(`https://api.cloudinary.com/v1_1/gamacloud/image/upload`, data, {
+        const res = await axios.post(`https://api.cloudinary.com/v1_1/gamacloud/image/upload/`, data, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         });
+
         const file = res.data;
-        setImageUrl(file.secure_url);
+        const originalUrl = file.secure_url;
+        const transformedUrl = originalUrl.replace('/upload/', '/upload/w_120,h_120/r_max/');
+
+        setImageUrl(transformedUrl);
         setLoading(false);
-        onImageUpload(file.secure_url)
+        onImageUpload(transformedUrl);
     };
 
     return (

@@ -1,5 +1,5 @@
 import {getPlayerRequests, deletePlayerRequests, setPlayerRequests} from "./Http_calls/HTTP_Player_Requests.jsx";
-import {logInUserRequests, registerUserRequests} from "./Http_calls/HTTP_User_Requests.jsx";
+import {getUsers, logInUserRequests, registerUserRequests} from "./Http_calls/HTTP_User_Requests.jsx";
 
 const stateOfComponents = ({getTheStore, setStore}) => {
     return {
@@ -56,7 +56,6 @@ const stateOfComponents = ({getTheStore, setStore}) => {
             loginUserDispatcher: async (userData) => {
                 try {
                     const response = await logInUserRequests(userData);
-                    console.log(response);
                     const token = response.token;
                     if (!token) console.error('Login Failed');
                     localStorage.setItem('token', token);
@@ -66,6 +65,13 @@ const stateOfComponents = ({getTheStore, setStore}) => {
                     console.error({'Error logging in user': error});
                     return null;
                 }
+            },
+
+            getUserDispatcher: async ({id}) => {
+                await getUsers({id});
+                const store = getTheStore();
+                const users = store.users.filter(user => user.id === id)
+                setStore({...store, users: users});
             },
 
             //PLAYER DISPATCHER:

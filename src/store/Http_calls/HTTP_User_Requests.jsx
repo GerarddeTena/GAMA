@@ -31,8 +31,8 @@ export const logInUserRequests = async (userData) => {
     return await response.json();
 
 }
-export const getUsers = async () => {
-    const response = await fetch(`${serverURL}/user`, {
+export const getUsers = async ({id}) => {
+    const response = await fetch(`${serverURL}/user?user_id=${id}`, {
         method: 'GET',
         headers: {'Content-Type': 'application/json'}
     });

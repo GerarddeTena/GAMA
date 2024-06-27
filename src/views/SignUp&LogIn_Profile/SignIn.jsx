@@ -9,28 +9,36 @@ const SignIn = () => {
     const {actions} = useContext(Context);
     const [password, setPassword] = useState('');
     const [email, setMail] = useState('');
+    const [user_id, setUserID] = useState(0);
     const [error, setError] = useState(null);
 
     const checkUser = async (e) => {
 
         e.preventDefault();
         const userData = {
+            user_id,
             email,
             password
         };
 
         try {
-            console.log(userData);
             const response = await actions.loginUserDispatcher(userData);
-            console.log(response);
             if (response.token) {
                 localStorage.setItem('token', response.token);
-                localStorage.getItem('username');
-                localStorage.getItem('email')
+                localStorage.setItem('user_id', response.user_id);
                 setError(null);
                 validToken();
             } else {
                 setError('Login failed: Invalid email or password');
+            }
+            const userID = localStorage.getItem('user_id')
+            const user = await actions.getUserDispatcher({id: userID});
+            console.log(user);
+            if(user) {
+                setUserID(user.user_id);
+            }
+            else {
+                setError('Fetch ID incorrect');
             }
 
         } catch (error) {
