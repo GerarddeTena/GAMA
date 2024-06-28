@@ -42,5 +42,4 @@ export const getUsers = async ({id}) => {
     }
 
     return await response.json();
-
 }

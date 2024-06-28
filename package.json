@@ -10,13 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "phaser": "^3.80.1",
+    "axios": "^1.7.2",
     "firebase": "^10.12.2",
+    "phaser": "^3.80.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.1.0",
     "react-prop-types": "^0.4.0",
+    "react-proptypes": "^1.0.0",
     "react-router": "^6.23.1",
     "react-router-dom": "^6.23.1"
   },

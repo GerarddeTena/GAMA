@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import axios from 'axios';
+import {useState} from "react";
+import axios from "axios";
+import PropTypes from "prop-types";
+
 
 const ProfileImage = ({onImageUpload}) => {
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState('');
-
     const uploadImage = async (e) => {
         const files = e.target.files;
         const data = new FormData();
@@ -23,7 +24,7 @@ const ProfileImage = ({onImageUpload}) => {
 
         setImageUrl(transformedUrl);
         setLoading(false);
-        onImageUpload(transformedUrl);
+        onImageUpload(e);
     };
 
     return (
@@ -42,5 +43,8 @@ const ProfileImage = ({onImageUpload}) => {
         </div>
     );
 };
+ProfileImage.propTypes = {
+    onImageUpload: PropTypes.func.isRequired
+}
 
 export default ProfileImage;

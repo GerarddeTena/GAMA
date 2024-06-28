@@ -33,11 +33,9 @@ const SignIn = () => {
             }
             const userID = localStorage.getItem('user_id')
             const user = await actions.getUserDispatcher({id: userID});
-            console.log(user);
-            if(user) {
+            if (user) {
                 setUserID(user.user_id);
-            }
-            else {
+            } else {
                 setError('Fetch ID incorrect');
             }
 

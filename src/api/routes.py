@@ -7,6 +7,18 @@ from .utils import generate_sitemap, APIException
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from cloudinary.uploader import upload
+import cloudinary
+
+api_key = 149282995566597
+api_secret = 'fYx2Ip4ZfW7e6gBQcAYXwMT6JpM'
+cloud_name = 'gamacloud'
+
+cloudinary.config(
+    cloud_name=cloud_name,
+    api_key=api_key,
+    api_secret=api_secret
+)
 
 api = Blueprint('api', __name__)
 
@@ -99,23 +111,19 @@ def get_user():
         return jsonify({'message': 'Error getting user: ', 'error': str(e)}), 500
 
 
-# @api.route('/user/<int:id>', methods=['GET'])
-# def get_user_by_url(user_id):
-#     try:
-#
-#         user = User.query.get(user_id)
-#
-#         if user is None:
-#             return jsonify({'message': 'User not found'}), 404
-#
-#         return jsonify({
-#             'user_id': user.user_id,
-#             'email': user.email,
-#             'user_name': user.user_name
-#         }), 200
-#     except APIException as e:
-#
-#         return jsonify({'message': 'Error getting user: ', 'error': str(e)}), 500
+@api.route('/user/profile-pic', methods=['POST'])
+def upload_profile_pic():
+    image = request.files['image']
+    upload_result = upload(image)
+    user_id = request.args.get('user_id')
+    if user_id is None:
+        return jsonify({'message': 'user_id is missing'}), 400
+    user = User.query.get(user_id)
+    if user is None:
+        return jsonify({'message': 'User not found'}), 404
+    user.profilePic = upload_result['url']
+    db.session.commit()
+    return jsonify({'profilePic': user.proflePic}), 200
 
 
 @api.route('/user', methods=['DELETE'])
