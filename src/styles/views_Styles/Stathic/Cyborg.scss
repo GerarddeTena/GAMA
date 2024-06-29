@@ -1,5 +1,12 @@
 @import '../../global.variables';
 
+main {
+  min-width: 100vw;
+  min-height: 120vh;
+  @include displayFlex(column, $cent, $cent);
+  background-image: url("../../../Images/Lab_Background.gif");
+}
+
 .Link {
   text-decoration: none;
   color: black;
@@ -20,7 +27,7 @@
   display: $flex;
   justify-content: flex-start;
   align-items: flex-start;
-  @include box-shadow(4, #393939);
+  @include box-shadow(4, silver);
   margin-bottom: .5rem;
 
   & .Character_W {
@@ -41,15 +48,15 @@
     position: relative;
     width: 100%;
     color: white;
-    background-color: silver;
+    background-color: goldenrod;
     @include displayFlex(row, space-around, center);
-    @include box-shadow(4, #393939);
+    @include box-shadow(4, silver);
     margin: 0 0 .5rem;
   }
   & .Description {
     text-align: justify;
     padding: 1rem;
-    @include box-shadow(4, #393939);
+    @include box-shadow(4, silver);
     background-color: lightblue;
   }
 

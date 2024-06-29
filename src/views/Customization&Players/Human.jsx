@@ -1,13 +1,13 @@
 import {Link} from "react-router-dom";
 import '../../styles/views_Styles/Stathic/Human.scss';
 import {HUMAN} from "../../DATA/PLAYER_DESC.jsx";
+
 const Human = () => {
 
 
-
     return HUMAN.map((item) => (
-        <>
-            <h1 className='Title'>{item.name}</h1>
+
+        <main key={item.name}>
             <section className='Contain_Info_Human'>
                 <div className='Character_Human'>
                     <img className='Character_W' src={item.img} alt="#"/>
@@ -32,7 +32,7 @@ const Human = () => {
                     </button>
                 </div>
             </section>
-        </>
+        </main>
     ))
 }
 export default Human;

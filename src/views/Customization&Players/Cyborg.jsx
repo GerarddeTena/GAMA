@@ -5,8 +5,7 @@ import {CYBORG} from "../../DATA/PLAYER_DESC.jsx";
 const Cyborg = () => {
 
     return CYBORG.map((item) => (
-        <>
-            <h1 className='Title'>{item.name}</h1>
+        <main key={item.name}>
             <section className='Contain_Info_Cyborg'>
                 <div className='Character_Cyborg'>
                     <img className='Character_W' src={item.img} alt="#"/>
@@ -29,7 +28,7 @@ const Cyborg = () => {
                     </button>
                 </div>
             </section>
-        </>
+        </main>
     ))
 }
 export default Cyborg;

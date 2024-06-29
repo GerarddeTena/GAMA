@@ -5,8 +5,7 @@ import {REPTILE} from "../../DATA/PLAYER_DESC.jsx";
 const Reptile = () => {
 
     return REPTILE.map((item) => (
-        <>
-            <h1 className='Title'>{item.name}</h1>
+        <main key={item.name}>
             <section className='Contain_Info_Reptile'>
                 <div className='Character_Reptile'>
                     <img className='Character_W' src={item.img} alt="#"/>
@@ -29,7 +28,7 @@ const Reptile = () => {
                     </button>
                 </div>
             </section>
-        </>
+        </main>
     ))
 }
 export default Reptile;
