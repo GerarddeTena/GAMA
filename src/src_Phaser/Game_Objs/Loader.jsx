@@ -36,6 +36,7 @@ export class LoadSprites {
             {name: 'human_Jump', dir: 'Players', file: 'Jumping_Human', fW: 34, fH: 48},
             {name: 'human_Run', dir: 'Players', file: 'Human_Run', fW: 30, fH: 48},
             {name: 'cyborg_Idle', dir: 'Players', file: 'Cyborg_Idle', fW: 32, fH: 48},
+            {name: 'cyborg_Jump', dir: 'Players', file: 'Jumping_Cyborg', fW: 34, fH: 48},
             {name: 'cyborg_Walk', dir: 'Players', file: 'Walking_Cyborg', fW: 32, fH: 48},
             {name: 'reptile_Idle', dir: 'Players', file: 'Reptile_Idle', fW: 32, fH: 48},
             {name: 'reptile_Walk', dir: 'Players', file: 'Walking_Reptile', fW: 32, fH: 48},

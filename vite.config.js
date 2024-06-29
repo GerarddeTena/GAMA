@@ -7,4 +7,7 @@ export default defineConfig({
   server: {
     hmr: true,
   },
+  test : {
+    environment: 'happy-dom'
+  }
 })

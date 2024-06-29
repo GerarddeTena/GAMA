@@ -21,9 +21,12 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
         });
 
         scene.anims.create({
-            key: 'cyborg_Walk', frames: scene.anims.generateFrameNumbers('cyborg_Walk', {start: 0, end: 8}),
-            frameRate: 9, repeat: -1
+            key: 'cyborg_Walk', frames: scene.anims.generateFrameNumbers('cyborg_Walk', {start: 0, end: 7}),
+            frameRate: 8, repeat: -1
         });
+        scene.anims.create({
+            key: 'cyborg_Jump', frames: scene.anims.generateFrameNumbers('cyborg_Jump', {start: 0, end: 5})
+        })
 
     }
 
@@ -34,7 +37,7 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
         const shiftPressed = cursors.shift.isDown;
 
         if (cursors.space.isDown && onGround) {
-            this.body.setVelocityY(-500);
+            this.body.setVelocityY(-350);
             if (this.currentAnim !== 'cyborg_Jump') {
                 this.anims.play('cyborg_Jump');
                 this.currentAnim = 'cyborg_Jump';
@@ -42,7 +45,7 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
         }
 
         else if (keys[0].isDown) {
-            this.body.setVelocityX(shiftPressed ? -250 : -100);
+            this.body.setVelocityX(shiftPressed ? -100 : -50);
 
             if (onGround && this.currentAnim !== 'cyborg_Walk') {
                 this.anims.play('cyborg_Walk', true);
@@ -53,7 +56,7 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
         }
 
         else if (keys[1].isDown) {
-            this.body.setVelocityX(shiftPressed ? 250 : 100);
+            this.body.setVelocityX(shiftPressed ? 100 : 50);
             if (onGround && this.currentAnim !== 'cyborg_Walk') {
                 this.anims.play('cyborg_Walk', true);
                 this.currentAnim = 'cyborg_Walk';
@@ -76,11 +79,11 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
     handlePlayerHit(enemy, livesText) {
 
         if (enemy instanceof Hans) {
-            this.playerHealth -= 80;
+            this.playerHealth -= 60;
         } else if (enemy instanceof Skeleton) {
-            this.playerHealth -= 40;
+            this.playerHealth -= 20;
         } else if (enemy instanceof Dragon) {
-            this.playerHealth -= 15;
+            this.playerHealth -= 5;
         }
 
         livesText.setText('Lives: ' + this.playerHealth);

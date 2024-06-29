@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useUser} from "../../DATA/customHooks.jsx";
-import EditProfileForm from "../../components/EditProfileForm.jsx";
+import EditProfileForm from "./EditProfileForm.jsx";
 import '../../styles/views_Styles/Stathic/User_Profile.scss';
 // import {Context} from "../../store/GENERAL_CONTEXT/AppContext.jsx";
 import {getUsers} from "../../store/Http_calls/HTTP_User_Requests.jsx";
@@ -42,7 +42,7 @@ const UserProfile = () => {
 
 
     return (
-        <main className="Profile_Container">
+        <section className="Profile_Container">
             <section className='Profile_Body'>
                 <img className="Profile_Pic" src={user.profilePic} alt="Avatar de prueba"/>
                 <div className='User_Creds'>
@@ -54,12 +54,12 @@ const UserProfile = () => {
                 </div>
 
                 <div className="User_Stats">
-                    <p>Nivel: {user.level}</p>
-                    <p>Score: {userScore}</p>
+                    <p>LEVEL: {user.level}</p>
+                    <p>SCORE: {userScore}</p>
                 </div>
             </section>
             <button onClick={handleEditClick}>Edit profile</button>
-        </main>
+        </section>
     );
 };
 

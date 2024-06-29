@@ -7,6 +7,7 @@
   background-repeat: no-repeat;
   min-height: 115vh;
   width: 100%;
+
   & .Profile_Body {
     position: relative;
     @include displayFlex(column, $cent, $cent);
@@ -33,10 +34,11 @@
       min-height: 20vh;
     }
     & .User_Stats {
-      @include displayFlex(row, $cent, $cent);
+      @include displayFlex(column, $cent, $cent);
       min-width: 50vw;
       gap: 5rem;
       border: 1px solid black;
+      font-family: "Press Start 2P", system-ui;
     }
 
   }

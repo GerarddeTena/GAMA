@@ -1,10 +1,10 @@
-@import '../../global.variables';
+@import '../../../global.variables';
 
 main {
   min-width: 100vw;
   min-height: 120vh;
   @include displayFlex(column, $cent, $cent);
-  background-image: url("../../../Images/Lab_Background.gif");
+  background-image: url("../../../../Images/Lab_Background.gif");
 }
 
 .Link {
@@ -21,7 +21,7 @@ main {
 }
 
 .Character_Cyborg {
-  background-image: url('../../../Images/typesOfCharacter/LabCyborg.png');
+  background-image: url('../../../../Images/typesOfCharacter/LabCyborg.png');
   width: 100%;
   background-color: black;
   display: $flex;
@@ -92,7 +92,7 @@ main {
 @include media-queries-md {
   .Character_Cyborg {
     width: 100%;
-    background-image: url("../../../Images/typesOfCharacter/LabCyborg.png");
+    background-image: url("../../../../Images/typesOfCharacter/LabCyborg.png");
     display: $flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -128,7 +128,7 @@ main {
 @include media-queries-sm {
   .Character_Cyborg {
     width: 100%;
-    background-image: url("../../../Images/typesOfCharacter/LabCyborg.png");
+    background-image: url("../../../../Images/typesOfCharacter/LabCyborg.png");
     display: $flex;
     justify-content: flex-start;
     align-items: flex-start;

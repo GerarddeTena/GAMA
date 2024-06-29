@@ -6,40 +6,47 @@ import {AuthContext} from "../../store/GENERAL_CONTEXT/AuthContext.jsx";
 const Signup = () => {
     const {validToken} = useContext(AuthContext);
 
-    const { actions } = useContext(Context)
+    const {actions} = useContext(Context)
     const [user_name, setUser_Name] = useState('');
     const [password, setPassword] = useState('');
     const [email, setMail] = useState('');
     const [error, setError] = useState('');
+    const [user, setUser] = useState(null)
     const submitUser = async (e) => {
         e.preventDefault();
-    const userData = {
-        user_name,
-        password,
-        email
-    }
-    try {
-        const result = await actions.registerUserDispatcher(userData);
-        console.log(result)
-        console.log('Response:', result);
-        if (result && result.success) {
-            setError('REGISTRATION SUCCESFUL');
-            localStorage.setItem(`username`, `${user_name}`);
-            localStorage.setItem(`email`, `${email}`);
-            localStorage.setItem('token', result.token);
-            validToken();
-
-        } else {
-            setError('Registration failed');
-            console.error('Registration failed:', result);
+        const userData = {
+            user_name,
+            password,
+            email
         }
-    } catch (error) {
-        console.error('Error:', error);
-        setError('Registration failed');
+        try {
+            const result = await actions.registerUserDispatcher(userData);
+            console.log(result)
+            console.log('Response:', result);
+            if (result && result.success) {
+                setError('REGISTRATION SUCCESFUL');
+                localStorage.setItem('username', result.user_name);
+                localStorage.setItem('email', result.email);
+                localStorage.setItem('user_id', result.user_id);
+                localStorage.setItem('token', result.token);
+                validToken();
+                const userID = localStorage.getItem('user_id')
+                const fetchedUser = await actions.getUserDispatcher({id: userID});
+                if (fetchedUser) {
+                    setUser(fetchedUser);
+                } else {
+                    setError('Fetch ID incorrect');
+                }
+            } else {
+                setError('Registration failed');
+                console.error('Registration failed:', result);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            setError('Registration failed');
+        }
     }
-}
-
-    return(
+    return (
         <>
             <section className="Form_SignUp">
                 <h2 className="Form_Title">Sign Up</h2>
@@ -61,6 +68,7 @@ const Signup = () => {
                     <button type="submit" onClick={submitUser}>Sign Up!</button>
                 </form>
                 {error && <h1>{error}</h1>}
+                {user && <h1>Welcome, {user.user_name}!</h1>}
             </section>
         </>
     )

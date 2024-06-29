@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import '../../styles/views_Styles/Stathic/Reptile.scss';
+import '../../styles/views_Styles/Stathic/Characters/Reptile.scss';
 import {REPTILE} from "../../DATA/PLAYER_DESC.jsx";
 
 const Reptile = () => {

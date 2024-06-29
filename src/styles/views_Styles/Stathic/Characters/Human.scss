@@ -1,4 +1,4 @@
-@import '../../global.variables';
+@import '../../../global.variables';
 
 .Link {
   text-decoration: none;
@@ -12,7 +12,7 @@
 .Character_Human {
   width: 100%;
   margin: 0 0 .5rem;
-  background-image: url('../../../Images/typesOfCharacter/Background.png');
+  background-image: url('../../../../Images/typesOfCharacter/Background.png');
   display: $flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -91,7 +91,7 @@
       border-style: solid;
       background-color: black;
       border-width: 3px;
-      background-image: url("../../../Images/typesOfCharacter/Background.png");
+      background-image: url("../../../../Images/typesOfCharacter/Background.png");
       display: $flex;
       justify-content: flex-start;
       align-items: flex-start;
@@ -130,7 +130,7 @@
       border-style: solid;
       background-color: black;
       border-width: 3px;
-      background-image: url("../../../Images/typesOfCharacter/Background.png");
+      background-image: url("../../../../Images/typesOfCharacter/Background.png");
       display: $flex;
       justify-content: flex-start;
       align-items: flex-start;

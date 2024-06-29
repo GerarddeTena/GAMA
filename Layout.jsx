@@ -6,10 +6,10 @@ import Navbar from "./src/components/Navbar.jsx";
 import Human from "./src/views/Customization&Players/Human.jsx";
 import Cyborg from "./src/views/Customization&Players/Cyborg.jsx";
 import Reptile from "./src/views/Customization&Players/Reptile.jsx";
-import Signup from "./src/views/SignUp&LogIn_Profile/SignUp.jsx";
+import Signup from "./src/views/LogIn/SignUp.jsx";
 import InjectContext from './src/store/GENERAL_CONTEXT/AppContext.jsx';
-import SignIn from "./src/views/SignUp&LogIn_Profile/SignIn.jsx";
-import User_Profile from "./src/views/SignUp&LogIn_Profile/User_Profile.jsx";
+import SignIn from "./src/views/LogIn/SignIn.jsx";
+import User_Profile from "./src/views/Profile/User_Profile.jsx";
 import PhaserConfig from "./src/src_Phaser/GameConfig/PhaserConfig.jsx";
 import {AuthContext, AuthProvider} from "./src/store/GENERAL_CONTEXT/AuthContext.jsx";
 

@@ -84,11 +84,11 @@ export class Reptile extends Phaser.Physics.Arcade.Sprite {
   handlePlayerHit(enemy, livesText) {
 
     if (enemy instanceof Hans) {
-      this.playerHealth -= 80;
+      this.playerHealth -= 100;
     } else if (enemy instanceof Skeleton) {
-      this.playerHealth -= 40;
+      this.playerHealth -= 50;
     } else if (enemy instanceof Dragon) {
-      this.playerHealth -= 15;
+      this.playerHealth -= 25;
     }
 
     livesText.setText('Lives: ' + this.playerHealth);

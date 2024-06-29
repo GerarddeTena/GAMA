@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import '../../styles/views_Styles/Stathic/Cyborg.scss';
+import '../../styles/views_Styles/Stathic/Characters/Cyborg.scss';
 import {CYBORG} from "../../DATA/PLAYER_DESC.jsx";
 
 const Cyborg = () => {

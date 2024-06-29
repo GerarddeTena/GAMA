@@ -6,7 +6,7 @@ const Cards = () => {
         <section className='Container_Info'>
             <article className='Card_Container'>
                 {CARD_DATA.map(card => (
-                    <div key={card.name} className='Card'>
+                    <div key={card.name} className='Card' data-testid='about-cards'>
                         <img className='About_Avatar' src={card.avatar} alt={card.name}/>
                         <h1>{card.name}</h1>
                         <div className='icons'>

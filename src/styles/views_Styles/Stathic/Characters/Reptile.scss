@@ -1,4 +1,4 @@
-@import '../../global.variables';
+@import '../../../global.variables';
 
 .Link {
   text-decoration: none;
@@ -10,7 +10,7 @@
 }
 
 .Character_Reptile {
-  background-image: url('../../../Images/typesOfCharacter/reptileCave.png');
+  background-image: url('../../../../Images/typesOfCharacter/reptileCave.png');
   width: 100%;
   display: $flex;
   justify-content: flex-start;
@@ -97,7 +97,7 @@
 @include media-queries-md {
   .Character_Reptile {
     width: 100%;
-    background-image: url("../../../Images/typesOfCharacter/reptileCave.png");
+    background-image: url("../../../../Images/typesOfCharacter/reptileCave.png");
     display: $flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -133,7 +133,7 @@
 @include media-queries-sm {
   .Character_Reptile {
     width: 100%;
-    background-image: url("../../../Images/typesOfCharacter/reptileCave.png");
+    background-image: url("../../../../Images/typesOfCharacter/reptileCave.png");
     display: $flex;
     justify-content: flex-start;
     align-items: flex-start;

@@ -31,12 +31,17 @@ class PauseMenu extends Phaser.Scene {
     this.input.keyboard.on("keydown-ENTER", () => {
       const selectedText = this.text[this.selectedTextIndex].text;
       if (selectedText === "Resume") {
-        this.scene.stop("PauseMenu");
-        this.scene.resume("Level1");
+        this.scene.stop('PauseMenu');
+        this.scene.resume('Level1' || 'Level2');
       }
       else if (selectedText === "Exit") {
-        this.scene.stop("Level1");
-        this.scene.start("Menu");
+        this.cameras.main.fadeOut(2000, 0, 0, 0);
+        this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+          this.anims.pauseAll();
+          this.time.removeAllEvents();
+          this.scene.stop('Level1' || 'Level2');
+          this.scene.start('Menu');
+        })
       }
     });
 

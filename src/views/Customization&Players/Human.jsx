@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import '../../styles/views_Styles/Stathic/Human.scss';
+import '../../styles/views_Styles/Stathic/Characters/Human.scss';
 import {HUMAN} from "../../DATA/PLAYER_DESC.jsx";
 
 const Human = () => {
