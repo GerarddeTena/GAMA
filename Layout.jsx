@@ -54,7 +54,6 @@ const Layout = () => {
         <Navbar toggleNavbar={toggleNavbar} isVisible={isVisible} />
         <AuthProvider>
             <Routes>
-
                 <Route path='/' element={<ProjectSlogan/>}/>
                 <Route path='/about-us' element={<AboutUs/>}/>
                 <Route path='/sign-up' element={<Signup/>}/>
