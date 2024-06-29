@@ -25,7 +25,7 @@ const Reptile = () => {
                 <div className='Description'>{item.descriptionType}</div>
                 <div className='Button_Character'>
                     <button className='GoLab'>
-                        <Link to={'/player-lab-create'} className='Link'>Go To Lab</Link>
+                        <Link to={'/about'} className='Link'>GO BACK</Link>
                     </button>
                 </div>
             </section>

@@ -1,16 +1,22 @@
 import "../styles/components_Styles/Navbar.scss";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
-import {useState} from "react";
+import {useContext} from "react";
+import {AuthContext} from "../store/GENERAL_CONTEXT/AuthContext.jsx";
 
 
 const Navbar = ({isVisible, toggleNavbar}) => {
-    const [isLogged, setIsLogged] = useState(localStorage.getItem('token') || '');
+
+    const { logOut} = useContext(AuthContext);
+
     const handleLogOut = () => {
+        localStorage.clear()
+        logOut();
+        window.location.href = '/';
 
-        setIsLogged(() => localStorage.removeItem('token'));
+    }
+    const handleAuth = localStorage.getItem('token');
 
-    };
 
     const NavBarComponents = [
         {
@@ -56,12 +62,19 @@ const Navbar = ({isVisible, toggleNavbar}) => {
             {isVisible &&
                 <div>
                     <ul {...ul}>
-                        <Link to={'/'} className='link'>Home</Link>
-                        <Link to={'/about-us'} className='link'>About</Link>
-                        <Link to={'/user-profile'} className='link'>User Profile</Link>
-                        <Link to={'/game'} className='link'>Game</Link>
-                        <Link to={'/sign-in'} className='link'>Sign In</Link>
-                        {isLogged ? <Link to={'/'} className='link' onClick={handleLogOut}>Log Out</Link> : <div></div>}
+                        {handleAuth ? (
+                            <>
+                                <Link to={'/user-profile'} className='link'>User Profile</Link>
+                                <Link to={'/game'} className='link'>Game</Link>
+                                <Link to={'/about'} className='link'>About us</Link>
+                                <Link to={'/'} className='link' onClick={handleLogOut}>Log Out</Link>
+                            </>
+                        ) : (
+                            <>
+                                <Link to={'/'} className='link'>Home</Link>
+                                <Link to={'/sign-in'} className='link'>Sign In</Link>
+                            </>
+                        )}
                     </ul>
                 </div>}
         </nav>

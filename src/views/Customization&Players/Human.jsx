@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
 import '../../styles/views_Styles/Stathic/Human.scss';
-import W_Human from '../../Images/typesOfCharacter/Walking_Human.gif';
 import {HUMAN} from "../../DATA/PLAYER_DESC.jsx";
 const Human = () => {
 
@@ -29,7 +28,7 @@ const Human = () => {
                 </div>
                 <div className='Button_Character'>
                     <button className='GoLab'>
-                        <Link to={'/player-lab-create'} className='Link'>Go To Lab</Link>
+                        <Link to={'/about'} className='Link'>GO BACK</Link>
                     </button>
                 </div>
             </section>

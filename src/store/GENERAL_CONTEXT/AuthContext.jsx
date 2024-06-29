@@ -3,11 +3,13 @@ const serverURL = import.meta.env.VITE_APP_CODESPACE_NAME !== 'undefined' ? `htt
 export const AuthContext = createContext({
     isAuthenticated: false,
     validToken: () => {},
+    logOut: () => {}
 });
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+    const logOut = () => setIsAuthenticated(false);
     const validToken = async () => {
         try {
             const token = localStorage.getItem('token');
@@ -19,13 +21,13 @@ export const AuthProvider = ({ children }) => {
             });
 
             if (response.ok) {
-                setIsAuthenticated(true);
+                setIsAuthenticated(!isAuthenticated);
             } else {
-                setIsAuthenticated(false);
+                setIsAuthenticated(!isAuthenticated);
             }
         } catch (error) {
             console.error({'Error validating token': error});
-            setIsAuthenticated(false);
+            setIsAuthenticated(isAuthenticated);
         }
     };
 
@@ -35,7 +37,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{isAuthenticated, validToken }}>
+        <AuthContext.Provider value={{isAuthenticated, logOut, validToken }}>
             {children}
         </AuthContext.Provider>
     );

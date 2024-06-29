@@ -27,6 +27,7 @@ const SignIn = () => {
                 localStorage.setItem('token', response.token);
                 localStorage.setItem('user_id', response.user_id);
                 setError(null);
+                window.location.href = '/about';
                 validToken();
             } else {
                 setError('Login failed: Invalid email or password');
