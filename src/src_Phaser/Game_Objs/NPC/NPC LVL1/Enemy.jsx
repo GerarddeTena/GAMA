@@ -20,8 +20,9 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     }
 
     die() {
-        this.addPoints();
-        this.destroy();
+        this.play('Enemy_Death');
+        this.on('animationcomplete', this.addPoints, this);
+        this.on('animationcomplete', this.destroy, this);
     }
 
     addPoints() {

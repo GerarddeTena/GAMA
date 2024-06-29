@@ -19,6 +19,7 @@ export class LoadSprites {
 
     loadAllSprites() {
         const sprites = [
+            {name: 'enemy_Death', dir: 'Enemies', file: 'Enemy_Death', fW: 32, fH: 32},
             {name: 'hans_Idle', dir: 'Enemies', file: 'H_Idle', fW: 38, fH: 47},
             {name: 'hans_Walk', dir: 'Enemies', file: 'H_Walk', fW: 28, fH: 48},
             {name: 'hans_Attack', dir: 'Enemies', file: 'Hans_Attack', fW: 96, fH: 48},
