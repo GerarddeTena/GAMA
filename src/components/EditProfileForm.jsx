@@ -1,33 +1,28 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import ProfileImage from "./ProfileImage.jsx";
 import '../styles/components_Styles/EditProfileForm.scss';
 import PropTypes from "prop-types";
-
 const serverURL = import.meta.env.VITE_APP_CODESPACE_NAME !== 'undefined' ? `https://${import.meta.env.VITE_APP_CODESPACE_NAME}-3001.app.github.dev/api` : 'http://127.0.0.1:3001/api';
-
-const EditProfileForm = ({user, setUser, onSave}) => {
+const EditProfileForm = ({ user, onSave }) => {
     const [formData, setFormData] = useState(user);
 
-    const handleImageUpload = async (event) => {
-        const file = event.target.files[0];
+    const handleImageUploaded = async (url) => {
         const formData = new FormData();
-        formData.append('image', file);
+        formData.append('image', url);
+        formData.append('user_id', user.user_id);
 
         const response = await fetch(`${serverURL}/user/profile-pic`, {
             method: 'POST',
-            body: formData
+            body: formData,
         });
 
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            console.error('Failed to update profile picture URL');
         }
-
-        const data = await response.json();
-        setUser(prevState => ({...prevState, profilePic: data.profilePic}));
-    }
+    };
 
     const handleChange = (event) => {
-        setFormData({...formData, [event.target.name]: event.target.value});
+        setFormData({ ...formData, [event.target.name]: event.target.value });
     };
 
     const handleSubmit = (e) => {
@@ -39,7 +34,7 @@ const EditProfileForm = ({user, setUser, onSave}) => {
         <form className='Profile' onSubmit={handleSubmit}>
             <div className='Profile_Image'>
                 <label>Foto perfil:</label>
-                <ProfileImage onImageUpload={handleImageUpload}/>
+                <ProfileImage onImageUploaded={handleImageUploaded} />
             </div>
             <div className='Bio_Profile'>
                 <label>
@@ -56,6 +51,6 @@ EditProfileForm.propTypes = {
     user: PropTypes.object.isRequired,
     setUser: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired
-}
+};
 
 export default EditProfileForm;

@@ -113,17 +113,47 @@ def get_user():
 
 @api.route('/user/profile-pic', methods=['POST'])
 def upload_profile_pic():
+    if 'image' not in request.files:
+        return jsonify({'message': 'No image part'}), 400
+
     image = request.files['image']
-    upload_result = upload(image)
-    user_id = request.args.get('user_id')
-    if user_id is None:
+    user_id = request.form.get('user_id')
+
+    if not user_id:
         return jsonify({'message': 'user_id is missing'}), 400
+
     user = User.query.get(user_id)
+
     if user is None:
         return jsonify({'message': 'User not found'}), 404
+
+    upload_result = upload(image)
+    if 'url' not in upload_result:
+        return jsonify({'message': 'Image upload failed'}), 500
+
     user.profilePic = upload_result['url']
     db.session.commit()
-    return jsonify({'profilePic': user.proflePic}), 200
+    return jsonify({'profilePic': user.profilePic}), 200
+
+
+@api.route('/user/update-profile-pic', methods=['PUT'])
+def update_profile_pic():
+    data = request.get_json()
+    user_id = data.get('user_id')
+    new_profile_pic_url = data.get('profilePic')
+
+    if not user_id or not new_profile_pic_url:
+        return jsonify({'message': 'user_id or profilePic is missing'}), 400
+
+    user = User.query.get(user_id)
+
+    if user is None:
+        return jsonify({'message': 'User not found'}), 404
+
+    user.profilePic = new_profile_pic_url
+    db.session.commit()
+
+    return jsonify({'profilePic': user.profilePic}), 200
 
 
 @api.route('/user', methods=['DELETE'])

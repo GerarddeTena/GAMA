@@ -3,12 +3,15 @@ import '../../styles/components_Styles/Cards/Info_Cards.scss';
 const Info_Cards = () => {
     return (
         <div className='About_Description'>
-            {CARD_INFO.map(card => (
-                <article key={card.description} className='Craft_Description'>
-                    <h3 className='Description_Title'>{card.title}</h3>
-                    <span className='Description_Info'>{card.description}</span>
-                </article>
-            ))}
+            <div className='Grid_Cards'>
+                {CARD_INFO.map(card => (
+                    <article key={card.id} className='Craft_Description'>
+                        <h3 className='Description_Title'>{card.title}</h3>
+                        <span className='Description_Info'>{card.description}</span>
+                        <img src={card.img}/>
+                    </article>
+                ))}
+            </div>
         </div>
     )
 }

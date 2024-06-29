@@ -9,11 +9,10 @@ const Navbar = ({isVisible, toggleNavbar}) => {
     const [isLoggedOut, setIsLoggedOut] = useState(true);
     const handleLogout = () => {
         if (isAuthenticated) {
-            setIsLoggedOut(true);
-            localStorage.removeItem('token');
+            setIsLoggedOut(false);
             logOut();
         }
-        setIsLoggedOut(false);
+        setIsLoggedOut(true);
     };
 
     const NavBarComponents = [
@@ -66,7 +65,7 @@ const Navbar = ({isVisible, toggleNavbar}) => {
                         <Link to={'/user-profile'} className='link'>User Profile</Link>
                         <Link to={'/game'} className='link'>Game</Link>
                         <Link to={'/sign-in'} className='link'>Sign In</Link>
-                        {isLoggedOut && <Link to={'/'} className='link' onClick={handleLogout}>Log Out</Link>}
+                        {!isLoggedOut && <Link to={'/'} className='link' onClick={handleLogout}>Log Out</Link>}
                     </ul>
                 </div>}
         </nav>

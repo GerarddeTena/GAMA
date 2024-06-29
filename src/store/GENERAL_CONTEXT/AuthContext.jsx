@@ -30,11 +30,15 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const logOut = () => setIsAuthenticated(false)
+    const logOut = () => {
+        setIsAuthenticated(false);
+        localStorage.removeItem('token');
+    }
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        token ? validToken() : logOut();
+        if(token) validToken();
+        logOut();
 
     }, []);
     return (

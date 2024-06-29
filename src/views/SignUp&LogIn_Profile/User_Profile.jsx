@@ -10,13 +10,12 @@ const UserProfile = () => {
     const [userScore] = useUser('score', 0)
     const [isEditing, setIsEditing] = useState(false);
     const [user, setUser] = useState({});
-
+    const fetchUser = async () => {
+        const userID = localStorage.getItem('user_id');
+        const fetchedUser = await getUsers({id: userID});
+        setUser(fetchedUser);
+    }
     useEffect(() => {
-        const fetchUser = async () => {
-            const userID = localStorage.getItem('user_id');
-            const fetchedUser = await getUsers({id: userID});
-            setUser(fetchedUser);
-        }
         fetchUser();
     }, [])
 
@@ -24,7 +23,6 @@ const UserProfile = () => {
         const userState = {
             bio: 'I am a user',
             level: 1,
-            points: 0,
         }
         setUser(userState);
     }, [])

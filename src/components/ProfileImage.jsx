@@ -1,11 +1,11 @@
-import {useState} from "react";
-import axios from "axios";
-import PropTypes from "prop-types";
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 
-
-const ProfileImage = ({onImageUpload}) => {
+const ProfileImage = ({ onImageUploaded }) => {
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState('');
+
     const uploadImage = async (e) => {
         const files = e.target.files;
         const data = new FormData();
@@ -24,7 +24,7 @@ const ProfileImage = ({onImageUpload}) => {
 
         setImageUrl(transformedUrl);
         setLoading(false);
-        onImageUpload(e);
+        onImageUploaded(files[0]); // send the actual image file instead of the URL
     };
 
     return (
@@ -38,13 +38,14 @@ const ProfileImage = ({onImageUpload}) => {
             {loading ? (
                 <h3>Cargando...</h3>
             ) : (
-                <img src={imageUrl} alt="Perfil de Personaje" style={{ width: '50px', height: '50px', borderRadius: '.25rem'}} />
+                imageUrl && <img src={imageUrl} alt="Foto de perfil"/>
             )}
         </div>
     );
 };
+
 ProfileImage.propTypes = {
-    onImageUpload: PropTypes.func.isRequired
-}
+    onImageUploaded: PropTypes.func.isRequired
+};
 
 export default ProfileImage;

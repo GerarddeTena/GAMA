@@ -52,7 +52,7 @@
           display: inline-flex;
           width: 16px;
           height: 16px;
-          transform: scale(3);
+          transform: scale(1);
           z-index: 1;
         }
 
@@ -62,14 +62,14 @@
         }
 
         & > a:first-child::before {
-          @include PIXEL_ART(1px, $icon-github, $icon-github-colors);
+          @include PIXEL_ART(3px, $icon-github, $icon-github-colors);
           content: "";
           position: absolute;
 
         }
 
         & > a:last-child::before {
-          @include PIXEL_ART(1px, $icon-linkedin, $icon-linkedin-colors);
+          @include PIXEL_ART(3px, $icon-linkedin, $icon-linkedin-colors);
           content: "";
           position: absolute;
         }

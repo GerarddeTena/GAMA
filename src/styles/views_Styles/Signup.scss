@@ -3,9 +3,10 @@
 
 .Form_SignUp {
   background-image: url("src/Images/pixel-pixel-animatmion.gif");
+  background-size: cover;
   opacity: 0.9;
   width: 100%;
-  min-height: 100vh;
+  min-height: 120vh;
   @include displayFlex(column, $cent);
   gap: 3.5rem;
 
@@ -22,7 +23,7 @@
     @include box-shadow(2, white);
     padding: .5em;
     width: 40%;
-    height: 75vh;
+    min-height: 65vh;
     backdrop-filter: blur(0.5rem);
 
     & label{

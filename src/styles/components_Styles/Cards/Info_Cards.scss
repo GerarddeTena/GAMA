@@ -1,21 +1,56 @@
 @import '../../global.variables';
 
+.Grid_Cards {
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  grid-template-rows: auto;
+  gap: 2rem;
+
+  .Craft_Description:nth-child(-1n + 2) {
+    grid-column: 1 / span 3;
+  }
+  animation: appear 1.5s ease-in-out;
+}
+
+
 .Craft_Description {
   @include displayFlex(column, flex-start, center);
-  backdrop-filter: blur(1rem);
+  backdrop-filter: blur(3rem);
   @include box-shadow(3, black);
+  max-width: 60vw;
 
-  & .Description_Title{
-    margin: 1.5px;
+  & .Description_Title {
+    margin: .5rem;
     text-align: center;
     font-family: 'Press Start 2P';
     @include strokeTextConfig(1, white, deeppink);
 
   }
+
   & .Description_Info {
-    margin-top: 2px;
+    margin: 1rem;
     max-width: calc(100% - 6px);
     font-size: 1rem;
   }
 
+  & img {
+    width: 50px;
+  }
+
+  :nth-child(5n - 2) {
+    width: 50px;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 25%;
+  }
+
+  to {
+    opacity: 1;
+    scale: 100%;
+  }
 }
