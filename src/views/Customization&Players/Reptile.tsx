@@ -1,18 +1,20 @@
 import {Link} from "react-router-dom";
-import '../../styles/views_Styles/Stathic/Characters/Cyborg.scss';
-import {CYBORG} from "../../DATA/PLAYER_DESC.jsx";
+import '../../styles/views_Styles/Stathic/Characters/Reptile.scss';
+import {REPTILE} from "../../DATA/PLAYER_DESC.tsx";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from "react";
 
-const Cyborg = () => {
+const Reptile = () => {
 
-    return CYBORG.map((item) => (
+    return REPTILE.map((item) => (
         <main key={item.name}>
-            <section className='Contain_Info_Cyborg'>
-                <div className='Character_Cyborg'>
+            <section className='Contain_Info_Reptile'>
+                <div className='Character_Reptile'>
                     <img className='Character_W' src={item.img} alt="#"/>
                 </div>
                 <div className='Specs'>{item.specs.map(spec => (
                         <>
-                            <div key={spec}>
+                            <div>
                                 <span>{spec}</span>
                                 <br/>
                             </div>
@@ -31,4 +33,4 @@ const Cyborg = () => {
         </main>
     ))
 }
-export default Cyborg;
+export default Reptile;

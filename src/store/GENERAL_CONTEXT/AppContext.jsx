@@ -1,5 +1,5 @@
 import {createContext, useState} from "react";
-import stateOfComponents from "../Flux.jsx";
+import stateOfComponents from "../Flux.tsx";
 
 export const Context = createContext(null);
 

@@ -1,18 +1,22 @@
 import {Link} from "react-router-dom";
-import '../../styles/views_Styles/Stathic/Characters/Reptile.scss';
-import {REPTILE} from "../../DATA/PLAYER_DESC.jsx";
+import '../../styles/views_Styles/Stathic/Characters/Human.scss';
+import {HUMAN} from "../../DATA/PLAYER_DESC.tsx";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from "react";
 
-const Reptile = () => {
+const Human = () => {
 
-    return REPTILE.map((item) => (
+
+    return HUMAN.map((item) => (
+
         <main key={item.name}>
-            <section className='Contain_Info_Reptile'>
-                <div className='Character_Reptile'>
+            <section className='Contain_Info_Human'>
+                <div className='Character_Human'>
                     <img className='Character_W' src={item.img} alt="#"/>
                 </div>
                 <div className='Specs'>{item.specs.map(spec => (
                         <>
-                            <div>
+                            <div key={spec}>
                                 <span>{spec}</span>
                                 <br/>
                             </div>
@@ -21,7 +25,9 @@ const Reptile = () => {
                     )
                 )}
                 </div>
-                <div className='Description'>{item.descriptionType}</div>
+                <div className='Description'>
+                    {item.descriptionType}
+                </div>
                 <div className='Button_Character'>
                     <button className='GoLab'>
                         <Link to={'/about'} className='Link'>GO BACK</Link>
@@ -31,4 +37,4 @@ const Reptile = () => {
         </main>
     ))
 }
-export default Reptile;
+export default Human;

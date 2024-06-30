@@ -1,12 +1,15 @@
-import { createContext, useState, useEffect } from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React, {createContext, useState, useEffect, ReactNode} from 'react';
 const serverURL = import.meta.env.VITE_APP_CODESPACE_NAME !== 'undefined' ? `https://${import.meta.env.VITE_APP_CODESPACE_NAME}-3001.app.github.dev/api` : 'http://127.0.0.1:3001/api';
 export const AuthContext = createContext({
     isAuthenticated: false,
     validToken: () => {},
     logOut: () => {}
 });
-
-export const AuthProvider = ({ children }) => {
+interface AuthProviderProps {
+    children: ReactNode;
+}
+export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const logOut = () => setIsAuthenticated(false);

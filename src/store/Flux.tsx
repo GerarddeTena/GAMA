@@ -1,47 +1,39 @@
 import {getPlayerRequests, deletePlayerRequests, setPlayerRequests} from "./Http_calls/HTTP_Player_Requests.jsx";
 import {getUsers, logInUserRequests, registerUserRequests} from "./Http_calls/HTTP_User_Requests.jsx";
+import {UserTypes} from '../views/Profile/User_Profile.tsx';
+import { UserType } from '../views/Profile/EditProfileForm.tsx';
+interface PlayerStats {
+    player_id: number;
+    name: string;
+    weight: number,
+    strength: number,
+    speed: number,
+    agility: number,
+    endurance: number,
+    type: [string, string, string],
+    score: number,
+    level: number,
+}
 
-const stateOfComponents = ({getTheStore, setStore}) => {
+interface StoreTypes {
+    store: {
+        users: UserTypes [];
+        players: PlayerStats [];
+    },
+
+}
+const stateOfComponents = ({getTheStore, setStore}): StoreTypes => {
     return {
         store: {
-            users: [
-                {
-                    register_user: {
-                        user_id: 0,
-                        user_name: '',
-                        email: '',
-                        password: ''
-                    },
-                    logIn_User: {
-                        email: '',
-                        password: ''
-                    }
-                }
-            ],
-
-            players: [
-
-                {
-                    player_id: 0,
-                    name: '',
-                    weight: 0,
-                    strength: 0,
-                    speed: 0,
-                    agility: 0,
-                    endurance: 0,
-                    type: ['Human', 'Cyborg', 'Reptile'],
-                    score: 0,
-                    level: 0,
-                }
-
-            ],
+            users: [],
+            players: [],
         },
         actions: {
             // USER DISPATCHER:
 
-            registerUserDispatcher: async (userData) => {
+            registerUserDispatcher: async (userData: UserType): Promise<UserType> => {
                 try {
-                    const newUser = await registerUserRequests(userData);
+                    const newUser = await registerUserRequests(userData)
                     console.log(newUser);
                     const store = getTheStore();
                     setStore({...store, users: { ...store.users, register_user: newUser }});
@@ -53,7 +45,7 @@ const stateOfComponents = ({getTheStore, setStore}) => {
                 }
             },
 
-            loginUserDispatcher: async (userData) => {
+            loginUserDispatcher: async (userData: UserType): Promise<UserType | null> => {
                 try {
                     const response = await logInUserRequests(userData);
                     const token = response.token;
@@ -67,7 +59,7 @@ const stateOfComponents = ({getTheStore, setStore}) => {
                 }
             },
 
-            getUserDispatcher: async ({id}) => {
+            getUserDispatcher: async ({id}: {id: string}): Promise<void> => {
                 await getUsers({id});
                 const store = getTheStore();
                 const users = store.users.filter(user => user.id === id)
@@ -76,15 +68,15 @@ const stateOfComponents = ({getTheStore, setStore}) => {
 
             //PLAYER DISPATCHER:
 
-            getPlayersDispatcher: async () => {
+            getPlayersDispatcher: async (): Promise<void> => {
                 const players = await getPlayerRequests();
                 const store = getTheStore();
                 setStore({...store, players: players});
             },
-            setPlayersDispatcher: async (playerData) => {
+            setPlayersDispatcher: async (playerData: PlayerStats): Promise<void> => {
                 await setPlayerRequests(playerData);
             },
-            deletePlayersDispatcher: async (id) => {
+            deletePlayersDispatcher: async (id: number): Promise<void> => {
                 await deletePlayerRequests(id);
                 const store = getTheStore();
                 const players = store.players.filter(player => player.id !== id);

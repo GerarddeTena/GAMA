@@ -1,15 +1,15 @@
 import {Link} from "react-router-dom";
-import '../../styles/views_Styles/Stathic/Characters/Human.scss';
-import {HUMAN} from "../../DATA/PLAYER_DESC.jsx";
+import '../../styles/views_Styles/Stathic/Characters/Cyborg.scss';
+import {CYBORG} from "../../DATA/PLAYER_DESC.tsx";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from "react";
 
-const Human = () => {
+const Cyborg = () => {
 
-
-    return HUMAN.map((item) => (
-
+    return CYBORG.map((item) => (
         <main key={item.name}>
-            <section className='Contain_Info_Human'>
-                <div className='Character_Human'>
+            <section className='Contain_Info_Cyborg'>
+                <div className='Character_Cyborg'>
                     <img className='Character_W' src={item.img} alt="#"/>
                 </div>
                 <div className='Specs'>{item.specs.map(spec => (
@@ -23,9 +23,7 @@ const Human = () => {
                     )
                 )}
                 </div>
-                <div className='Description'>
-                    {item.descriptionType}
-                </div>
+                <div className='Description'>{item.descriptionType}</div>
                 <div className='Button_Character'>
                     <button className='GoLab'>
                         <Link to={'/about'} className='Link'>GO BACK</Link>
@@ -35,4 +33,4 @@ const Human = () => {
         </main>
     ))
 }
-export default Human;
+export default Cyborg;

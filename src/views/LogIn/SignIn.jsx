@@ -1,7 +1,7 @@
 import {useContext, useState} from "react";
 import {Context} from "../../store/GENERAL_CONTEXT/AppContext.jsx";
 import '../../styles/views_Styles/SignIn.scss';
-import {AuthContext} from "../../store/GENERAL_CONTEXT/AuthContext.jsx";
+import {AuthContext} from "../../store/GENERAL_CONTEXT/AuthContext.tsx";
 
 const SignIn = () => {
 

@@ -1,15 +1,33 @@
 import {useEffect, useState} from 'react';
 import {useUser} from "../../DATA/customHooks.jsx";
-import EditProfileForm from "./EditProfileForm.jsx";
+import EditProfileForm from "./EditProfileForm.tsx";
 import '../../styles/views_Styles/Stathic/User_Profile.scss';
 // import {Context} from "../../store/GENERAL_CONTEXT/AppContext.jsx";
 import {getUsers} from "../../store/Http_calls/HTTP_User_Requests.jsx";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from 'react';
+export interface UserTypes {
+    user_id: string;
+    user_name: string;
+    profilePic: string;
+    email: string;
+    bio: string;
+    level: number;
+}
+
 
 const UserProfile = () => {
     //const {actions} = useContext(Context)
     const [userScore] = useUser('score', 0)
     const [isEditing, setIsEditing] = useState(false);
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState<UserTypes>({
+        user_id: '',
+        user_name: '',
+        profilePic: '',
+        email: '',
+        bio: '',
+        level: 0
+    });
     const fetchUser = async () => {
         const userID = localStorage.getItem('user_id');
         const fetchedUser = await getUsers({id: userID});
@@ -21,6 +39,7 @@ const UserProfile = () => {
 
     useEffect(() => {
         const userState = {
+            ...user,
             bio: 'I am a user',
             level: 1,
         }
@@ -31,7 +50,7 @@ const UserProfile = () => {
         setIsEditing(true);
     };
 
-    const handleSave = (updatedUser) => {
+    const handleSave = (updatedUser: UserTypes) => {
         setUser(updatedUser);
         setIsEditing(false);
     };

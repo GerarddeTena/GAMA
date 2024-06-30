@@ -1,12 +1,19 @@
-import W_Human from "../Images/typesOfCharacter/Walking_Human.gif";
+import W_Human from '../Images/typesOfCharacter/Walking_Human.gif';
 import W_Cyborg from "../Images/typesOfCharacter/Walking_Cyborg.gif";
 import W_Reptile from "../Images/typesOfCharacter/Walking_Reptile.gif";
 
-export const HUMAN = [
-    {
-        name: 'Human',
-        specs: ['weight: 70', 'strength: 40', 'speed: 30', 'agility: 80', 'endurance: 30'],
-        descriptionType: `The Survivor's Tale
+interface GlobalTypes {
+    name?: string;
+    specs?: [string, string, string, string, string];
+    descriptionType: string;
+    img?: string;
+}
+export const HUMAN: GlobalTypes[] =
+    [
+        {
+            name: 'Human',
+            specs: ['weight: 70', 'strength: 40', 'speed: 30', 'agility: 80', 'endurance: 30'],
+            descriptionType: `The Survivor's Tale
                           In a dystopian world ruled by a malevolent tyrant known as "The Bald One,"
                           society is gripped by fear. This despot maintains control through an eerie practice:
                           kidnapping the cousins of anyone who dares to defy him. Among the oppressed is Alex,
@@ -17,15 +24,16 @@ export const HUMAN = [
                           Along the way, Alex formed alliances with other rebels, each driven by their own loss and thirst for freedom.
                           His exceptional skills in leadership and tactics turned this ragtag group into a formidable resistance.
                           Together, they launched daring raids, gathered intelligence, and slowly dismantled The Bald One's power base.`,
-        img: W_Human
-    }
-];
+            img: W_Human
+        }
+    ];
 
-export const CYBORG = [
-    {
-        name: 'Cyborg',
-        specs: ['weight: 120', 'strength: 150', 'speed: 20', 'agility: 50', 'endurance: 300'],
-        descriptionType: `In a dystopian world dominated by an evil tyrant known as "The Bald One," society is gripped by fear. 
+export const CYBORG: GlobalTypes [] =
+    [
+        {
+            name: 'Cyborg',
+            specs: ['weight: 120', 'strength: 150', 'speed: 20', 'agility: 50', 'endurance: 300'],
+            descriptionType: `In a dystopian world dominated by an evil tyrant known as "The Bald One," society is gripped by fear. 
             This despot maintains control through a sinister practice: kidnapping the relatives of anyone who dares to defy him.
             Among the oppressed is Cyron, a rebellious cyborg created in the tyrant's own laboratory.
             Cyron, half-human and half-machine, was originally designed to serve the dark purposes of The Bald One. 
@@ -36,11 +44,12 @@ export const CYBORG = [
             Throughout his journey, Cyron joined forces with other rebels, each driven by their own pain and thirst for freedom. 
             Among them were expert hackers, rogue scientists, and trained fighters. Thanks to his technological superiority and sharp intelligence, Cyron became the undisputed leader of this diverse resistance.
             Together, they launched daring attacks, gathered intelligence, and slowly dismantled The Bald One's power base, inching closer to the ultimate goal of liberation and justice for all.`,
-        img: W_Cyborg
-    }
-];
+            img: W_Cyborg
+        }
+    ];
 
-export const REPTILE = [
+export const REPTILE: GlobalTypes [] =
+    [
         {
             name: 'Reptile',
             specs: ['weight: 40', 'strength: 30', 'speed: 200', 'agility: 500', 'endurance: 30'],

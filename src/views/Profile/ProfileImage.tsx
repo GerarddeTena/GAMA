@@ -1,8 +1,13 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from "react";
 
-const ProfileImage = ({ onImageUploaded }) => {
+interface ProfileImageProps {
+    onImageUploaded: (file: any) => void;
+}
+
+const ProfileImage: React.FC<ProfileImageProps> = ({ onImageUploaded }) => {
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState('');
 
@@ -44,8 +49,6 @@ const ProfileImage = ({ onImageUploaded }) => {
     );
 };
 
-ProfileImage.propTypes = {
-    onImageUploaded: PropTypes.func.isRequired
-};
+
 
 export default ProfileImage;

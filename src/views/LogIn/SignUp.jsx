@@ -1,7 +1,7 @@
 import {useContext, useState} from "react";
 import '../../styles/views_Styles/Signup.scss';
 import {Context} from "../../store/GENERAL_CONTEXT/AppContext.jsx";
-import {AuthContext} from "../../store/GENERAL_CONTEXT/AuthContext.jsx";
+import {AuthContext} from "../../store/GENERAL_CONTEXT/AuthContext.tsx";
 
 const Signup = () => {
     const {validToken} = useContext(AuthContext);
