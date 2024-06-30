@@ -1,5 +1,7 @@
 import '../styles/components_Styles/SloganButtons.scss'
 import {Link} from "react-router-dom";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from "react";
 
 const SloganButtons = () => {
 

@@ -1,9 +1,9 @@
 import {render, waitFor, screen, cleanup} from "@testing-library/react";
 import { describe, it, expect, afterEach} from "vitest";
-import AboutUs from "../views/AboutUs.jsx";
+import AboutUs from "../views/AboutUs.tsx";
 import { BrowserRouter as Router } from "react-router-dom";
-import About_Cards from "../components/Cards/About_Cards.jsx";
-import Info_Cards from "../components/Cards/Info_Cards.jsx";
+import About_Cards from "../components/Cards/About_Cards.tsx";
+import Info_Cards from "../components/Cards/Info_Cards.tsx";
 
 afterEach(cleanup);
 describe('About us element render correctly', () => {

@@ -1,6 +1,7 @@
-import SloganButtons from "../components/SloganButtons.jsx";
+import SloganButtons from "../components/SloganButtons.tsx";
 import '../styles/views_Styles/Stathic/ProjectSlogan.scss';
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from "react";
 const ProjectSlogan = () => {
 
 

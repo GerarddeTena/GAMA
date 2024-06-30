@@ -1,5 +1,7 @@
-import {CARD_DATA} from "../../DATA/DEV_DESCRIPTION.jsx";
+import {CARD_DATA} from "../../DATA/DEV_DESCRIPTION.tsx";
 import '../../styles/components_Styles/Cards/About_Cards.scss';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from "react";
 const Cards = () => {
 
     return (
