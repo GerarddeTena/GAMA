@@ -10,6 +10,7 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
         scene.physics.add.existing(this);
         this.playerHealth = 1000;
         this.currentAnim = null;
+        this.isInvulnerable = false;
 
 
     }
@@ -87,5 +88,27 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
         }
 
         livesText.setText('Lives: ' + this.playerHealth);
+        this.feedbackHit();
+        this.isInvulnerable = true;
+        this.scene.time.addEvent({
+            delay: 1000,
+            callback: () => {
+                this.isInvulnerable = false;
+            }
+        });
+
+    }
+    feedbackHit() {
+        this.scene.tweens.add({
+            targets: this,
+            alpha: 0,
+            ease: 'Linear',
+            duration: 100,
+            repeat: 5,
+            yoyo: true,
+            onComplete: () => {
+                this.setAlpha(1);
+            }
+        });
     }
 }

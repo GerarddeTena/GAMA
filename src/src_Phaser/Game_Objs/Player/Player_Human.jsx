@@ -13,6 +13,8 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
         this.body.setGravityY(300);
         this.playerHealth = 1000;
         this.currentAnim = null;
+        this.isInvulnerable = false;
+
     }
 
     createAnimations(scene) {
@@ -124,13 +126,35 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
     handlePlayerHit(enemy, livesText) {
 
         if (enemy instanceof Hans) {
-            this.playerHealth -= 80;
+            this.playerHealth -= 60;
         } else if (enemy instanceof Skeleton) {
-            this.playerHealth -= 40;
+            this.playerHealth -= 20;
         } else if (enemy instanceof Dragon) {
-            this.playerHealth -= 15;
+            this.playerHealth -= 5;
         }
 
         livesText.setText('Lives: ' + this.playerHealth);
+        this.feedbackHit();
+        this.isInvulnerable = true;
+        this.scene.time.addEvent({
+            delay: 1000,
+            callback: () => {
+                this.isInvulnerable = false;
+            }
+        });
+
+    }
+    feedbackHit() {
+        this.scene.tweens.add({
+            targets: this,
+            alpha: 0,
+            ease: 'Linear',
+            duration: 100,
+            repeat: 5,
+            yoyo: true,
+            onComplete: () => {
+                this.setAlpha(1);
+            }
+        });
     }
 }
