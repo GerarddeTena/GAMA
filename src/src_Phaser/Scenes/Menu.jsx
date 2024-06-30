@@ -28,8 +28,8 @@ export class Menu extends Phaser.Scene {
         }).setOrigin(0.5);
         textMenu.setTint(0xff00ff, 0xff00ff, 0x0000ff, 0x0000ff);
 
-        let audioMenu = this.sound.add('MenuAudio');
-        audioMenu.play({volume: 0.01});
+        this.audioMenu = this.sound.add('MenuAudio');
+        this.audioMenu.play({volume: 0.02});
 
         this.A = new KeyBoard(this, centerX - 1.5 * offset, centerY, 'A', 0).setScale(2);
         this.D = new KeyBoard(this, centerX + offset * 1.5, centerY, 'D', 0).setScale(2);
@@ -55,6 +55,8 @@ export class Menu extends Phaser.Scene {
         this.input.keyboard.on('keydown-ENTER', () => this.cameras.main.fadeOut(1000, 0, 0, 0));
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
             this.scene.start('Select_Character');
+            this.audioMenu.stop();
+            this.aud
         });
     }
 

@@ -16,13 +16,13 @@ export class Level1 extends Base_Level {
         const spriteLoad = new LoadSprites(this);
         const sceneAudio = new LoadAudio(this);
         loader.loadImage('background', 'background', 'Cathedral_1');
-        loader.loadImage('platform', '', 'Platform');
-        loader.loadImage('corridor', '', 'Corridor');
-        loader.loadImage('block', '', 'PlatformBlock');
-        loader.loadImage('c_block', '', 'CathedralBlock');
-        loader.loadImage('rope', '', 'Rope');
+        loader.loadImage('platform', 'Platforms', 'Platform');
+        loader.loadImage('corridor', 'Platforms', 'Corridor');
+        loader.loadImage('block', 'Platforms', 'PlatformBlock');
+        loader.loadImage('c_block', 'Platforms', 'CathedralBlock');
+        loader.loadImage('rope', 'Platforms', 'Rope');
         spriteLoad.loadAllSprites();
-        sceneAudio.loadAudio('audioBoss1', '', 'AudioBoss');
+        sceneAudio.loadAudio('LevelOne', '', 'Level1');
     }
 
     create() {
@@ -30,6 +30,9 @@ export class Level1 extends Base_Level {
         const CENT_X = this.cameras.main.centerX;
         const CENT_Y = this.cameras.main.centerY;
         const Rand = (n) => Math.floor(Math.random() * n);
+
+        this.audioLVL1 = this.sound.add('LevelOne');
+        this.audioLVL1.play({volume: 0.02});
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keys = this.input.keyboard.addKeys(['A', 'D']);
