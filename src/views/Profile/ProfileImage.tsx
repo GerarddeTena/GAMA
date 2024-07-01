@@ -7,7 +7,7 @@ interface ProfileImageProps {
     onImageUploaded: (file: any) => void;
 }
 
-const ProfileImage: React.FC<ProfileImageProps> = ({ onImageUploaded }) => {
+const ProfileImage: React.FC<ProfileImageProps> = ({ onImageUploaded}) => {
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState('');
 
@@ -29,7 +29,7 @@ const ProfileImage: React.FC<ProfileImageProps> = ({ onImageUploaded }) => {
 
         setImageUrl(transformedUrl);
         setLoading(false);
-        onImageUploaded(files[0]); // send the actual image file instead of the URL
+        onImageUploaded(files[0]);
     };
 
     return (

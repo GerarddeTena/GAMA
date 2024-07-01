@@ -1,7 +1,8 @@
 import About_Cards from "../components/Cards/About_Cards.tsx";
 import '../styles/views_Styles/Stathic/AboutUs.scss';
 import Info_Cards from "../components/Cards/Info_Cards.tsx";
-import React from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React, {ReactHTML} from 'react';
 
 const AboutUs = () => {
 

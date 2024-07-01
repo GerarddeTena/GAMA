@@ -24,19 +24,8 @@ interface EditProfileFormProps {
 const EditProfileForm: React.FC<EditProfileFormProps> = ({user, onSave}) => {
     const [formData, setFormData] = useState(user);
 
-    const handleImageUploaded = async (url) => {
-        const formData = new FormData();
-        formData.append('image', url);
-        formData.append('user_id', user.user_id);
-
-        const response = await fetch(`${serverURL}/user/profile-pic`, {
-            method: 'POST',
-            body: formData,
-        });
-
-        if (!response.ok) {
-            console.error('Failed to update profile picture URL');
-        }
+    const handleImageUploaded = async (imageUrl) => {
+        setFormData({...formData, profilePic: imageUrl})
     };
 
     const handleChange = (event) => {
