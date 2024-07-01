@@ -20,6 +20,7 @@ const Layout = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const handleAuth = localStorage.getItem('token');
 
+
     const PrivateRoute = ({component: Component, ...restOfComponents}) => {
         const {isAuthenticated} = useContext(AuthContext);
         return isAuthenticated ? <Component {...restOfComponents} /> : <Navigate to='/'/>;
