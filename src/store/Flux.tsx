@@ -22,7 +22,17 @@ interface StoreTypes {
     },
 
 }
-const stateOfComponents = ({getTheStore, setStore}): StoreTypes => {
+const stateOfComponents = ({getTheStore, setStore}): {
+    store: { players: any[]; users: any[] };
+    actions: {
+        getUserDispatcher: ({id}: { id: string }) => Promise<void>;
+        loginUserDispatcher: (userData: UserType) => Promise<UserType | null>;
+        setPlayersDispatcher: (playerData: PlayerStats) => Promise<void>;
+        registerUserDispatcher: (userData: UserType) => Promise<UserType>;
+        deletePlayersDispatcher: (id: number) => Promise<void>;
+        getPlayersDispatcher: () => Promise<void>
+    }
+} => {
     return {
         store: {
             users: [],

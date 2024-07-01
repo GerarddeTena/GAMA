@@ -29,7 +29,7 @@ const ProfileImage: React.FC<ProfileImageProps> = ({ onImageUploaded}) => {
 
         setImageUrl(transformedUrl);
         setLoading(false);
-        onImageUploaded(files[0]);
+        onImageUploaded(transformedUrl);
     };
 
     return (
