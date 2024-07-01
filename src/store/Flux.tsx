@@ -15,15 +15,11 @@ interface PlayerStats {
     level: number,
 }
 
-interface StoreTypes {
+interface FluxTypes {
     store: {
         users: UserTypes [];
         players: PlayerStats [];
     },
-
-}
-const stateOfComponents = ({getTheStore, setStore}): {
-    store: { players: any[]; users: any[] };
     actions: {
         getUserDispatcher: ({id}: { id: string }) => Promise<void>;
         loginUserDispatcher: (userData: UserType) => Promise<UserType | null>;
@@ -32,7 +28,9 @@ const stateOfComponents = ({getTheStore, setStore}): {
         deletePlayersDispatcher: (id: number) => Promise<void>;
         getPlayersDispatcher: () => Promise<void>
     }
-} => {
+
+}
+const stateOfComponents = ({getTheStore, setStore}): FluxTypes => {
     return {
         store: {
             users: [],
@@ -72,7 +70,7 @@ const stateOfComponents = ({getTheStore, setStore}): {
             getUserDispatcher: async ({id}: {id: string}): Promise<void> => {
                 await getUsers({id});
                 const store = getTheStore();
-                const users = store.users.filter(user => user.id === id)
+                const users = store.users.filter((user: { id: string; }) => user.id === id)
                 setStore({...store, users: users});
             },
 
@@ -89,7 +87,7 @@ const stateOfComponents = ({getTheStore, setStore}): {
             deletePlayersDispatcher: async (id: number): Promise<void> => {
                 await deletePlayerRequests(id);
                 const store = getTheStore();
-                const players = store.players.filter(player => player.id !== id);
+                const players = store.players.filter((player: { id: number; }) => player.id !== id);
                 setStore({...store, players: players});
             }
         }

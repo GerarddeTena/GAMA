@@ -4,7 +4,7 @@ import axios from 'axios';
 import React from "react";
 
 interface ProfileImageProps {
-    onImageUploaded: (file: any) => void;
+    onImageUploaded: (file: string) => void;
 }
 
 const ProfileImage: React.FC<ProfileImageProps> = ({ onImageUploaded}) => {

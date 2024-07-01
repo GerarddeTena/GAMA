@@ -7,7 +7,7 @@ import React from "react";
 
 interface NavbarProps {
     isVisible: boolean,
-    toggleNavbar: never
+    toggleNavbar: () => void
 }
 
 interface SvgType {

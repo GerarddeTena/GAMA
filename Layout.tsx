@@ -12,16 +12,22 @@ import SignIn from "./src/views/LogIn/SignIn.jsx";
 import User_Profile from "./src/views/Profile/User_Profile.tsx";
 import PhaserConfig from "./src/src_Phaser/GameConfig/PhaserConfig.jsx";
 import {AuthContext, AuthProvider} from "./src/store/GENERAL_CONTEXT/AuthContext.tsx";
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from "react";
+import {ReactComponentLike} from "prop-types";
+interface PrivateRouteTypes {
+    component: ReactComponentLike;
+}
 
 // eslint-disable-next-line react-refresh/only-export-components
 const Layout = () => {
+
     const [isVisible, setIsVisible] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const handleAuth = localStorage.getItem('token');
 
 
-    const PrivateRoute = ({component: Component, ...restOfComponents}) => {
+    const PrivateRoute = ({component: Component, ...restOfComponents}: PrivateRouteTypes) => {
         const {isAuthenticated} = useContext(AuthContext);
         return isAuthenticated ? <Component {...restOfComponents} /> : <Navigate to='/'/>;
     }

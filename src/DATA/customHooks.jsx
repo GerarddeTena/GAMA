@@ -5,7 +5,7 @@ export const useUser = (key, initialState) => {
 
     useEffect(() => {
         setValue(localStorage.getItem(`${key}`) || initialState);
-    }, [value, key]);
+    }, [value, key, initialState]);
 
     return [value, setValue];
 }
