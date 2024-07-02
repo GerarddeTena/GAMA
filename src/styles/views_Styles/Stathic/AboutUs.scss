@@ -41,7 +41,7 @@
     white-space: nowrap;
     overflow: hidden;
     width: 8ch;
-    font-family: 'Press Start 2P';
+    font-family: "Press Start 2P", system-ui;
     @include strokeTextConfig(1, white, deeppink);
   }
 
@@ -85,9 +85,81 @@
   }
 }
 
-
 @keyframes WriteMachine {
   from {
     width: 0
+  }
+}
+
+@include media-queries-md() {
+  .Heart {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 26.5%;
+    left: 45.75%;
+
+    &::before {
+      content: "";
+      position: $abs;
+      width: 3px;
+      height: 3px;
+      z-index: 2;
+      @include PIXEL_ART(4px, $icon-heart, $icon-heart-colors);
+
+    }
+  }
+
+  .About_Container {
+    position: $rel;
+    background-image: url("src/Images/AboutBackground.png");
+    background-size: calc(100vw) calc(200vh);
+    background-repeat: no-repeat;
+    @include displayFlex(column, $cent, $cent);
+    color: white;
+    width: calc(100vw);
+    min-height: 200vh;
+    gap: 2.5rem;
+  }
+
+  .About_Title {
+    @include displayFlex(column, $cent, $cent);
+    animation: GameBoy 1s linear infinite;
+
+    & h1 {
+      animation: WriteMachine 1s steps(8);
+      white-space: nowrap;
+      overflow: hidden;
+      width: 8ch;
+      font-family: "Press Start 2P", system-ui;
+      @include strokeTextConfig(1, white, deeppink);
+    }
+
+    & h2 {
+      font-family: "Press Start 2P", system-ui;
+      @include strokeTextConfig(1, white, deeppink);
+      animation: none;
+    }
+  }
+
+  .About_Description {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    padding: 5px;
+    min-width: calc(50vh - 2rem);
+    min-height: calc(50vh - 2rem);
+    scroll-snap-type: x mandatory;
+    gap: 2.5rem;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .About_Text {
+      margin: 20px;
+      width: 300px;
+      scroll-snap-align: start;
+    }
   }
 }

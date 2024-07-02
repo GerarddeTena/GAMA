@@ -10,7 +10,7 @@ const Info_Cards = () => {
                     <article key={card.id} className='Craft_Description' data-testid='info-cards'>
                         <h3 className='Description_Title'>{card.title}</h3>
                         <span className='Description_Info'>{card.description}</span>
-                        <img src={card.img}/>
+                        <img className='Gif' src={card.img}/>
                     </article>
                 ))}
             </div>

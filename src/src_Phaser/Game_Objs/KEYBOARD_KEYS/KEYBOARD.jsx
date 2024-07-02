@@ -6,8 +6,6 @@ export class KeyBoard extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);
 
         this.createAnimation(scene, 'A');
-        this.createAnimation(scene, 'S');
-        this.createAnimation(scene, 'W');
         this.createAnimation(scene, 'D');
         this.createAnimation(scene, 'Shift');
         this.createAnimation(scene, 'Space');

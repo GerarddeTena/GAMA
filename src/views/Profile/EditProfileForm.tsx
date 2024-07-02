@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import ProfileImage from "./ProfileImage.tsx";
-import '../../styles/components_Styles/Profile/EditProfileForm.scss';
+import '../../styles/Profile/EditProfileForm.scss';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from "react";
 
@@ -22,7 +22,7 @@ interface EditProfileFormProps {
 const EditProfileForm: React.FC<EditProfileFormProps> = ({user, onSave}) => {
     const [formData, setFormData] = useState(user);
 
-    const handleImageUploaded = async (imageUrl) => {
+    const handleImageUploaded = async (imageUrl: string): Promise<void> => {
         setFormData({...formData, profilePic: imageUrl})
     };
 
@@ -36,19 +36,22 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({user, onSave}) => {
     };
 
     return (
-        <form className='Profile' onSubmit={handleSubmit}>
-            <div className='Profile_Image'>
-                <label>Foto perfil:</label>
-                <ProfileImage onImageUploaded={handleImageUploaded}/>
-            </div>
-            <div className='Bio_Profile'>
-                <label>
-                    Biografía:
-                    <textarea name="bio" value={formData.bio} onChange={handleChange}></textarea>
-                </label>
-            </div>
-            <button type="submit">Guardar</button>
-        </form>
+        <section className='Profile_Container'>
+            <form className='Profile' onSubmit={handleSubmit}>
+                <div className='Profile_Image'>
+                    <label className='Label_Profile'>Change Profile Image:</label>
+                    <ProfileImage onImageUploaded={handleImageUploaded}/>
+                </div>
+                <div className='Bio_Profile'>
+                    <label>
+                        Your Bio:
+                        <textarea name="bio" value={formData.bio} onChange={handleChange}></textarea>
+                    </label>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </section>
+
     );
 };
 export default EditProfileForm;

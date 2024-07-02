@@ -14,6 +14,7 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
 
 
     }
+
     createAnimations(scene) {
 
         scene.anims.create({
@@ -43,9 +44,7 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
                 this.anims.play('cyborg_Jump');
                 this.currentAnim = 'cyborg_Jump';
             }
-        }
-
-        else if (keys[0].isDown) {
+        } else if (keys[0].isDown) {
             this.body.setVelocityX(shiftPressed ? -100 : -50);
 
             if (onGround && this.currentAnim !== 'cyborg_Walk') {
@@ -54,9 +53,7 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
             }
 
             this.flipX = true;
-        }
-
-        else if (keys[1].isDown) {
+        } else if (keys[1].isDown) {
             this.body.setVelocityX(shiftPressed ? 100 : 50);
             if (onGround && this.currentAnim !== 'cyborg_Walk') {
                 this.anims.play('cyborg_Walk', true);
@@ -64,9 +61,7 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
             }
 
             this.flipX = false;
-        }
-
-        else if (keys[0].isUp && keys[1].isUp) {
+        } else if (keys[0].isUp && keys[1].isUp) {
             this.body.setVelocityX(0);
 
             if (onGround && this.currentAnim !== 'cyborg_Idle') {
@@ -78,7 +73,7 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
 
 
     handlePlayerHit(enemy, livesText) {
-
+        //Lives on Cyborg must be more than others. IT'S AN INCREDIBLE CHALLENGE TO PASS THE GAME WITH IT. Let's make it more fair.
         if (enemy instanceof Hans) {
             this.playerHealth -= 60;
         } else if (enemy instanceof Skeleton) {
@@ -98,6 +93,7 @@ export class Cyborg extends Phaser.Physics.Arcade.Sprite {
         });
 
     }
+
     feedbackHit() {
         this.scene.tweens.add({
             targets: this,

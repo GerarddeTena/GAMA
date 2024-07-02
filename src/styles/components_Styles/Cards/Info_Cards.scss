@@ -23,7 +23,7 @@
   & .Description_Title {
     margin: .5rem;
     text-align: center;
-    font-family: 'Press Start 2P';
+    font-family: 'Press Start 2P', system-ui;
     @include strokeTextConfig(1, white, deeppink);
 
   }
@@ -32,14 +32,6 @@
     margin: 1rem;
     max-width: calc(100% - 6px);
     font-size: 1rem;
-  }
-
-  & img {
-    width: 50px;
-  }
-
-  :nth-child(5n - 2) {
-    width: 50px;
   }
 }
 

@@ -32,7 +32,7 @@ export class LoadSprites {
             {name: 'dragon', dir: 'Enemies', file: 'ManiacDragon', fW: 32, fH: 32},
             {name: 'dragon_attack', dir: 'Enemies', file: 'Dragon_Hystheria', fW: 32, fH: 32},
             {name: 'dragon_Jump', dir: 'Enemies', file: 'ManiacDragon', fW: 32, fH: 32},
-            {name: 'FinalDragon', dir: 'Enemies', file: 'FinalDragon', fW: 160, fH: 128},
+            {name: 'beast', dir: 'Enemies', file: 'FinalDragon_Walk', fW: 160, fH: 128},
             {name: 'human_Idle', dir: 'Players', file: 'Human_Idle', fW: 32, fH: 48},
             {name: 'human_Walk', dir: 'Players', file: 'Walking_Human', fW: 32, fH: 48},
             {name: 'human_Jump', dir: 'Players', file: 'Jumping_Human', fW: 34, fH: 48},

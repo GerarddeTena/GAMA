@@ -126,11 +126,11 @@ export class Human extends Phaser.Physics.Arcade.Sprite {
     handlePlayerHit(enemy, livesText) {
 
         if (enemy instanceof Hans) {
-            this.playerHealth -= 60;
+            this.playerHealth -= 80;
         } else if (enemy instanceof Skeleton) {
-            this.playerHealth -= 20;
+            this.playerHealth -= 35;
         } else if (enemy instanceof Dragon) {
-            this.playerHealth -= 5;
+            this.playerHealth -= 15;
         }
 
         livesText.setText('Lives: ' + this.playerHealth);

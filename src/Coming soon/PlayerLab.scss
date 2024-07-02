@@ -1,4 +1,4 @@
-@import '../global.variables';
+@import '../styles/global.variables';
 @include inputChange('text', 10, 10, black, none, white, none, .5);
 ul {
   list-style: none;
@@ -17,7 +17,7 @@ ul {
   border-radius: .25rem;
   min-width: 100vw;
   min-height: 150vh;
-  background-image: url("src/Images/Lab_Background.gif");
+  background-image: url("../Images/Lab_Background.gif");
   background-size: cover;
   padding: .5rem;
 

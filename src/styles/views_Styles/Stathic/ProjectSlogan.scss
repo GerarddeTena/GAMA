@@ -2,17 +2,18 @@
 
 .Slogan {
   background-image: url("../../../Images/Background_project_Home.gif");
-  background-size: cover;
-
+  background-size: contain;
+  background-repeat: no-repeat;
+  max-height: 100vh!important;
   @include displayFlex(column, $cent, $cent);
   width: 100%;
-  max-height: 100vh;
 
   & .Slogan_Container {
     @include displayFlex(column, $cent, $cent);
-    height: 100vh;
 
     & .Title_Image {
+      position: $abs;
+      top: 10%;
       width: 50rem;
       height: 25rem;
     }
@@ -30,7 +31,7 @@
         width: 8rem;
         left: 50%;
         bottom: 5%;
-        transform: translate(-50%, -50%); // Centra la imagen en el medio
+        transform: translate(-50%, -50%);
       }
 
       &:nth-child(3) {

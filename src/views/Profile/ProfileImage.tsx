@@ -41,7 +41,7 @@ const ProfileImage: React.FC<ProfileImageProps> = ({ onImageUploaded}) => {
                 onChange={uploadImage}
             />
             {loading ? (
-                <h3>Cargando...</h3>
+                <h3 className='Loading'>Loading...</h3>
             ) : (
                 imageUrl && <img src={imageUrl} alt="Foto de perfil"/>
             )}

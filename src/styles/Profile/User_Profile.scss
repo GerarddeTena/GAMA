@@ -1,0 +1,82 @@
+@import '../global.variables';
+
+.Profile_Container {
+  @include displayFlex(column, $cent, $cent);
+  background-image: url("../../Images/VillageUserProfile.gif");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  min-height: 115vh;
+  width: 100%;
+  font-family: "Press Start 2P", system-ui;
+
+  & .Profile_Header {
+    background-image: url("../../Images/typesOfCharacter/Background.png");
+    background-size: cover;
+    position: $rel;
+    @include displayFlex(flex-start, $cent);
+    min-width: 110vh;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    min-height: 20vh;
+    border: 3px solid black;
+
+    & .Dragon {
+      width: 50px;
+      animation: SideBySide 6s alternate infinite;
+    }
+
+    & .Profile_Pic {
+      position: $abs;
+      top: 5%;
+      left: 2%;
+    }
+  }
+
+  & .Profile_Body {
+    position: relative;
+    @include displayFlex(column, $cent, flex-start);
+    min-height: 15vh;
+    max-width: 110vh;
+    background: silver;
+    backdrop-filter: blur(5rem);
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    & .User_Creds {
+      @include displayFlex(row, space-around, baseline);
+      min-width: 50vw;
+    }
+
+    & .User_Bio {
+      @include displayFlex($cent, $cent);
+      width: 75%;
+      min-height: 10vh;
+      border: 1px black;
+    }
+  }
+  & .Profile_Footer {
+    position: relative;
+    @include displayFlex(column, space-around, $cent);
+    min-height: 10vh;
+    min-width: 110vh;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    border-bottom: 3px solid black;
+    background: silver;
+    backdrop-filter: blur(5rem);
+    & .User_Stats {
+      @include displayFlex(row, space-around, $cent);
+      min-width: 50vw;
+    }
+  }
+}
+@keyframes SideBySide {
+  0% {
+    transform: translateX(200%);
+  }
+  50%{
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}

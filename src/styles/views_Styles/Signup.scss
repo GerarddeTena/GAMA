@@ -15,25 +15,25 @@
     font-family: "Press Start 2P", system-ui;
     font-size: 4rem;
     @include strokeTextConfig(1, white, black);
+    animation: ColorStrokeTransition 2s alternate infinite;
   }
 
   & .Body_Form_SU {
-    @include displayFlex(column, $cent, $cent);
-    gap: 5rem;
+    @include displayFlex(column, start, $cent);
+    gap: 2.5rem;
     @include box-shadow(2, white);
-    padding: .5em;
     width: 40%;
-    min-height: 65vh;
+    height: 50vh;
     backdrop-filter: blur(0.5rem);
 
     & label{
       font-family: "Press Start 2P", system-ui;
       font-size: 1.8rem;
-      @include strokeTextConfig(2, black, #ff6a00)
     }
 
     & .Label_Div {
       @include displayFlex(row, $cent, flex-start);
+      margin: 1.5rem 0 0 0;
       width: auto;
     }
 
@@ -63,6 +63,15 @@
       inset: -4px;
       content: "";
       box-shadow: inset -4px -4px #98275e;
+    }
+  }
+  @keyframes ColorStrokeTransition {
+    from {
+      -webkit-text-stroke: 1px white;
+    }
+
+    to {
+      -webkit-text-stroke: 1px gold;
     }
   }
 }

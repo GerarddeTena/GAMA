@@ -9,29 +9,30 @@
   background-image: url("src/Images/pixel-night.gif");
   background-size: cover;
 
-  gap: 3.5rem;
-
   & .Form_Title {
     font-family: "Press Start 2P", system-ui;
     @include strokeTextConfig(1, black, #fd9b2d);
     font-size: 4rem;
+    animation: ColorStrokeTransition 2s alternate infinite;
   }
   & .Body_Form_SI {
-    @include displayFlex(column, $cent, $cent);
-    gap: 1.5rem;
+    @include displayFlex(column, start, $cent);
+    gap: 1.2rem;
+    margin: 5rem 0 0 0;
     @include box-shadow(5, white);
     width: 40vw;
-    height: 50vh;
+    height: 35vh;
     backdrop-filter: blur(0.5rem);
+    color: white;
 
     & label {
       font-family: "Press Start 2P", system-ui;
       font-size: 2rem;
-      @include strokeTextConfig(2, white, deeppink)
     }
     & .Label_Div {
       @include displayFlex(row, $cent, flex-start);
       width: auto;
+      margin: 1rem 0 0 0;
     }
   }
 
@@ -60,5 +61,23 @@
       content: "";
       box-shadow: inset -4px -4px #442c60;
     }
+
+    &:hover {
+      background: #442c60;
+    }
+    &:hover::after {
+      box-shadow: inset -4px -4px rebeccapurple;
+    }
+  }
+  @keyframes ColorStrokeTransition {
+    from {
+      -webkit-text-stroke: 1px white;
+    }
+
+    to {
+      -webkit-text-stroke: 1px gold;
+    }
   }
 }
+
+

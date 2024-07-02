@@ -1,7 +1,8 @@
 import {useEffect, useState} from 'react';
 import {useUser} from "../../DATA/customHooks.jsx";
 import EditProfileForm from "./EditProfileForm.tsx";
-import '../../styles/views_Styles/Stathic/User_Profile.scss';
+import Dragon from '../../Images/typesOfCharacter/Dragon_Hystheria.gif'
+import '../../styles/Profile/User_Profile.scss';
 // import {Context} from "../../store/GENERAL_CONTEXT/AppContext.jsx";
 import {getUsers} from "../../store/Http_calls/HTTP_User_Requests.jsx";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -61,24 +62,29 @@ const UserProfile = () => {
 
 
     return (
-        <section className="Profile_Container">
+        <main className="Profile_Container">
+            <section className="Profile_Header">
+                <img className='Dragon' src={Dragon} alt="Dragon Enemy on Histerya Mode"/>
+                <div className='Profile_Pic'>
+                    <img src={user.profilePic} alt="Avatar de prueba"/>
+                </div>
+            </section>
             <section className='Profile_Body'>
-                <img className="Profile_Pic" src={user.profilePic} alt="Avatar de prueba"/>
                 <div className='User_Creds'>
-                    <h2>{user.user_name}</h2>
+                <h2>{user.user_name}</h2>
                     <p>{user.email}</p>
                 </div>
                 <div className='User_Bio'>
                     <p>{user.bio}</p>
                 </div>
-
-                <div className="User_Stats">
-                    <p>LEVEL: {user.level}</p>
-                    <p>SCORE: {userScore}</p>
-                </div>
             </section>
-            <button onClick={handleEditClick}>Edit profile</button>
-        </section>
+            <section className="Profile_Footer">
+                <span>Score: <b>{userScore}</b></span>
+                <button className='btn' onClick={handleEditClick}>Edit profile</button>
+            </section>
+
+
+        </main>
     );
 };
 

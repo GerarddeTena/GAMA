@@ -30,7 +30,7 @@ export class Level2 extends Base_Level {
         this.add.image(CENT_X - OFFSET * 15, CENT_Y - OFFSET * 2, "level2BG").setOrigin(0, 0).setScale(1.87);
 
         this.platforms = new Platforms(this.physics.world, this, null, [
-            {x: 100, y: 600, key: "platform"}, {x: 500, y: 600, key: "platform"}, {x: 300, y: 500, key: "block"}
+            {x: 100, y: 500, key: "platform"}, {x: 500, y: 600, key: "platform"}, {x: 300, y: 500, key: "block"}
         ]);
         super.create();
 
@@ -44,7 +44,6 @@ export class Level2 extends Base_Level {
             {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon', scale: 2, pushable: false},
             {name: 'dragon', class: Dragon, x: Rand(1800), y: 550, key: 'dragon', scale: 2, pushable: false}
         ];
-
 
         this.npcCharacters = [];
         this.characterMap = new Map();
@@ -83,7 +82,7 @@ export class Level2 extends Base_Level {
 
         this.npcCharacters.forEach(npc => {
             if (npc !== null) {
-                followPlayer.call(this, npc, this.player, 100, `${npc.name}_Walk`, `${npc.name}_Idle`, `${npc.name}_Jump`);
+                followPlayer.call(this, npc, this.player, 150, `${npc.name}_Walk`, `${npc.name}_Idle`, `${npc.name}_Jump`);
             }
 
         });

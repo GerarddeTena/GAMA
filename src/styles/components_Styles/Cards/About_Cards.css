@@ -10,7 +10,7 @@
 
 .Container_Info .Card_Container {
   display: flex;
-  flex-flow: center wrap;
+  flex-flow: wrap;
   justify-content: center;
   align-items: center;
   width: 100%;

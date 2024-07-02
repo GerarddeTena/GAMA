@@ -2,7 +2,7 @@
 
 main {
   min-width: 100vw;
-  min-height: 120vh;
+  min-height: 180vh;
   @include displayFlex(column, $cent, $cent);
   background-image: url("../../../../Images/Lab_Background.gif");
 }
@@ -54,10 +54,10 @@ main {
     margin: 0 0 .5rem;
   }
   & .Description {
-    text-align: justify;
     padding: 1rem;
     @include box-shadow(4, silver);
     background-color: lightblue;
+    font-size: 1.5rem;
   }
 
   & .Button_Character {
@@ -90,6 +90,9 @@ main {
 }
 
 @include media-queries-md {
+  .Contain_Info_Cyborg{
+    min-height: 250vh;
+  }
   .Character_Cyborg {
     width: 100%;
     background-image: url("../../../../Images/typesOfCharacter/LabCyborg.png");
@@ -126,6 +129,9 @@ main {
 }
 
 @include media-queries-sm {
+  .Contain_Info_Cyborg{
+    min-height: 200vh;
+  }
   .Character_Cyborg {
     width: 100%;
     background-image: url("../../../../Images/typesOfCharacter/LabCyborg.png");

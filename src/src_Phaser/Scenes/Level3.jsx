@@ -7,13 +7,16 @@ import {followPlayer} from "../GameConfig/NPCLogic.jsx";
 import {Dragon} from "../Game_Objs/NPC/NPC LVL1/Dragon.jsx";
 
 export class Level3 extends Base_Level {
+    constructor() {
+        super('Level3');
+    }
 
     preload() {
         const loadSprite = new LoadSprites(this);
         const loader = new Loader(this);
         loadSprite.loadAllSprites();
         loader.loadImage('FinalBackground', 'background', 'FinalBackground');
-
+        loader.loadImage('FinalCorridor');
     }
 
     create() {
@@ -22,7 +25,7 @@ export class Level3 extends Base_Level {
         const Rand = (n) => Math.floor(Math.random() * n);
 
 
-        this.add.image(0, 0, 'FinalBackground');
+        this.add.image(CENT_X - 100, CENT_Y + 150, 'FinalBackground');
 
         this.platforms = new Platforms(this.physics.world, this, null, [
             {x: 100, y: 600, key: "FinalCorridor"}, {x: 400, y: 600, key: "FinalCorridor"},
@@ -32,15 +35,23 @@ export class Level3 extends Base_Level {
         super.create();
 
         const characters = [
-            {name: 'hans', class: Hans, x: 1000, y: 500, key: 'hans_Idle', scale: 2, pushable: false},
-            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle', pushable: false},
-            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle', pushable: false},
-            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle', pushable: false},
-            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle', pushable: false},
-            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle', pushable: false},
-            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle', pushable: false},
-            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle', pushable: false},
-            {name: 'skeleton', class: Skeleton, x: Rand(1800), y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'hans', class: Hans, x: 1000, y: 500, key: 'hans_Idle', scale: 1.5, pushable: false},
+            {name: 'skeleton', class: Skeleton, x: 1000, y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'skeleton', class: Skeleton, x: 1800, y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'skeleton', class: Skeleton, x: 1800, y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'skeleton', class: Skeleton, x: 1800, y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'skeleton', class: Skeleton, x: 1800, y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'skeleton', class: Skeleton, x: 1800, y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'skeleton', class: Skeleton, x: 1800, y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'skeleton', class: Skeleton, x: 1800, y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'skeleton', class: Skeleton, x: 1800, y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'skeleton', class: Skeleton, x: 1800, y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'skeleton', class: Skeleton, x: 1800, y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'skeleton', class: Skeleton, x: 1800, y: 550, key: 'skeleton_Idle', pushable: false},
+            {name: 'dragon', class: Dragon , x: Rand(1800), y: 550, key: 'dragon', pushable: false},
+            {name: 'dragon', class: Dragon , x: Rand(1800), y: 550, key: 'dragon', pushable: false},
+            {name: 'dragon', class: Dragon , x: Rand(1800), y: 550, key: 'dragon', pushable: false},
+            {name: 'dragon', class: Dragon , x: Rand(1800), y: 550, key: 'dragon', pushable: false},
             {name: 'dragon', class: Dragon , x: Rand(1800), y: 550, key: 'dragon', pushable: false},
             {name: 'dragon', class: Dragon , x: Rand(1800), y: 550, key: 'dragon', pushable: false},
             {name: 'dragon', class: Dragon , x: Rand(1800), y: 550, key: 'dragon', pushable: false},
@@ -72,7 +83,7 @@ export class Level3 extends Base_Level {
             this.characterMap.set(character, {
                 attackAnim: `${config.name}_Attack`,
                 walkAnim: `${config.name}_Walk`,
-                deathAnim: `${config.name}_Death`
+                deathAnim: `${config.name}_Death`,
             });
             this.npcCharacters.push(character);
         });
@@ -88,7 +99,7 @@ export class Level3 extends Base_Level {
 
         this.npcCharacters.forEach(npc => {
             if (npc !== null) {
-                followPlayer.call(this, npc, this.player, 100, `${npc.name}_Walk`, `${npc.name}_Idle`, `${npc.name}_Jump`);
+                followPlayer.call(this, npc, this.player, 250, `${npc.name}_Walk`, `${npc.name}_Idle`, `${npc.name}_Jump`);
             }
 
         });

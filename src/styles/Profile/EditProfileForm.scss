@@ -1,0 +1,32 @@
+@import '../global.variables';
+
+.Profile {
+  @include displayFlex(column, $cent, $cent);
+  min-width: 50vw;
+  min-height: 50vh;
+  padding: 0.5rem;
+  border: 1px solid black;
+  background-color: silver;
+  backdrop-filter: blur(5rem);
+
+  & .Bio_Profile {
+    @include displayFlex(column, $cent, $cent);
+    gap: 1.5rem;
+  }
+
+  & .Loading {
+    animation: Blink 1.5s alternate infinite;
+  }
+
+  label{
+    font-family: "Press Start 2P", system-ui;
+    @include displayFlex(column, $cent, $cent);
+    gap: 1rem;
+    margin: 0 0 4rem 0;
+  }
+}
+
+@keyframes Blink {
+  0% { opacity: 0}
+  100% { opacity: 1 }
+}

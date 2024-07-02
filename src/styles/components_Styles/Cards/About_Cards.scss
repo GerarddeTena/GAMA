@@ -77,13 +77,14 @@
     }
   }
 
-  @include media-queries-sm {
+  @include media-queries-md() {
 
     .Card_Container {
 
       @include displayFlex($cent, $cent);
-      flex-wrap: wrap;
-      font-size: 1rem;
+      flex-wrap: nowrap;
+      font-size: .5rem;
+      flex-basis: calc(100% - 10rem);
 
       & .Card {
 
@@ -95,7 +96,7 @@
 
         & h1 {
           margin: 0 0 0 0.5rem;
-          font-size: 2rem;
+          font-size: 1rem;
         }
 
         &:hover {
@@ -109,8 +110,9 @@
         & .icons {
           @include displayFlex(column);
           position: $abs;
-          gap: 3rem;
-          right: calc(50vw - .5em);
+          gap: 2.5rem;
+          right: 10%;
+          top: 10%;
 
           & ::before {
             position: absolute;
@@ -126,7 +128,7 @@
             display: inline-flex;
             width: 16px;
             height: 16px;
-            transform: scale(3);
+            transform: scale(2);
             z-index: 1;
           }
 

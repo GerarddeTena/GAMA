@@ -95,6 +95,9 @@
 }
 
 @include media-queries-md {
+  .Contain_Info_Reptile{
+    min-height: 200vh;
+  }
   .Character_Reptile {
     width: 100%;
     background-image: url("../../../../Images/typesOfCharacter/reptileCave.png");

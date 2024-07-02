@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import Reptile from '../Images/typesOfCharacter/Reptile.gif';
 import Human from '../Images/typesOfCharacter/Human_Thin.gif';
-import Cyborg from '../Images/typesOfCharacter/Cyborg-export.gif'
+import Cyborg from '../Images/typesOfCharacter/Cyborg-export.gif';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, {ReactNode} from "react";
 

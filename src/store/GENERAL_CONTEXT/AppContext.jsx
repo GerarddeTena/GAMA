@@ -8,7 +8,6 @@ const InjectContext = (ComponentToInjectContext) => {
         const [state, setState] = useState(
             stateOfComponents({
                 getTheStore: () => state.store,
-                getTheAction: () => state.action,
                 setStore: (updatedStore) => {
                     setState({
                         store: {...state.store, ...updatedStore},

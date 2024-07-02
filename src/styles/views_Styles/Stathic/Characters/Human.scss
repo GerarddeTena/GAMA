@@ -86,6 +86,9 @@
   }
 
   @include media-queries-md {
+    .Contain_Info_Human{
+      min-height: 200vh;
+    }
     .Character_Human {
       width: 100%;
       border-style: solid;

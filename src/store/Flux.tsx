@@ -2,6 +2,7 @@ import {getPlayerRequests, deletePlayerRequests, setPlayerRequests} from "./Http
 import {getUsers, logInUserRequests, registerUserRequests} from "./Http_calls/HTTP_User_Requests.jsx";
 import {UserTypes} from '../views/Profile/User_Profile.tsx';
 import { UserType } from '../views/Profile/EditProfileForm.tsx';
+
 interface PlayerStats {
     player_id: number;
     name: string;

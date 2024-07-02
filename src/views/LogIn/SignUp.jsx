@@ -30,7 +30,6 @@ const Signup = () => {
                 localStorage.setItem('user_id', result.user_id);
                 localStorage.setItem('token', result.token);
                 validToken();
-                window.location.href = '/user-profile';
                 const userID = localStorage.getItem('user_id')
                 const fetchedUser = await actions.getUserDispatcher({id: userID});
                 if (fetchedUser) {
@@ -42,6 +41,7 @@ const Signup = () => {
                 setError('Registration failed');
                 console.error('Registration failed:', result);
             }
+            window.location.href = '/user-profile';
         } catch (error) {
             console.error('Error:', error);
             setError('Registration failed');

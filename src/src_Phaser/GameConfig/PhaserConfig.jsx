@@ -18,7 +18,7 @@ const PhaserConfig = () => {
         default: "arcade",
         arcade: {
           gravity: { y: 900 },
-          debug: false,
+          debug: true,
         },
       },
       scene: [Menu, Select_Character, Level1, Level2, Level3, PauseMenu],
