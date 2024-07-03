@@ -80,7 +80,7 @@ const UserProfile = () => {
             </section>
             <section className="Profile_Footer">
                 <span>Score: <b>{userScore}</b></span>
-                <button className='btn' onClick={handleEditClick}>Edit profile</button>
+                <button className='Edit_Profile' onClick={handleEditClick}>Edit profile</button>
             </section>
 
 

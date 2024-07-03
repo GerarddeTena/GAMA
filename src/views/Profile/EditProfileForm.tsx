@@ -48,7 +48,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({user, onSave}) => {
                         <textarea name="bio" value={formData.bio} onChange={handleChange}></textarea>
                     </label>
                 </div>
-                <button type="submit">Save</button>
+                <button className='Submit_Profile' type="submit">Save</button>
             </form>
         </section>
 

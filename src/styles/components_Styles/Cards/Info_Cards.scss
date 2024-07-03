@@ -33,6 +33,47 @@
     max-width: calc(100% - 6px);
     font-size: 1rem;
   }
+
+  & .PlayerGoButton {
+    border-image-source: url("../../../Images/ButtonBorder.svg");
+    height: 3rem;
+    position: relative;
+    width: 7rem !important;
+    border-style: solid;
+    border-width: 4px;
+    border-image-outset: 2;
+    border-image-slice: 2;
+    border-image-width: 2;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+    color: #212529;
+    background-color: blueviolet;
+    border-image-repeat: stretch !important;
+    text-decoration: none;
+
+    &::after {
+      position: absolute;
+      inset: -4px;
+      content: "";
+      box-shadow: inset -4px -4px rebeccapurple;
+    }
+
+    &:hover {
+      color: #212529;
+      text-decoration: none;
+      background-color: rebeccapurple;
+    }
+
+    &:hover::after{
+      position: absolute;
+      inset: -4px;
+      content: "";
+      box-shadow: inset -4px -4px blueviolet;
+    }
+  }
+
 }
 
 @keyframes appear {

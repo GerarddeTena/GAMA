@@ -7,7 +7,7 @@ const ProjectSlogan = () => {
 
     return (
         <>
-            <main className='Slogan'>
+            <section className='Slogan'>
                 <section className='Slogan_Container'>
                     <img className='Title_Image' src="src/Images/TITLE_PROJECT.png" alt="Projject title"/>
                     <div className='Char_Container'>
@@ -18,7 +18,7 @@ const ProjectSlogan = () => {
 
                     <SloganButtons/>
                 </section>
-            </main>
+            </section>
         </>
     )
 

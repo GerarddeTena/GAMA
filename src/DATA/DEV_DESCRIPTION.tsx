@@ -69,17 +69,17 @@ export const CARD_INFO: CardInfoTypes [] = [
     },
     {
         id: 2,
-        description: <Link to='/player-info-human' className='Link'>HUMAN</Link>,
-        img: Human,
-    },
-    {
-        id: 3,
-        description: <Link to='/player-info-cyborg' className='Link'>CYBORG</Link>,
+        description: <Link to='/player-info-human' className='PlayerGoButton'>HUMAN</Link>,
+            img: Human,
+            },
+            {
+                id: 3,
+        description: <Link to='/player-info-cyborg' className='PlayerGoButton'>CYBORG</Link>,
         img: Cyborg,
     },
     {
         id: 4,
-        description: <Link to='/player-info-reptile' className='Link'>REPTILE</Link>,
+        description: <Link to='/player-info-reptile' className='PlayerGoButton'>REPTILE</Link>,
         img: Reptile,
     }
 ];

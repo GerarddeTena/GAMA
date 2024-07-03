@@ -22,19 +22,28 @@
     border-image-repeat: stretch !important;
     text-decoration: none;
 
+    &::after {
+        position: absolute;
+        inset: -4px;
+        content: "";
+        box-shadow: inset -4px -4px #e59400;
+    }
+
     &:hover {
         color: #212529;
         text-decoration: none;
-        background-color: #f2c409;
+        background-color: #ff9100;
+    }
+
+    &:hover::after{
+        position: absolute;
+        inset: -4px;
+        content: "";
+        box-shadow: inset -4px -4px gold;
     }
 }
 
-.nes-btn.is-warning::after {
-    position: absolute;
-    inset: -4px;
-    content: "";
-    box-shadow: inset -4px -4px #e59400;
-}
+
 .link {
     text-decoration: none;
     color: black;

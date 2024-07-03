@@ -64,6 +64,13 @@
       content: "";
       box-shadow: inset -4px -4px #98275e;
     }
+
+    &:hover {
+      background: #98275e;
+    }
+    &:hover::after {
+      box-shadow: inset -4px -4px deeppink;
+    }
   }
   @keyframes ColorStrokeTransition {
     from {

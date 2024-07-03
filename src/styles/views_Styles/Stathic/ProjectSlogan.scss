@@ -2,11 +2,11 @@
 
 .Slogan {
   background-image: url("../../../Images/Background_project_Home.gif");
-  background-size: contain;
-  background-repeat: no-repeat;
-  max-height: 100vh!important;
+  background-size: 125vw 100vh;
+  background-repeat: repeat;
+  min-height: 100vh;
   @include displayFlex(column, $cent, $cent);
-  width: 100%;
+  min-width: 150vw;
 
   & .Slogan_Container {
     @include displayFlex(column, $cent, $cent);
