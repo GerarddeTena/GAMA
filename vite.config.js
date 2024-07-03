@@ -6,8 +6,5 @@ export default defineConfig({
   plugins: [react()],
   server: {
     hmr: true,
-  },
-  test : {
-    environment: 'happy-dom'
   }
 })

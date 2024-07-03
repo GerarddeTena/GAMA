@@ -106,7 +106,7 @@ export class Base_Level extends Phaser.Scene {
             return;
         }
 
-        if (!this.player.isInvincible && player.x - 10 >= enemy.x - 100 && player.x + 10 <= enemy.x + 100) {
+        if (!this.player.isInvincible && player.x - 10 >= enemy.x - 100 && player.x + 10 <= enemy.x + 100 && player.x >= enemy.x) {
             this.player.handlePlayerHit(enemy, this.livesText);
             this.player.isInvincible = true;
             this.time.delayedCall(1000, () => {
@@ -124,7 +124,7 @@ export class Base_Level extends Phaser.Scene {
         this.characterMap.forEach((animKeys, character) => {
             this.physics.overlap(this.player, character, this.handlePlayerEnemyCollision, null, this);
             this.handleCharacterAnimations(character, animKeys.attackAnim, animKeys.walkAnim, character && this.player.x > character.x - 100 && this.player.x < character.x + 100);
-            this.handleCharacterOverlap(character, animKeys.deathAnim, 1);
+            this.handleCharacterOverlap(character, animKeys.deathAnim, 50);
         });
 
     }
