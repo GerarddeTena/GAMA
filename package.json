@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && vite build",
     "dev": "node detect-codespace.js && vite",
-    "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest",
@@ -18,8 +19,6 @@
     "@typescript-eslint/parser": "^7.14.1",
     "axios": "^1.7.2",
     "canvas": "^2.11.2",
-    "firebase": "^10.12.2",
-    "happy-dom": "^14.12.3",
     "node-sass": "^9.0.0",
     "phaser": "^3.80.1",
     "prop-types": "^15.8.1",
@@ -39,8 +38,10 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "rimraf": "^5.0.7",
     "sass": "^1.77.1",
     "vite": "^5.2.0",
+    "vite-plugin-copy": "^0.1.6",
     "vitest": "^1.6.0"
   }
 }
