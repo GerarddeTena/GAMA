@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("../../Images/VillageUserProfile.gif");
+  background-image: url("../../assets/Page_Assets/VillageUserProfile.gif");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   min-height: 115vh;
@@ -12,7 +12,7 @@
   font-family: "Press Start 2P", system-ui;
 }
 .Profile_Container .Profile_Header {
-  background-image: url("../../Images/typesOfCharacter/Background.png");
+  background-image: url("../../assets/Page_Assets/Background.png");
   background-size: cover;
   position: relative;
   display: flex;
@@ -88,7 +88,7 @@
 }
 
 .Edit_Profile {
-  border-image-source: url("../../Images/ButtonBorder.svg");
+  border-image-source: url("../../assets/Page_Assets/ButtonBorder.svg");
   height: 2.5rem;
   position: relative;
   width: 10rem !important;

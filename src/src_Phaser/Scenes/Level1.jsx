@@ -15,12 +15,12 @@ export class Level1 extends Base_Level {
         const loader = new Loader(this);
         const spriteLoad = new LoadSprites(this);
         const sceneAudio = new LoadAudio(this);
-        loader.loadImage('background', 'background', 'Cathedral_1');
-        loader.loadImage('platform', 'Platforms', 'Platform');
-        loader.loadImage('corridor', 'Platforms', 'Corridor');
-        loader.loadImage('block', 'Platforms', 'PlatformBlock');
-        loader.loadImage('c_block', 'Platforms', 'CathedralBlock');
-        loader.loadImage('rope', 'Platforms', 'Rope');
+        loader.loadImage('background', '', 'Cathedral_1');
+        loader.loadImage('platform', '', 'Platform');
+        loader.loadImage('corridor', '', 'Corridor');
+        loader.loadImage('block', '', 'PlatformBlock');
+        loader.loadImage('c_block', '', 'CathedralBlock');
+        loader.loadImage('rope', '', 'Rope');
         spriteLoad.loadAllSprites();
         sceneAudio.loadAudio('LevelOne', '', 'Level1');
     }

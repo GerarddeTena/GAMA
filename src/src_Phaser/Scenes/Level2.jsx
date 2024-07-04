@@ -16,7 +16,7 @@ export class Level2 extends Base_Level {
         const loader = new Loader(this);
         const spriteLoad = new LoadSprites(this);
 
-        loader.loadImage("level2BG", "background", "Subway");
+        loader.loadImage("level2BG", "", "Subway");
         loader.loadImage("platform", "", "Platform");
         loader.loadImage("block", "", "PlatformBlock");
         spriteLoad.loadAllSprites();

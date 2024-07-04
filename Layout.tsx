@@ -10,7 +10,7 @@ import Signup from "./src/views/LogIn/SignUp.jsx";
 import InjectContext from './src/store/GENERAL_CONTEXT/AppContext.jsx';
 import SignIn from "./src/views/LogIn/SignIn.jsx";
 import User_Profile from "./src/views/Profile/User_Profile.tsx";
-import PhaserConfig from "./src/src_Phaser/GameConfig/PhaserConfig.jsx";
+import PhaserConfig from "./src/src_Phaser/PhaserConfig.jsx";
 import {AuthContext, AuthProvider} from "./src/store/GENERAL_CONTEXT/AuthContext.tsx";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from "react";

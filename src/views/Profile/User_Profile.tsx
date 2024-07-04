@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useUser} from "../../DATA/customHooks.jsx";
 import EditProfileForm from "./EditProfileForm.tsx";
-import Dragon from '../../Images/typesOfCharacter/Dragon_Hystheria.gif'
+import Dragon from '../../assets/Page_Assets/Dragon_Hystheria.gif';
 import '../../styles/Profile/User_Profile.scss';
 // import {Context} from "../../store/GENERAL_CONTEXT/AppContext.jsx";
 import {getUsers} from "../../store/Http_calls/HTTP_User_Requests.jsx";

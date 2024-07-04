@@ -106,7 +106,8 @@ export class Base_Level extends Phaser.Scene {
             return;
         }
 
-        if (!this.player.isInvincible && player.x - 10 >= enemy.x - 100 && player.x + 10 <= enemy.x + 100 && player.x >= enemy.x) {
+        if (!this.player.isInvincible && player.x - 10 >= enemy.x - 100 && player.x + 10 <= enemy.x + 100 ||
+            !this.player.isInvincible && player.x - 10 <= enemy.x + 100 && player.x + 10 >= enemy.x - 100) {
             this.player.handlePlayerHit(enemy, this.livesText);
             this.player.isInvincible = true;
             this.time.delayedCall(1000, () => {

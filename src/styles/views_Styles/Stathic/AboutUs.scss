@@ -21,7 +21,7 @@
 
 .About_Container {
   position: $rel;
-  background-image: url("src/Images/AboutBackground.png");
+  background-image: url("../../../assets/Page_Assets/AboutBackground.png");
   background-size: calc(100vw) calc(200vh);
   background-repeat: no-repeat;
   @include displayFlex(column, $cent, $cent);
@@ -112,7 +112,7 @@
 
   .About_Container {
     position: $rel;
-    background-image: url("src/Images/AboutBackground.png");
+    background-image: url("../../../assets/Page_Assets/AboutBackground.png");
     background-size: calc(100vw) calc(200vh);
     background-repeat: no-repeat;
     @include displayFlex(column, $cent, $cent);

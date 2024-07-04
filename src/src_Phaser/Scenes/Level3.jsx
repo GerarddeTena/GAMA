@@ -15,7 +15,7 @@ export class Level3 extends Base_Level {
         const loadSprite = new LoadSprites(this);
         const loader = new Loader(this);
         loadSprite.loadAllSprites();
-        loader.loadImage('FinalBackground', 'background', 'FinalBackground');
+        loader.loadImage('FinalBackground', '', 'FinalBackground');
         loader.loadImage('FinalCorridor');
     }
 

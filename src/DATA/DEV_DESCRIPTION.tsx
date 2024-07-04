@@ -1,7 +1,11 @@
 import {Link} from "react-router-dom";
-import Reptile from '../Images/typesOfCharacter/Reptile.gif';
-import Human from '../Images/typesOfCharacter/Human_Thin.gif';
-import Cyborg from '../Images/typesOfCharacter/Cyborg-export.gif';
+import Reptile from '../assets/Page_Assets/Reptile.gif';
+import Human from '../assets/Page_Assets/Human_Thin.gif';
+import Cyborg from '../assets/Page_Assets/Cyborg-export.gif';
+import Gerard_Avatar from '../assets/Page_Assets/Gerard-export.png';
+import Adrian_Avatar from '../assets/Page_Assets/Adradrom.png';
+import Alejandro_Avatar from '../assets/Page_Assets/Alejandro-export.png';
+import Mauro_Avatar from '../assets/Page_Assets/MAu5.png'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, {ReactNode} from "react";
 
@@ -22,7 +26,7 @@ export const CARD_DATA: CardDataTypes [] =
     [
         {
             name: 'Gerard de Tena',
-            avatar: 'src/Images/Gerard-export.png',
+            avatar: Gerard_Avatar,
             links: {
                 github: 'https://github.com/GerarddeTena',
                 linkedin: 'https://www.linkedin.com/in/gerard-de-tena-948624174/',
@@ -30,7 +34,7 @@ export const CARD_DATA: CardDataTypes [] =
         },
         {
             name: 'Adrian Araque',
-            avatar: 'src/Images/Adradrom.png',
+            avatar: Adrian_Avatar ,
             links: {
                 github: 'https://github.com/adrarom',
                 linkedin: 'https://www.linkedin.com/in/adrarom/',
@@ -38,7 +42,7 @@ export const CARD_DATA: CardDataTypes [] =
         },
         {
             name: 'Alejandro De Vita',
-            avatar: 'src/Images/Alejandro-export.png',
+            avatar: Alejandro_Avatar,
             links: {
                 github: 'https://github.com/alejo0022',
                 linkedin: 'https://www.linkedin.com/in/alejandro-de-vita-4043861b3/',
@@ -46,7 +50,7 @@ export const CARD_DATA: CardDataTypes [] =
         },
         {
             name: 'Mauro Santangelo',
-            avatar: 'src/Images/MAu5.png',
+            avatar: Mauro_Avatar,
             links: {
                 github: 'https://github.com/Mauros721',
                 linkedin: 'https://www.linkedin.com/in/mauro-alejandro-santangelo-colmenarez-a965082b8/',

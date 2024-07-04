@@ -42,7 +42,7 @@
   width: auto;
 }
 .Form_SignUp button {
-  border-image-source: url("../../Images/ButtonBorder.svg");
+  border-image-source: url("../../assets/Page_Assets/ButtonBorder.svg");
   height: 3rem;
   position: relative;
   width: 15rem !important;

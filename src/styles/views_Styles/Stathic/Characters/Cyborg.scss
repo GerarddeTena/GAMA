@@ -4,7 +4,7 @@ main {
   min-width: 100vw;
   min-height: 180vh;
   @include displayFlex(column, $cent, $cent);
-  background-image: url("../../../../Images/Lab_Background.gif");
+  background-image: url("../../../../assets/Page_Assets/Lab_Background.gif");
 }
 
 .Link {
@@ -21,7 +21,7 @@ main {
 }
 
 .Character_Cyborg {
-  background-image: url('../../../../Images/typesOfCharacter/LabCyborg.png');
+  background-image: url('../../../../assets/Page_Assets/LabCyborg.png');
   width: 100%;
   background-color: black;
   display: $flex;
@@ -95,7 +95,7 @@ main {
   }
   .Character_Cyborg {
     width: 100%;
-    background-image: url("../../../../Images/typesOfCharacter/LabCyborg.png");
+    background-image: url("../../../../assets/Page_Assets/LabCyborg.png");
     display: $flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -134,7 +134,7 @@ main {
   }
   .Character_Cyborg {
     width: 100%;
-    background-image: url("../../../../Images/typesOfCharacter/LabCyborg.png");
+    background-image: url("../../../../assets/Page_Assets/LabCyborg.png");
     display: $flex;
     justify-content: flex-start;
     align-items: flex-start;

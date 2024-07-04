@@ -1,6 +1,6 @@
-import W_Human from '../Images/typesOfCharacter/Walking_Human.gif';
-import W_Cyborg from "../Images/typesOfCharacter/Walking_Cyborg.gif";
-import W_Reptile from "../Images/typesOfCharacter/Walking_Reptile.gif";
+import W_Human from '../assets/Page_Assets/Walking_Human.gif';
+import W_Cyborg from "../assets/Page_Assets/Walking_Cyborg.gif";
+import W_Reptile from "../assets/Page_Assets/Walking_Reptile.gif";
 
 interface GlobalTypes {
     name?: string;

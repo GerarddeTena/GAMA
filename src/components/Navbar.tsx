@@ -89,7 +89,7 @@ const Navbar = ({isVisible, toggleNavbar}: NavbarProps) => {
                 </svg>
             </a>
             <button className='Toggle_Nav' onClick={toggleNavbar}>
-                <img src='src/Images/Arrow.png' className={`pixelArrow ${isVisible ? 'Rotate' : 'Original'}`}/>
+                <img src='../assets/Page_Assets/Arrow.png' className={`pixelArrow ${isVisible ? 'Rotate' : 'Original'}`}/>
             </button>
             {isVisible &&
                 <div>

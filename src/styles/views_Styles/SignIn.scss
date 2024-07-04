@@ -6,7 +6,7 @@
   width: 100%;
   min-height: 100vh;
   @include displayFlex(column, $cent);
-  background-image: url("src/Images/pixel-night.gif");
+  background-image: url("../../assets/Page_Assets/pixel-night.gif");
   background-size: cover;
 
   & .Form_Title {
@@ -37,7 +37,7 @@
   }
 
   & button {
-    border-image-source: url("../../Images/ButtonBorder.svg");
+    border-image-source: url("../../assets/Page_Assets/ButtonBorder.svg");
     height: 3rem;
     position: relative;
     width: 15rem !important;
