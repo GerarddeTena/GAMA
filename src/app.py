@@ -62,9 +62,11 @@ def options(path):
 
 @app.route('/')
 def sitemap():
-    if ENV == "development":
-        return generate_sitemap(app)
     return send_from_directory(static_file_dir, 'index.html')
+
+ @app.route('/admin-dashboard')
+ def admin_dashboard():
+     return generate_sitemap(app)
 
 
 # any other endpoint will try to serve it like a static file
