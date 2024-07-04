@@ -1,0 +1,85 @@
+/*  ICONS MIXIN FUNCTION PIXEL-ART:   */
+.Form_SignUp {
+  background-image: url("src/Images/pixel-pixel-animatmion.gif");
+  background-size: cover;
+  opacity: 0.9;
+  width: 100%;
+  min-height: 120vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3.5rem;
+}
+.Form_SignUp .Form_Title {
+  font-family: "Press Start 2P", system-ui;
+  font-size: 4rem;
+  -webkit-text-stroke: 1px white;
+  -webkit-text-fill-color: black;
+  animation: ColorStrokeTransition 2s alternate infinite;
+}
+.Form_SignUp .Body_Form_SU {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 2.5rem;
+  box-shadow: -2px 0 0 0 white, 2px 0 0 0 white, 0 -2px 0 0 white, 0 2px 0 0 white;
+  width: 40%;
+  height: 50vh;
+  backdrop-filter: blur(0.5rem);
+}
+.Form_SignUp .Body_Form_SU label {
+  font-family: "Press Start 2P", system-ui;
+  font-size: 1.8rem;
+}
+.Form_SignUp .Body_Form_SU .Label_Div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 1.5rem 0 0 0;
+  width: auto;
+}
+.Form_SignUp button {
+  border-image-source: url("../../Images/ButtonBorder.svg");
+  height: 3rem;
+  position: relative;
+  width: 15rem !important;
+  border-style: solid;
+  border-width: 4px;
+  border-image-outset: 2;
+  border-image-slice: 2;
+  border-image-width: 2;
+  bottom: 5%;
+  position: absolute;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  font-family: "Press Start 2P", system-ui;
+  -webkit-text-stroke: 1px white;
+  -webkit-text-fill-color: black;
+  background: deeppink;
+  box-shadow: -2px 0 0 0 white, 2px 0 0 0 white, 0 -2px 0 0 white, 0 2px 0 0 white;
+}
+.Form_SignUp button::after {
+  position: absolute;
+  inset: -4px;
+  content: "";
+  box-shadow: inset -4px -4px #98275e;
+}
+.Form_SignUp button:hover {
+  background: #98275e;
+}
+.Form_SignUp button:hover::after {
+  box-shadow: inset -4px -4px deeppink;
+}
+@keyframes ColorStrokeTransition {
+  from {
+    -webkit-text-stroke: 1px white;
+  }
+  to {
+    -webkit-text-stroke: 1px gold;
+  }
+}
+
+/*# sourceMappingURL=Signup.css.map */

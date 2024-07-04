@@ -1,0 +1,134 @@
+/*  ICONS MIXIN FUNCTION PIXEL-ART:   */
+.Profile_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../Images/VillageUserProfile.gif");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  min-height: 115vh;
+  width: 100%;
+  font-family: "Press Start 2P", system-ui;
+}
+.Profile_Container .Profile_Header {
+  background-image: url("../../Images/typesOfCharacter/Background.png");
+  background-size: cover;
+  position: relative;
+  display: flex;
+  flex-direction: flex-start;
+  justify-content: center;
+  align-items: center;
+  min-width: 110vh;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  min-height: 20vh;
+  border: 3px solid black;
+}
+.Profile_Container .Profile_Header .Dragon {
+  width: 50px;
+  animation: SideBySide 6s alternate infinite;
+}
+.Profile_Container .Profile_Header .Profile_Pic {
+  position: absolute;
+  top: 5%;
+  left: 2%;
+}
+.Profile_Container .Profile_Body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 15vh;
+  max-width: 110vh;
+  background: silver;
+  backdrop-filter: blur(5rem);
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+}
+.Profile_Container .Profile_Body .User_Creds {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: baseline;
+  min-width: 50vw;
+  margin-top: 1.5rem;
+  font-family: "Press Start 2P", system-ui;
+}
+.Profile_Container .Profile_Body .User_Bio {
+  display: flex;
+  flex-direction: center;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  min-height: 10vh;
+  border: 1px black;
+}
+.Profile_Container .Profile_Footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  min-width: 110vh;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+  background: silver;
+  backdrop-filter: blur(5rem);
+}
+.Profile_Container .Profile_Footer .User_Stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 50vw;
+}
+
+.Edit_Profile {
+  border-image-source: url("../../Images/ButtonBorder.svg");
+  height: 2.5rem;
+  position: relative;
+  width: 10rem !important;
+  border-style: solid;
+  border-width: 4px;
+  border-image-outset: 2;
+  border-image-slice: 2;
+  border-image-width: 2;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin: 2.5rem 0.5rem;
+  color: #212529;
+  background-color: #70b2ff;
+  border-image-repeat: stretch !important;
+  text-decoration: none;
+}
+.Edit_Profile::after {
+  position: absolute;
+  content: "";
+  inset: -4px;
+  box-shadow: inset -4px -4px blue;
+}
+.Edit_Profile:hover {
+  background-color: blue;
+}
+.Edit_Profile:hover::after {
+  box-shadow: inset -4px -4px #70b2ff;
+}
+
+@keyframes SideBySide {
+  0% {
+    transform: translateX(200%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+/*# sourceMappingURL=User_Profile.css.map */

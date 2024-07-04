@@ -1,0 +1,83 @@
+/*  ICONS MIXIN FUNCTION PIXEL-ART:   */
+.Grid_Cards {
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  grid-template-rows: auto;
+  gap: 2rem;
+  animation: appear 1.5s ease-in-out;
+}
+.Grid_Cards .Craft_Description:nth-child(-1n+2) {
+  grid-column: 1/span 3;
+}
+
+.Craft_Description {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  backdrop-filter: blur(3rem);
+  box-shadow: -3px 0 0 0 black, 3px 0 0 0 black, 0 -3px 0 0 black, 0 3px 0 0 black;
+  max-width: 60vw;
+}
+.Craft_Description .Description_Title {
+  margin: 0.5rem;
+  text-align: center;
+  font-family: "Press Start 2P", system-ui;
+  -webkit-text-stroke: 1px white;
+  -webkit-text-fill-color: deeppink;
+}
+.Craft_Description .Description_Info {
+  margin: 1rem;
+  max-width: calc(100% - 6px);
+  font-size: 1rem;
+}
+.Craft_Description .PlayerGoButton {
+  border-image-source: url("../../../Images/ButtonBorder.svg");
+  height: 3rem;
+  position: relative;
+  width: 7rem !important;
+  border-style: solid;
+  border-width: 4px;
+  border-image-outset: 2;
+  border-image-slice: 2;
+  border-image-width: 2;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+  color: #212529;
+  background-color: blueviolet;
+  border-image-repeat: stretch !important;
+  text-decoration: none;
+}
+.Craft_Description .PlayerGoButton::after {
+  position: absolute;
+  inset: -4px;
+  content: "";
+  box-shadow: inset -4px -4px rebeccapurple;
+}
+.Craft_Description .PlayerGoButton:hover {
+  color: #212529;
+  text-decoration: none;
+  background-color: rebeccapurple;
+}
+.Craft_Description .PlayerGoButton:hover::after {
+  position: absolute;
+  inset: -4px;
+  content: "";
+  box-shadow: inset -4px -4px blueviolet;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 25%;
+  }
+  to {
+    opacity: 1;
+    scale: 100%;
+  }
+}
+
+/*# sourceMappingURL=Info_Cards.css.map */

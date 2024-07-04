@@ -1,0 +1,152 @@
+/*  ICONS MIXIN FUNCTION PIXEL-ART:   */
+.Link {
+  text-decoration: none;
+  color: black;
+}
+
+:visited {
+  color: black;
+}
+
+.Character_Human {
+  width: 100%;
+  margin: 0 0 0.5rem;
+  background-image: url("../../../../Images/typesOfCharacter/Background.png");
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-shadow: -4px 0 0 0 #5ab6f8, 4px 0 0 0 #5ab6f8, 0 -4px 0 0 #5ab6f8, 0 4px 0 0 #5ab6f8;
+}
+.Character_Human .Character_W {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  animation: walk 10s linear infinite;
+}
+
+.Contain_Info_Human {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.Contain_Info_Human .Specs {
+  margin: 0 0 0.5rem;
+  width: 100%;
+  color: white;
+  background-color: #4c4c4c;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: -4px 0 0 0 green, 4px 0 0 0 green, 0 -4px 0 0 green, 0 4px 0 0 green;
+}
+.Contain_Info_Human .Button_Character {
+  margin: 1rem 0;
+  box-shadow: -4px 0 0 0 black, 4px 0 0 0 black, 0 -4px 0 0 black, 0 4px 0 0 black;
+}
+.Contain_Info_Human .Button_Character .GoLab {
+  font-size: 2rem;
+  border: none;
+  background-color: goldenrod;
+}
+.Contain_Info_Human .Button_Character :hover {
+  background-color: orange;
+  transition: 1.5s ease;
+}
+.Contain_Info_Human .Description {
+  padding: 1rem;
+  text-align: justify;
+  background: linear-gradient(-45deg, #1b1b1b, #2b2b2b, #202020);
+  -webkit-text-fill-color: #a18805;
+  -webkit-text-stroke: 0.5px black;
+  box-shadow: -4px 0 0 0 #5c1c1c, 4px 0 0 0 #5c1c1c, 0 -4px 0 0 #5c1c1c, 0 4px 0 0 #5c1c1c;
+}
+
+@keyframes walk {
+  0% {
+    transform: translateX(0%) scaleX(1);
+  }
+  50% {
+    transform: translateX(1000%) scaleX(1);
+  }
+  51% {
+    transform: translateX(1000%) scaleX(-1);
+  }
+  100% {
+    transform: translateX(0%) scaleX(-1);
+  }
+}
+@media screen and (width <= 900px) {
+  .Contain_Info_Human {
+    min-height: 200vh;
+  }
+  .Character_Human {
+    width: 100%;
+    border-style: solid;
+    background-color: black;
+    border-width: 3px;
+    background-image: url("../../../../Images/typesOfCharacter/Background.png");
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .Character_Human .Character_W {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+    animation: walk_MD 7s linear infinite;
+  }
+  @keyframes walk_MD {
+    0% {
+      transform: translateX(0%) scaleX(1);
+    }
+    50% {
+      transform: translateX(500%) scaleX(1);
+    }
+    51% {
+      transform: translateX(500%) scaleX(-1);
+    }
+    100% {
+      transform: translateX(0%) scaleX(-1);
+    }
+  }
+}
+@media screen and (width <= 750px) {
+  .Character_Human {
+    width: 100%;
+    border-style: solid;
+    background-color: black;
+    border-width: 3px;
+    background-image: url("../../../../Images/typesOfCharacter/Background.png");
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .Character_Human .Character_W {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+    animation: walk_SM 5s linear infinite;
+  }
+  @keyframes walk_SM {
+    0% {
+      transform: translateX(0%) scaleX(1);
+    }
+    50% {
+      transform: translateX(250%) scaleX(1);
+    }
+    51% {
+      transform: translateX(250%) scaleX(-1);
+    }
+    100% {
+      transform: translateX(0%) scaleX(-1);
+    }
+  }
+}
+
+/*# sourceMappingURL=Human.css.map */

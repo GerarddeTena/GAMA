@@ -1,0 +1,74 @@
+/*  ICONS MIXIN FUNCTION PIXEL-ART:   */
+.Profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 50vw;
+  min-height: 50vh;
+  padding: 0.5rem;
+  border: 1px solid black;
+  background-color: silver;
+  backdrop-filter: blur(5rem);
+}
+.Profile .Bio_Profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+.Profile .Loading {
+  animation: Blink 1.5s alternate infinite;
+}
+.Profile label {
+  font-family: "Press Start 2P", system-ui;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 4rem 0;
+}
+.Profile .Submit_Profile {
+  border-image-source: url("../../Images/ButtonBorder.svg");
+  height: 2.5rem;
+  position: relative;
+  width: 10rem !important;
+  border-style: solid;
+  border-width: 4px;
+  border-image-outset: 2;
+  border-image-slice: 2;
+  border-image-width: 2;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: bold;
+  font-size: 1.6rem;
+  margin: 2.5rem 0.5rem;
+  color: #212529;
+  background-color: #70b2ff;
+  border-image-repeat: stretch !important;
+  text-decoration: none;
+}
+.Profile .Submit_Profile::after {
+  position: absolute;
+  content: "";
+  inset: -4px;
+  box-shadow: inset -4px -4px blue;
+}
+.Profile .Submit_Profile:hover {
+  background-color: blue;
+}
+.Profile .Submit_Profile:hover::after {
+  box-shadow: inset -4px -4px #70b2ff;
+}
+
+@keyframes Blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*# sourceMappingURL=EditProfileForm.css.map */

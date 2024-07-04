@@ -1,0 +1,59 @@
+/*  ICONS MIXIN FUNCTION PIXEL-ART:   */
+.Slogan {
+  background-image: url("../../../Images/Background_project_Home.gif");
+  background-size: 125vw 100vh;
+  background-repeat: repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 150vw;
+}
+.Slogan .Slogan_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.Slogan .Slogan_Container .Title_Image {
+  position: absolute;
+  top: 10%;
+  width: 50rem;
+  height: 25rem;
+}
+.Slogan .Slogan_Container .Character_BG {
+  position: absolute;
+}
+.Slogan .Slogan_Container .Character_BG:first-child {
+  width: 8rem;
+  left: 0;
+  bottom: 20%;
+}
+.Slogan .Slogan_Container .Character_BG:nth-child(2) {
+  width: 8rem;
+  left: 50%;
+  bottom: 5%;
+  transform: translate(-50%, -50%);
+}
+.Slogan .Slogan_Container .Character_BG:nth-child(3) {
+  width: 8rem;
+  right: 10%;
+  bottom: 15%;
+}
+.Slogan .Slogan_Container .Btn-Link {
+  position: absolute;
+  text-align: center;
+  font-family: "Press Start 2P", system-ui;
+  top: 50%;
+}
+.Slogan .Slogan_Container .Btn-Link:first-child {
+  left: 50%;
+  width: 15rem;
+}
+.Slogan .Slogan_Container .Btn-Link:last-child {
+  right: 50%;
+  width: 15rem;
+}
+
+/*# sourceMappingURL=ProjectSlogan.css.map */
