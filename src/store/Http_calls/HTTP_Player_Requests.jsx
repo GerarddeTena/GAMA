@@ -1,4 +1,4 @@
-const serverURL = import.meta.env.VITE_APP_CODESPACE_NAME !== 'undefined' ? `https://${import.meta.env.VITE_APP_CODESPACE_NAME}-3001.app.github.dev/api` : 'http://127.0.0.1:3001/api';
+const serverURL = 'https://gama-oyb3.onrender.com/api';
 export const setPlayerRequests = async (playerData) => {
 
     return await fetch(`${serverURL}/player`, {
