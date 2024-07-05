@@ -10,8 +10,8 @@ class PauseMenu extends Phaser.Scene {
     this.add.text(100, 50, "Pause Menu", { fontSize: "32px BlockKie"});
 
     this.text = [
-      this.add.text(100, 100, "Resume", { color: "#ffffff" }),
-      this.add.text(100, 150, "Exit", { color: "#ffffff" }),
+      this.add.text(100, 100, "Resume", { font: 'consolas 30px', color: "#ffffff"}),
+      this.add.text(100, 150, "Exit", {font: 'consolas 30px', color: "#ffffff" }),
     ];
 
     this.input.keyboard.on("keydown-W", () => {
@@ -32,15 +32,17 @@ class PauseMenu extends Phaser.Scene {
       const selectedText = this.text[this.selectedTextIndex].text;
       if (selectedText === "Resume") {
         this.scene.stop('PauseMenu');
-        this.scene.resume('Level1' || 'Level2');
+        this.scene.resume('Level1');
+        this.scene.resume('Level2');
+        this.scene.resume('Level3');
       }
       else if (selectedText === "Exit") {
         this.cameras.main.fadeOut(2000, 0, 0, 0);
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
-          this.anims.pauseAll();
+          this.scene.stop('Level1');
+          this.scene.stop('Level2');
+          this.scene.stop('Level3');
           this.sound.pauseAll();
-          this.time.removeAllEvents();
-          this.scene.stop('Level1' || 'Level2');
           this.scene.start('Menu');
         })
       }
@@ -55,9 +57,7 @@ class PauseMenu extends Phaser.Scene {
     this.updateTextSelection();
 
     // Add key legend
-    this.add.text(100, 200, "W/S: Navigate, ENTER: Select", {
-      color: "#ffffff",
-    });
+    this.add.text(100, 200, "W/S: Navigate, ENTER: Select", {font: 'consolas 30px', color: "#ffffff"});
   }
 }
 

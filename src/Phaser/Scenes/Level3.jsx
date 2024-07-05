@@ -112,6 +112,7 @@ export class Level3 extends Base_Level {
 
     update() {
         super.update();
+        super.nextLevel('Finish');
         super.gameOver('Menu');
 
     }

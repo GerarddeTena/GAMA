@@ -125,7 +125,7 @@ export class Base_Level extends Phaser.Scene {
         this.characterMap.forEach((animKeys, character) => {
             this.physics.overlap(this.player, character, this.handlePlayerEnemyCollision, null, this);
             this.handleCharacterAnimations(character, animKeys.attackAnim, animKeys.walkAnim, character && this.player.x > character.x - 100 && this.player.x < character.x + 100);
-            this.handleCharacterOverlap(character, animKeys.deathAnim, 50);
+            this.handleCharacterOverlap(character, animKeys.deathAnim, 1);
         });
 
     }
@@ -133,7 +133,7 @@ export class Base_Level extends Phaser.Scene {
     nextLevel(scene) {
         if (this.npcCharacters.every(npc => npc === null)) {
             this.time.delayedCall(3000, () => {
-                this.scene.transition({target: scene, sleep: false, duration: 1000});
+                this.scene.transition({target: scene, sleep: true, duration: 1000});
             });
         }
     }

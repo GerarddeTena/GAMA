@@ -12,7 +12,7 @@ export class Select_Character extends Phaser.Scene {
     preload() {
         const player = new LoadSprites(this);
         const audio = new LoadAudio(this);
-        audio.loadAudio('selectMenuAudio', 'Selection');
+        audio.loadAudio('selectMenuAudio', 'AudioBoss');
         player.loadAllSprites();
     }
 
@@ -70,7 +70,7 @@ export class Select_Character extends Phaser.Scene {
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
             const selectedCharacterName = this.characterNames[this.selectedCharacterIndex];
             this.registry.set('Character Selected', selectedCharacterName);
-            //this.audioSelection.stop();
+            this.audioSelection.stop();
             this.scene.start('Level1');
         });
         this.add.text(CENT_X, CENT_Y - 200, 'Select Your Character', {

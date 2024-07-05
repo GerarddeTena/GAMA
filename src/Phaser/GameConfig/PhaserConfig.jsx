@@ -6,6 +6,7 @@ import PauseMenu from "../Scenes/PauseMenu.jsx";
 import {Level2} from "../Scenes/Level2.jsx";
 import {Level1} from "../Scenes/Level1.jsx";
 import {Level3} from "../Scenes/Level3.jsx";
+import {Finish} from "../Scenes/Finish.jsx";
 
 const PhaserConfig = () => {
   useEffect(() => {
@@ -20,7 +21,7 @@ const PhaserConfig = () => {
           debug: false,
         },
       },
-      scene: [Menu, Select_Character, Level1, Level2, Level3, PauseMenu],
+      scene: [Menu, Select_Character, Level1, Level2, Level3, PauseMenu, Finish],
     };
 
     const game = new Phaser.Game(config);
