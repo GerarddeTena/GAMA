@@ -9,7 +9,7 @@ export class Menu extends Phaser.Scene {
 
     preload() {
         const menuAudio = new LoadAudio(this);
-        menuAudio.loadAudio('MenuAudio', 'Menu_wz4bis', 'Menu');
+        menuAudio.loadAudio( 'MenuAudio', 'Menu');
         const keyBoard = new LoadKeyBoard(this);
         keyBoard.loadKeyBoard('A', 'dvcjspj9yxxwmg4dhata', 32, 32);
         keyBoard.loadKeyBoard('D', 'kuiuv1vynk5h1s7sv1sm', 32, 32);
@@ -53,7 +53,7 @@ export class Menu extends Phaser.Scene {
         this.input.keyboard.on('keydown-ENTER', () => this.cameras.main.fadeOut(1000, 0, 0, 0));
         this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
             this.scene.start('Select_Character');
-            //this.audioMenu.stop();
+            this.audioMenu.stop();
         });
     }
 

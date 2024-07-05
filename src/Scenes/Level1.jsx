@@ -21,7 +21,7 @@ export class Level1 extends Base_Level {
         loader.loadImage('block','yyqs5t9kle0fubudlxp3');
         loader.loadImage('c_block','glhfi10ek0agpj1djoqx');
         spriteLoad.loadAllSprites();
-        sceneAudio.loadAudio('LevelOne', 'AudioBoss_cv1vgg', 'Level1');
+        sceneAudio.loadAudio('LevelOne', 'AudioBoss');
     }
 
     create() {

@@ -12,7 +12,7 @@ export class Select_Character extends Phaser.Scene {
     preload() {
         const player = new LoadSprites(this);
         const audio = new LoadAudio(this);
-        audio.loadAudio('selectMenuAudio', 'Selection_zfrqst', 'Selection');
+        audio.loadAudio('selectMenuAudio', 'Selection');
         player.loadAllSprites();
     }
 

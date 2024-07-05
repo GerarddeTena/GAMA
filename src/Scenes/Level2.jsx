@@ -25,9 +25,8 @@ export class Level2 extends Base_Level {
     create() {
         const CENT_X = this.cameras.main.centerX;
         const CENT_Y = this.cameras.main.centerY;
-        const OFFSET = 100;
         const Rand = (n) => Math.floor(Math.random() * n);
-        this.add.image(CENT_X - OFFSET * 15, CENT_Y - OFFSET * 2, "level2BG").setOrigin(0, 0).setScale(2, 2)
+        this.add.image(CENT_X, CENT_Y, "level2BG").setOrigin(0, 0).setScale(3)
 
         this.platforms = new Platforms(this.physics.world, this, null, [
             {x: 100, y: 500, key: "platform"}, {x: 500, y: 600, key: "platform"}, {x: 300, y: 500, key: "block"}
