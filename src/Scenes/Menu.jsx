@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import {LoadAudio, LoadKeyWords} from "../Game_Objs/Loader.jsx";
+import {LoadAudio, LoadKeyBoard} from "../Game_Objs/Loader.jsx";
 import {KeyBoard} from "../Game_Objs/KEYBOARD_KEYS/KEYBOARD.jsx";
 
 export class Menu extends Phaser.Scene {
@@ -10,13 +10,11 @@ export class Menu extends Phaser.Scene {
     preload() {
         const menuAudio = new LoadAudio(this);
         menuAudio.loadAudio('MenuAudio', 'audio', 'Menu');
-        const keyWords = new LoadKeyWords(this);
-        keyWords.loadKeyWords('A', 'A-Key', 32, 32);
-        keyWords.loadKeyWords('D', 'D-Key', 32, 32);
-        keyWords.loadKeyWords('Shift', 'Shift-Key', 48, 32);
-        keyWords.loadKeyWords('Space', 'Space-Key', 64, 32);
-    }
-
+        const keyBoard = new LoadKeyBoard(this);
+        keyBoard.loadKeyBoard('A', 'dvcjspj9yxxwmg4dhata', 32, 32);
+        keyBoard.loadKeyBoard('D', 'kuiuv1vynk5h1s7sv1sm', 32, 32);
+        keyBoard.loadKeyBoard('Shift', 'azpwr1jz7r8cyoghl0q2', 48, 32);
+        keyBoard.loadKeyBoard('Space', 'teuce570uckbf1jatyds', 64, 32);}
     create() {
         const centerX = this.cameras.main.centerX;
         const centerY = this.cameras.main.centerY;

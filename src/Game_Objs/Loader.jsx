@@ -4,7 +4,7 @@ export class Loader {
     }
 
     loadImage(image, file) {
-        this.scene.load.image(image, `../../public/assets/Phaser_Assets/${file}.png`);
+        this.scene.load.image(image, `https://res.cloudinary.com/gamacloud/image/upload/f_auto,q_auto/${file}`);
     }
 }
 
@@ -60,13 +60,13 @@ export class LoadAudio {
     }
 }
 
-export class LoadKeyWords {
+export class LoadKeyBoard {
     constructor(scene) {
         this.scene = scene;
     }
 
-    loadKeyWords(key, file, frameWidth, frameHeight) {
-        this.scene.load.spritesheet(key, `../../public/assets/Phaser_Assets/${file}.png`, {
+    loadKeyBoard(key, file, frameWidth, frameHeight) {
+        this.scene.load.spritesheet(key, `https://res.cloudinary.com/gamacloud/image/upload/f_auto,q_auto/${file}`, {
             frameWidth: frameWidth,
             frameHeight: frameHeight
         });
