@@ -16,9 +16,9 @@ export class Level2 extends Base_Level {
         const loader = new Loader(this);
         const spriteLoad = new LoadSprites(this);
 
-        loader.loadImage("level2BG","Subway");
-        loader.loadImage("platform","Platform");
-        loader.loadImage("block","PlatformBlock");
+        loader.loadImage("level2BG","y0xeoftxau5cvbg4jj3v");
+        loader.loadImage("platform","qt5bhqwv5zkxvofud1ip");
+        loader.loadImage("block","yyqs5t9kle0fubudlxp3");
         spriteLoad.loadAllSprites();
     }
 
@@ -27,7 +27,7 @@ export class Level2 extends Base_Level {
         const CENT_Y = this.cameras.main.centerY;
         const OFFSET = 100;
         const Rand = (n) => Math.floor(Math.random() * n);
-        this.add.image(CENT_X - OFFSET * 15, CENT_Y - OFFSET * 2, "level2BG").setOrigin(0, 0).setScale(1.87);
+        this.add.image(CENT_X - OFFSET * 15, CENT_Y - OFFSET * 2, "level2BG")
 
         this.platforms = new Platforms(this.physics.world, this, null, [
             {x: 100, y: 500, key: "platform"}, {x: 500, y: 600, key: "platform"}, {x: 300, y: 500, key: "block"}

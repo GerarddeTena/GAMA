@@ -1,6 +1,5 @@
 import {Base_Level} from "../GameConfig/Base_Level.jsx";
 import {Loader, LoadSprites} from "../Game_Objs/Loader.jsx";
-import {Platforms} from "../Game_Objs/Platforms.jsx";
 import {Hans} from "../Game_Objs/NPC/Hans.jsx";
 import {Skeleton} from "../Game_Objs/NPC/Skeleton.jsx";
 import {followPlayer} from "../GameConfig/NPCLogic.jsx";
@@ -15,8 +14,7 @@ export class Level3 extends Base_Level {
         const loadSprite = new LoadSprites(this);
         const loader = new Loader(this);
         loadSprite.loadAllSprites();
-        loader.loadImage('FinalBackground','FinalBackground');
-        loader.loadImage('FinalCorridor');
+        loader.loadImage('FinalBackground','gaoqjfkqe5lesgu8aioy');
     }
 
     create() {
@@ -26,12 +24,6 @@ export class Level3 extends Base_Level {
 
 
         this.add.image(CENT_X - 100, CENT_Y + 150, 'FinalBackground');
-
-        this.platforms = new Platforms(this.physics.world, this, null, [
-            {x: 100, y: 600, key: "FinalCorridor"}, {x: 400, y: 600, key: "FinalCorridor"},
-            {x: 300, y: 600, key: "FinalCorridor"}, {x: 200, y: 600, key: "FinalCorridor"}
-        ]);
-
         super.create();
 
         const characters = [

@@ -1,0 +1,36 @@
+url general para todos los assets = https://res.cloudinary.com/gamacloud/image/upload/f_auto,q_auto/
+
+Esto son los ID de los sprites que se  deben añadir ams adelante enseño como
+bg lvl1 = dpyt5ckdx44utnwic25x
+bg Lvl2 = y0xeoftxau5cvbg4jj3v
+bg Lvl3 =
+dragon_hysteria = d9eisky3mwebbra74nvn
+hans_idle = zzqfyf7jgagcbsf8rlpi
+cyborg_Walk = z4tfwmy7z3rrzbyvvvzr
+hans_walk = al5wu99scg2gvf6l5xtj
+hans_Attack = zws7cgdoexextnuei65y
+dragon = oqoqionyukvsistp7zni
+hans_Jump = gonl723dsg7uyxk5jjfn
+skeleton_Attack = aersz1hf3hpenilbxawq
+skeleton_Death = andmy3lojoonpgh65eao
+skeleton_Idle = l9nfae8gzlz1v5wcri6g
+skeleton_Walk = vt3mcozygy662kqqhbpj
+human_Walk = elrnaw4vkd5v8c84342w
+reptile_Walk = ynscb3swj4v4ygrcihzs
+reptile_Jump = ooibpleeenzf44pajeh7
+reptile_Idle = tsrfmcjd1twcxfvlzffp
+human_Jump = o7f7qzaphpa9y4br37yi
+human_idle = cicdunkkbwslwdeuusj9
+cyborg_Idle = aexuwopxsimi1tm2eexp
+
+---------------------------------
+
+Platforms:
+
+Platform = qt5bhqwv5zkxvofud1ip
+Platform_Block = yyqs5t9kle0fubudlxp3
+Block_Chains = ip4cugwdwja13tyfyklq
+Cathedral_Wood_Block = zumlcrwqxol9ikrdycf0
+CathedralBlock = glhfi10ek0agpj1djoqx
+ColumnGround = japspptcz82eabhvdats
+Corridor = e2y77zfsvkg01m8pmkna

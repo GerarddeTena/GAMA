@@ -53,7 +53,7 @@ export class Reptile extends Phaser.Physics.Arcade.Sprite {
         if (cursors.space.isDown && onGround) {
             this.body.setVelocityY(-560);
             if (this.currentAnim !== "reptile_Jump") {
-                this.anims.play("reptile_Jump");
+                this.anims.play("reptile_Jump", true);
                 this.currentAnim = "reptile_Jump";
             }
         } else if (keys[0].isDown) {
@@ -77,7 +77,7 @@ export class Reptile extends Phaser.Physics.Arcade.Sprite {
             this.body.setVelocityX(0);
 
             if (onGround && this.currentAnim !== "reptile_Idle") {
-                this.anims.play("reptile_Idle");
+                this.anims.play("reptile_Idle", true);
                 this.currentAnim = "reptile_Idle";
             }
         }
