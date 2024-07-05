@@ -1,4 +1,4 @@
-import {Loader, LoadSprites} from "../Game_Objs/Loader.jsx";
+import {LoadAudio, Loader, LoadSprites} from "../Game_Objs/Loader.jsx";
 import {Platforms} from "../Game_Objs/Platforms.jsx";
 import {Hans} from "../Game_Objs/NPC/Hans.jsx";
 import {Skeleton} from "../Game_Objs/NPC/Skeleton.jsx";
@@ -14,14 +14,14 @@ export class Level1 extends Base_Level {
     preload() {
         const loader = new Loader(this);
         const spriteLoad = new LoadSprites(this);
-        //const sceneAudio = new LoadAudio(this);
+        const sceneAudio = new LoadAudio(this);
         loader.loadImage('background', 'dpyt5ckdx44utnwic25x');
         loader.loadImage('platform','y0xeoftxau5cvbg4jj3v');
         loader.loadImage('corridor','e2y77zfsvkg01m8pmkna');
         loader.loadImage('block','yyqs5t9kle0fubudlxp3');
         loader.loadImage('c_block','glhfi10ek0agpj1djoqx');
         spriteLoad.loadAllSprites();
-        //sceneAudio.loadAudio('LevelOne', 'audio', 'Level1');
+        sceneAudio.loadAudio('LevelOne', 'AudioBoss_cv1vgg', 'Level1');
     }
 
     create() {
@@ -30,8 +30,8 @@ export class Level1 extends Base_Level {
         const CENT_Y = this.cameras.main.centerY;
         const Rand = (n) => Math.floor(Math.random() * n);
 
-        // this.audioLVL1 = this.sound.add('LevelOne');
-        // this.audioLVL1.play({volume: 0.02});
+        this.audioLVL1 = this.sound.add('LevelOne');
+        this.audioLVL1.play({volume: 0.02});
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keys = this.input.keyboard.addKeys(['A', 'D']);

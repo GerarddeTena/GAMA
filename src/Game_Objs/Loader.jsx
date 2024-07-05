@@ -55,7 +55,7 @@ export class LoadAudio {
     }
 
     loadAudio(audio, file) {
-        this.scene.load.audio(audio, `https://res.cloudinary.com/gamacloud/image/upload/f_auto,q_auto/${file}`);
+        this.scene.load.audio(audio, `https://res.cloudinary.com/gamacloud/video/upload/f_auto:video,q_auto/${file}`);
     }
 }
 

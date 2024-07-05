@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import {LoadSprites} from "../Game_Objs/Loader.jsx";
+import {LoadAudio, LoadSprites} from "../Game_Objs/Loader.jsx";
 import { Human } from "../Game_Objs/Player/Player_Human.jsx";
 import { Cyborg } from "../Game_Objs/Player/Player_Cyborg.jsx";
 import { Reptile } from "../Game_Objs/Player/Player_Reptile.jsx";
@@ -11,8 +11,8 @@ export class Select_Character extends Phaser.Scene {
 
     preload() {
         const player = new LoadSprites(this);
-        // const audio = new LoadAudio(this);
-        // audio.loadAudio('selectMenuAudio', 'audio', 'Selection');
+        const audio = new LoadAudio(this);
+        audio.loadAudio('selectMenuAudio', 'Selection_zfrqst', 'Selection');
         player.loadAllSprites();
     }
 
@@ -21,8 +21,8 @@ export class Select_Character extends Phaser.Scene {
         const CENT_X = this.cameras.main.centerX;
         const CENT_Y = this.cameras.main.centerY;
 
-        // this.audioSelection = this.sound.add('selectMenuAudio');
-        // this.audioSelection.play({volume: 0.02});
+        this.audioSelection = this.sound.add('selectMenuAudio');
+        this.audioSelection.play({volume: 0.02});
 
         this.physics.world.gravity.y = 0;
 

@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import {LoadKeyBoard} from "../Game_Objs/Loader.jsx";
+import {LoadAudio, LoadKeyBoard} from "../Game_Objs/Loader.jsx";
 import {KeyBoard} from "../Game_Objs/KEYBOARD_KEYS/KEYBOARD.jsx";
 
 export class Menu extends Phaser.Scene {
@@ -8,8 +8,8 @@ export class Menu extends Phaser.Scene {
     }
 
     preload() {
-        // const menuAudio = new LoadAudio(this);
-        // menuAudio.loadAudio('MenuAudio', 'audio', 'Menu');
+        const menuAudio = new LoadAudio(this);
+        menuAudio.loadAudio('MenuAudio', 'Menu_wz4bis', 'Menu');
         const keyBoard = new LoadKeyBoard(this);
         keyBoard.loadKeyBoard('A', 'dvcjspj9yxxwmg4dhata', 32, 32);
         keyBoard.loadKeyBoard('D', 'kuiuv1vynk5h1s7sv1sm', 32, 32);
@@ -26,8 +26,8 @@ export class Menu extends Phaser.Scene {
         }).setOrigin(0.5);
         textMenu.setTint(0xff00ff, 0xff00ff, 0x0000ff, 0x0000ff);
 
-        // this.audioMenu = this.sound.add('MenuAudio');
-        // this.audioMenu.play({volume: 0.02});
+        this.audioMenu = this.sound.add('MenuAudio');
+        this.audioMenu.play({volume: 0.02});
 
         this.A = new KeyBoard(this, centerX - 1.5 * offset, centerY, 'A', 0).setScale(2);
         this.D = new KeyBoard(this, centerX + offset * 1.5, centerY, 'D', 0).setScale(2);
