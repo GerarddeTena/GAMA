@@ -1,5 +1,11 @@
 @import './src/styles/global.variables';
-
+@font-face {
+    font-family: 'pixeboyregular';
+    src: url('./src/assets/pixeboy-z8xgd-webfont.woff2') format('woff2'),
+    url('./src/assets/pixeboy-z8xgd-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 * {
     box-sizing: border-box;
     margin: 0;

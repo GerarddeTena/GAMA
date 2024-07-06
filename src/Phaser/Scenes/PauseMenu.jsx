@@ -7,11 +7,11 @@ class PauseMenu extends Phaser.Scene {
   }
 
   create() {
-    this.add.text(100, 50, "Pause Menu", { fontSize: "32px BlockKie"});
+    this.add.text(100, 50, "Pause Menu", {fontSize:'80px', fontFamily: 'BlockKie'});
 
     this.text = [
-      this.add.text(100, 100, "Resume", { font: 'consolas 30px', color: "#ffffff"}),
-      this.add.text(100, 150, "Exit", {font: 'consolas 30px', color: "#ffffff" }),
+      this.add.text(100, 200, "Resume", { fontSize:'50px', fontFamily: 'BlockKie'}),
+      this.add.text(100, 250, "Exit", {fontSize:'50px', fontFamily: 'BlockKie'}),
     ];
 
     this.input.keyboard.on("keydown-W", () => {
@@ -57,7 +57,7 @@ class PauseMenu extends Phaser.Scene {
     this.updateTextSelection();
 
     // Add key legend
-    this.add.text(100, 200, "W/S: Navigate, ENTER: Select", {font: 'consolas 30px', color: "#ffffff"});
+    this.add.text(100, 350, "W/S: Navigate, ENTER: Select", {font: 'consolas 70px', color: "#ffffff"});
   }
 }
 
