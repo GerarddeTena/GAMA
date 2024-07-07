@@ -1,21 +1,22 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import ProjectSlogan from "./src/views/ProjectEslogan.tsx";
-import AboutUs from "./src/views/AboutUs.tsx";
-import Navbar from "./src/components/Navbar.tsx";
-import Human from "./src/views/Customization&Players/Human.tsx";
-import Cyborg from "./src/views/Customization&Players/Cyborg.tsx";
-import Reptile from "./src/views/Customization&Players/Reptile.tsx";
-import Signup from "./src/views/LogIn/SignUp.jsx";
-import InjectContext from './src/store/GENERAL_CONTEXT/AppContext.jsx';
-import SignIn from "./src/views/LogIn/SignIn.jsx";
-import User_Profile from "./src/views/Profile/User_Profile.tsx";
-import PhaserConfig from "./src/Phaser/GameConfig/PhaserConfig.jsx";
-import { AuthContext, AuthProvider } from "./src/store/GENERAL_CONTEXT/AuthContext.tsx";
+import ProjectSlogan from "./views/ProjectEslogan.tsx";
+import AboutUs from "./views/AboutUs.tsx";
+import Navbar from "./components/Navbar.tsx";
+import Human from "./views/Customization&Players/Human.tsx";
+import Cyborg from "./views/Customization&Players/Cyborg.tsx";
+import Reptile from "./views/Customization&Players/Reptile.tsx";
+import Signup from "./views/LogIn/SignUp.jsx";
+import InjectContext from './store/GENERAL_CONTEXT/AppContext.jsx';
+import SignIn from "./views/LogIn/SignIn.jsx";
+import User_Profile from "./views/Profile/User_Profile.tsx";
+import PhaserConfig from "./Phaser/GameConfig/PhaserConfig.jsx";
+import { AuthContext, AuthProvider } from "./store/GENERAL_CONTEXT/AuthContext.tsx";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from "react";
 import { ReactComponentLike } from "prop-types";
-import { useLoading } from "./src/store/GENERAL_CONTEXT/LoadingContext";
-import { Loader } from "./src/components/Loader";
+import { useLoading } from "./store/GENERAL_CONTEXT/LoadingContext.tsx";
+import { Loader } from "./components/Loader.tsx";
 
 interface PrivateRouteTypes {
     component: ReactComponentLike;
