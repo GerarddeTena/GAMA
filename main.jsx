@@ -2,10 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Layout from './Layout.tsx'
 import './index.scss'
+import {LoadingProvider} from "./src/store/GENERAL_CONTEXT/LoadingContext.tsx";
 
 ReactDOM.createRoot(document.querySelector('#root')).render(
   <React.StrictMode>
-    <Layout />
+      <LoadingProvider>
+          <Layout />
+      </LoadingProvider>
   </React.StrictMode>,
 );
 

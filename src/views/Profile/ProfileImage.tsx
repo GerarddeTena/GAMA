@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from "react";
+import {Loader} from "../../components/Loader.tsx";
 
 interface ProfileImageProps {
     onImageUploaded: (file: string) => void;
@@ -41,7 +42,7 @@ const ProfileImage: React.FC<ProfileImageProps> = ({ onImageUploaded}) => {
                 onChange={uploadImage}
             />
             {loading ? (
-                <h3 className='Loading'>Loading...</h3>
+                <Loader/>
             ) : (
                 imageUrl && <img src={imageUrl} alt="Foto de perfil"/>
             )}

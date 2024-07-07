@@ -25,6 +25,7 @@ a {
 }
 #root {
     @include displayFlex(column, $cent, $cent);
+    position: relative;
     width: 100%;
     font-style: normal;
     font-size: x-large;

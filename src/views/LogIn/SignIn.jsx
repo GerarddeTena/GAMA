@@ -2,6 +2,7 @@ import {useContext, useState} from "react";
 import {Context} from "../../store/GENERAL_CONTEXT/AppContext.jsx";
 import '../../styles/views_Styles/SignIn.scss';
 import {AuthContext} from "../../store/GENERAL_CONTEXT/AuthContext.tsx";
+import {Loader} from "../../components/Loader.tsx";
 
 const SignIn = () => {
 
@@ -11,6 +12,8 @@ const SignIn = () => {
     const [email, setMail] = useState('');
     const [user_id, setUserID] = useState(0);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+
 
     const checkUser = async (e) => {
 
@@ -22,6 +25,7 @@ const SignIn = () => {
         };
 
         try {
+            setLoading(true);
             const response = await actions.loginUserDispatcher(userData);
             if (response.token) {
                 localStorage.setItem('token', response.token);
@@ -44,26 +48,30 @@ const SignIn = () => {
             setError('An error occurred while logging in');
             console.error('Error logging in user:', error);
         }
+        setLoading(false);
     };
 
     return (
         <>
-            <section className="Form_SignIn">
-                <h2 className="Form_Title">Sign In</h2>
-                <form className='Body_Form_SI'>
-                    <div className="Label_Div">
-                        <label>E-MAIL: </label>
-                        <input type="email" value={email} onChange={(e) => setMail(e.target.value)}/>
-                    </div>
+            {
+                loading ? <Loader/> :
+                    <section className="Form_SignIn">
+                        <h2 className="Form_Title">Sign In</h2>
+                        <form className='Body_Form_SI'>
+                            <div className="Label_Div">
+                                <label>E-MAIL: </label>
+                                <input type="email" value={email} onChange={(e) => setMail(e.target.value)}/>
+                            </div>
 
-                    <div className="Label_Div">
-                        <label>PASSWORD: </label>
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                    </div>
-                    <button className='Submit_SI' type="submit" onClick={checkUser}>Sign In</button>
-                </form>
-                {error && <p>{error}</p>}
-            </section>
+                            <div className="Label_Div">
+                                <label>PASSWORD: </label>
+                                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                            </div>
+                            <button className='Submit_SI' type="submit" onClick={checkUser}>Sign In</button>
+                        </form>
+                        {error && <p>{error}</p>}
+                    </section>
+            }
         </>
     )
 }
